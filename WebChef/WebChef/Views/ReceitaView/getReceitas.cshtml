@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebChef.Models.Receita>
+
+@{
+    ViewData["Title"] = "Catálogo de Receitas";
+}
+
+<h1>Receitas</h1>
+<div class="col-xs-12" style="height:50px;"></div>
+<table class="table">
+    <tr bgcolor='@("#EEE")'>
+        <th>
+            @Html.DisplayNameFor(model => model.nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descricao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.informacao_nutricional)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duracao_prevista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.link_ajuda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nr_pessoas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dificuldade)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria)
+        </th>
+    </tr>
+
+    @foreach (var receita in Model)
+    {
+        <tr>
+            <td>
+                <a asp-controller="ReceitaView" asp-action="getReceita">
+                    @Html.DisplayFor(modelreceita => receita.nome)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.informacao_nutricional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.duracao_prevista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.link_ajuda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.imagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.nr_pessoas)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.dificuldade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelreceita => receita.categoria)
+            </td>
+
+        </tr>
+        }
+
+
+    </table>

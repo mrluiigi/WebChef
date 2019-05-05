@@ -1,0 +1,219 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    /*
+	box-sizing:border-box;
+	*/
+}
+
+/* Remove the navbar's default rounded borders and increase the bottom margin */
+.navbar {
+    color: #8B4513;
+    border-radius: 0;
+}
+
+
+
+
+.dropdown {
+    list-style: none;
+    display: inline-block;
+    background-color: #343A40;
+}
+
+    .dropdown .nav-link {
+        color: #fff;
+        text-decoration: none;
+        background-color: #343A40;
+    }
+
+    .dropdown .dropdown-menu a {
+        color: #9A9DA0;
+        background-color: #343A40;
+        text-decoration: none;
+    }
+
+    .dropdown .btn {
+        background: green;
+        color: #fff;
+    }
+
+        .dropdown .btn:hover {
+            background: cyan;
+            color: #000;
+        }
+
+        .dropdown .btn:active {
+            background: cyan;
+            color: #000;
+        }
+
+        .dropdown .btn:focus {
+            background: cyan;
+            color: #000;
+        }
+
+.dropdown-menu .dropdown-item {
+    display: inline-block;
+    background-color: #343A40;
+}
+
+.container .dropdown .dropdown-menu a:hover {
+    color: blue;
+    background-color: #b91773;
+    border-color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar-text > a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* Remove the jumbotron's default bottom margin */
+.jumbotron {
+    margin-bottom: 0;
+    background-color: #F23F66 !important;
+    color: #000000;
+    border-radius: 0;
+}
+
+
+.cor-texto {
+    color: #8B4513;
+}
+
+/*.img {
+    position: relative;
+    float: left;
+    width:  330px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}*/
+
+.responsive {
+    max-height: 350px;
+    max-width: 300px;
+    width: auto;
+    height: 300px;
+    border-radius: 5%;
+}
+
+body {
+    /*
+      */
+    padding-bottom: 130px
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+    background-color: #f2f2f2;
+    /*
+      padding: 25px;
+      */
+}
+/*
+    */
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+}
+
+
+@media (min-width: 768px) {
+    .navbar-nav.navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+}
+
+
+
+/*
+    object{
+      display: block;
+      width: 100%;
+      height: 300px;
+      height: 100vh;
+      min-height: 500px;
+    }
+      */

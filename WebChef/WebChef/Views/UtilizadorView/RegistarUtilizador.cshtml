@@ -1,0 +1,43 @@
+﻿@model WebChef.Models.Utilizador
+@{
+    ViewData["Title"] = "Registar Utilizador";
+}
+
+<h4>Criar conta</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (TempData["Success"] != null)
+        {
+            <p class="alert alert-success">@TempData["Success"] </p>
+        }
+        @if (TempData["Fail"] != null)
+        {
+            <p class="alert alert-danger">@TempData["Fail"]</p>
+        }
+            <form asp-action="RegistarUtilizador">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="nome" class="control-label"></label>
+                    <input asp-for="nome" class="form-control" />
+                    <span asp-validation-for="nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="email" class="control-label"></label>
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="password" class="control-label"></label>
+                    <input asp-for="password" class="form-control" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Registar" class="btn btn-default btn-primary" />
+                </div>
+            </form>
+    </div>
+</div>
+<div>
+</div>
+
