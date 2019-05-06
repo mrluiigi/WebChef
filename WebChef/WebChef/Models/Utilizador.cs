@@ -34,6 +34,5 @@ namespace WebChef.Models
 
         public DbSet<Utilizador> utilizador { get; set; }
 
-
     }
 }

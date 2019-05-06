@@ -30,5 +30,12 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+        [Route("{id=int}")]
+        public IActionResult getReceita(int id)
+        {
+            Receita receita = receitaHandling.getReceita(id);
+            return View(receita);
+        }
+
     }
 }

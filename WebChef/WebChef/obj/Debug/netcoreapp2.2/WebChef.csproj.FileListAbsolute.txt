@@ -56,3 +56,4 @@ C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.dll
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.pdb
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.csproj.CopyComplete
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getReceita.g.cshtml.cs

@@ -19,6 +19,11 @@ namespace WebChef.shared
         {
             return _context.receita.ToArray();
         }
+
+        public Receita getReceita(int id)
+        {
+            return _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
+        }
         
     }
 }

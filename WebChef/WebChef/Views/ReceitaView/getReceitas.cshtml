@@ -41,7 +41,7 @@
     {
         <tr>
             <td>
-                <a asp-controller="ReceitaView" asp-action="getReceita">
+                <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
                     @Html.DisplayFor(modelreceita => receita.nome)
                 </a>
             </td>

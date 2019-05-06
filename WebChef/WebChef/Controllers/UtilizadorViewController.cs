@@ -23,6 +23,8 @@ namespace WebChef.Controllers
             utilizadorHandling = new UtilizadorHandling(context);
         }
 
+       
+
     
         [HttpGet]
         public IActionResult LoginUtilizador()
