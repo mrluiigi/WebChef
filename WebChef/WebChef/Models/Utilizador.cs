@@ -22,6 +22,7 @@ namespace WebChef.Models
         [Display(Name = "Password")]
         public string password { set; get; }
 
+
     }
 
     public class UtilizadorContext : DbContext

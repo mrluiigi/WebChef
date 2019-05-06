@@ -21,6 +21,7 @@ namespace WebChef
             var connection = @"Server=DESKTOP-MCDNNQN;Database=WebChef;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<UtilizadorContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ReceitaContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ReceitaUtilizadorContext>(options => options.UseSqlServer(connection));
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>
                     {

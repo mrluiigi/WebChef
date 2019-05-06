@@ -10,20 +10,31 @@ namespace WebChef.shared
     public class ReceitaHandling
     {
         private readonly ReceitaContext _context;
-        public ReceitaHandling(ReceitaContext context)
+        private readonly ReceitaUtilizadorContext _contextReceitaUtilizador;
+
+
+        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU)
         {
             _context = context;
+            _contextReceitaUtilizador = contextRU;
         }
 
         public Receita[] getReceitas()
         {
             return _context.receita.ToArray();
         }
-
+        
         public Receita getReceita(int id)
         {
             return _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
         }
-        
+
+        public void AdicionarReceitaFavorita(ReceitaUtilizador ru)
+        {
+            _contextReceitaUtilizador.receitaUtilizador.Add(ru);
+            _contextReceitaUtilizador.SaveChanges();
+        }
+
+
     }
 }

@@ -12,10 +12,10 @@ namespace WebChef.Controllers
     public class ReceitaController : Controller
     {
         private ReceitaHandling receitaHandling;
-        public ReceitaController(ReceitaContext context)
+        public ReceitaController(ReceitaContext context, ReceitaUtilizadorContext contextRU)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context);
+            receitaHandling = new ReceitaHandling(context, contextRU);
         }
 
         [HttpGet]

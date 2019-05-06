@@ -37,6 +37,7 @@ namespace WebChef.Models
         public string dificuldade { set; get; }
 
         public string categoria { set; get; }
+
     }
 
     public class ReceitaContext : DbContext

@@ -11,19 +11,19 @@ using WebChef.shared;
 
 namespace WebChef.Controllers
 {
-    
+
     [Route("[controller]/[action]")]
     public class ReceitaViewController : Controller
     {
 
         private ReceitaHandling receitaHandling;
 
-        public ReceitaViewController(ReceitaContext context)
+        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context);
+            receitaHandling = new ReceitaHandling(context, contextRU);
         }
-        
+
         public IActionResult getReceitas()
         {
             Receita[] receitas = receitaHandling.getReceitas();
@@ -35,6 +35,14 @@ namespace WebChef.Controllers
         {
             Receita receita = receitaHandling.getReceita(id);
             return View(receita);
+        }
+
+        public void AdicionarReceitaFavorita(int idReceita)
+        {
+            // CORRIGIR NESTA PARTE
+            // É PRECISO TER O idReceita E idUtilizador
+            receitaHandling.AdicionarReceitaFavorita(new ReceitaUtilizador(1, 1, new TimeSpan(), "S", "c", "o", 5, new DateTime(), "note"));
+
         }
 
     }
