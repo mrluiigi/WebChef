@@ -10,13 +10,13 @@ namespace WebChef.shared
     public class ReceitaHandling
     {
         private readonly ReceitaContext _context;
-        private readonly ReceitaUtilizadorContext _contextReceitaUtilizador;
+        private readonly ReceitaUtilizadorContext _contextRU;
 
 
         public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU)
         {
             _context = context;
-            _contextReceitaUtilizador = contextRU;
+            _contextRU = contextRU;
         }
 
         public Receita[] getReceitas()
@@ -29,12 +29,12 @@ namespace WebChef.shared
             return _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
         }
 
-        public void AdicionarReceitaFavorita(ReceitaUtilizador ru)
-        {
-            _contextReceitaUtilizador.receitaUtilizador.Add(ru);
-            _contextReceitaUtilizador.SaveChanges();
-        }
 
+        // A função serve para verificar se o utilizador tem a receita como favorita
+        public bool TemReceitaFavorita(int idReceita)
+        {
+            return _contextRU.receitaUtilizador.Any(ru => ru.id_receita == idReceita);
+        }
 
     }
 }

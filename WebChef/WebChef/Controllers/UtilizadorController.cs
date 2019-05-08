@@ -13,10 +13,12 @@ namespace WebChef.Controllers
     public class UtilizadorController : Controller
     {
         private UtilizadorHandling utilizadorHandling;
-        public UtilizadorController(UtilizadorContext context)
+
+
+        public UtilizadorController(UtilizadorContext context, ReceitaUtilizadorContext contextRU)
         {
             //_context = context;
-            utilizadorHandling = new UtilizadorHandling(context);
+            utilizadorHandling = new UtilizadorHandling(context, contextRU);
         }
 
         [HttpGet]
@@ -25,6 +27,7 @@ namespace WebChef.Controllers
         {
             return utilizadorHandling.getUtilizadores();
         }
+        
 
     }
 }

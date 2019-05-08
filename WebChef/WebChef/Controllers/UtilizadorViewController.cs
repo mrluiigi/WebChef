@@ -11,21 +11,19 @@ using WebChef.shared;
 
 namespace WebChef.Controllers
 {
-    
+
     [Route("[controller]/[action]")]
     public class UtilizadorViewController : Controller
     {
 
         private UtilizadorHandling utilizadorHandling;
-        public UtilizadorViewController(UtilizadorContext context)
+        public UtilizadorViewController(UtilizadorContext context, ReceitaUtilizadorContext contextRU)
         {
             //_context = context;
-            utilizadorHandling = new UtilizadorHandling(context);
+            utilizadorHandling = new UtilizadorHandling(context, contextRU);
         }
 
-       
 
-    
         [HttpGet]
         public IActionResult LoginUtilizador()
         {
@@ -92,6 +90,23 @@ namespace WebChef.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [Route("{id=int}")] //talvez seja necessário alterar o receitaUtilizador
+        public IActionResult AddReceitaFavoritos(int id)
+        {
+            int idUtilizador = utilizadorHandling.getUtilizadorLoggedIn(User.Identity.Name);
+            ReceitaUtilizador ru = new ReceitaUtilizador(id, idUtilizador, new TimeSpan(), "s", "", "", 3, new DateTime(), "");
+            utilizadorHandling.AddReceitaFavorita(ru);
+            return RedirectToAction("getReceitas", "ReceitaView");
+        }
+
+        [Route("{id=int}")]
+        public IActionResult RmReceitaFavoritos(int id)
+        {
+            int idUtilizador = utilizadorHandling.getUtilizadorLoggedIn(User.Identity.Name);
+            utilizadorHandling.RmReceitaFavorita(id, idUtilizador);
+            return RedirectToAction("getReceitas", "ReceitaView");
         }
 
     }

@@ -10,10 +10,12 @@ namespace WebChef.shared
     public class UtilizadorHandling
     {
         private readonly UtilizadorContext _context;
+        private readonly ReceitaUtilizadorContext _contextRU;
 
-        public UtilizadorHandling(UtilizadorContext context)
+        public UtilizadorHandling(UtilizadorContext context, ReceitaUtilizadorContext contextRU)
         {
             _context = context;
+            _contextRU = contextRU;
         }
 
         public Utilizador[] getUtilizadores()
@@ -48,7 +50,23 @@ namespace WebChef.shared
             return true;
         }
 
+        public int getUtilizadorLoggedIn(string email)
+        {
+            return _context.utilizador.Where(u => u.email == email).FirstOrDefault().id_utilizador;
+        }
 
 
+        public void AddReceitaFavorita(ReceitaUtilizador ru)
+        {
+            _contextRU.receitaUtilizador.Add(ru);
+            _contextRU.SaveChanges();
+        }
+
+        public void RmReceitaFavorita(int idReceita, int idUtilizador) {
+
+            ReceitaUtilizador rU = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
+            _contextRU.receitaUtilizador.Remove(rU);
+            _contextRU.SaveChanges();
+        }
     }
 }

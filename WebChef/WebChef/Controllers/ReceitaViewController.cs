@@ -33,16 +33,10 @@ namespace WebChef.Controllers
         [Route("{id=int}")]
         public IActionResult getReceita(int id)
         {
+
+            ViewBag.fav = receitaHandling.TemReceitaFavorita(id);
             Receita receita = receitaHandling.getReceita(id);
             return View(receita);
-        }
-
-        public void AdicionarReceitaFavorita(int idReceita)
-        {
-            // CORRIGIR NESTA PARTE
-            // É PRECISO TER O idReceita E idUtilizador
-            receitaHandling.AdicionarReceitaFavorita(new ReceitaUtilizador(1, 1, new TimeSpan(), "S", "c", "o", 5, new DateTime(), "note"));
-
         }
 
     }

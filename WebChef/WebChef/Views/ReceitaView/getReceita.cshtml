@@ -25,35 +25,30 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.informacao_nutricional)
         </dd>
-
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.duracao_prevista)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.duracao_prevista)
         </dd>
-
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.link_ajuda)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.link_ajuda)
         </dd>
-
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.imagem)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.imagem)
         </dd>
-
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.nr_pessoas)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.nr_pessoas)
         </dd>
-
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.dificuldade)
         </dt>
@@ -68,11 +63,40 @@
             @Html.DisplayFor(model => model.categoria)
         </dd>
 
+        
     </dl>
 </div>
+
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        <a asp-controller="ReceitaView" asp-action="AdicionarReceitaFavorita">Adicionar Receita aos Favoritos</a>
+        if (ViewBag.fav == true)
+        {
+            <a asp-controller="UtilizadorView" asp-action="RmReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Remover Receita de Favoritos
+            </a>
+        }
+        else
+        {
+            <a asp-controller="UtilizadorView" asp-action="AddReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Adicionar Receita a Favoritos
+            </a>
+        }
+
+
+        if (ViewBag.semanal == true)
+        {
+            <a asp-controller="UtilizadorView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Remover Receita de Ementa Semanal
+            </a>
+        }
+        else
+        {
+            <a asp-controller="UtilizadorView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Adicionar Receita a Ementa Semanal
+            </a>
+        }
+
+
     }
 </div>
