@@ -40,13 +40,16 @@ namespace WebChef.Controllers
             if (ModelState.IsValid)
             {
                 var LoginStatus = this.utilizadorHandling.validateUser(user);
+                Utilizador u = this.utilizadorHandling.getUtilizadorLoggedIn(user.email);
                 if (LoginStatus)
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.email)
+                        new Claim(ClaimTypes.Name, u.id_utilizador.ToString()),
+                        new Claim(ClaimTypes.NameIdentifier, u.nome)
                     };
                     ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
+                    
                     ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
 
                     await HttpContext.SignInAsync(principal);
@@ -95,18 +98,18 @@ namespace WebChef.Controllers
         [Route("{id=int}")] //talvez seja necessário alterar o receitaUtilizador
         public IActionResult AddReceitaFavoritos(int id)
         {
-            int idUtilizador = utilizadorHandling.getUtilizadorLoggedIn(User.Identity.Name);
-            ReceitaUtilizador ru = new ReceitaUtilizador(id, idUtilizador, new TimeSpan(), "s", "", "", 3, new DateTime(), "");
+            int idUtilizador = int.Parse(User.Identity.Name);
+            ReceitaUtilizador ru = new ReceitaUtilizador(id, idUtilizador, new TimeSpan(), "s", "", "", null, new DateTime(), "");
             utilizadorHandling.AddReceitaFavorita(ru);
-            return RedirectToAction("getReceitas", "ReceitaView");
+            return RedirectToAction("getReceita", "ReceitaView");
         }
 
         [Route("{id=int}")]
         public IActionResult RmReceitaFavoritos(int id)
         {
-            int idUtilizador = utilizadorHandling.getUtilizadorLoggedIn(User.Identity.Name);
+            int idUtilizador = int.Parse(User.Identity.Name);
             utilizadorHandling.RmReceitaFavorita(id, idUtilizador);
-            return RedirectToAction("getReceitas", "ReceitaView");
+            return RedirectToAction("getReceita", "ReceitaView");
         }
 
     }

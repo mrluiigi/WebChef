@@ -30,14 +30,22 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+            
         [Route("{id=int}")]
+        [Authorize]            
         public IActionResult getReceita(int id)
-        {
-
-            ViewBag.fav = receitaHandling.TemReceitaFavorita(id);
+        {   
+            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(User.Identity.Name));  //User.Identity.Name é o id do utilizador logged in
             Receita receita = receitaHandling.getReceita(id);
             return View(receita);
         }
 
+
+        [Route("{id=int}")]
+        public IActionResult AddReceitaSemana(int id)
+        {
+
+            return View();
+        }
     }
 }

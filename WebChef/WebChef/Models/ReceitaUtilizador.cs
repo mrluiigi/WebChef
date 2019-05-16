@@ -16,7 +16,7 @@ namespace WebChef.Models
         public string favorita { get; set; }
         public string avaliacao_dificuldade { get; set; }
         public string dia_da_semana { get; set; }
-        public int classificacao { get; set; }
+        public int? classificacao { get; set; }
         public DateTime data_realizacao { get; set; }
         public string anotacao { get; set; }
 
@@ -26,7 +26,7 @@ namespace WebChef.Models
         public Receita receita { get; set; }
 
 
-        public ReceitaUtilizador(int id_receita, int id_utilizador, TimeSpan duracao, string favorita, string avaliacao_dificuldade, string dia_da_semana, int classificacao, DateTime data_realizacao, string anotacao)
+        public ReceitaUtilizador(int id_receita, int id_utilizador, TimeSpan duracao, string favorita, string avaliacao_dificuldade, string dia_da_semana, int? classificacao, DateTime data_realizacao, string anotacao)
         {
             this.id_receita = id_receita;
             this.id_utilizador = id_utilizador;

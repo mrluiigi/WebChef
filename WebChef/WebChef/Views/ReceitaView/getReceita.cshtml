@@ -70,30 +70,30 @@
 <div>
     @if (User.Identity.IsAuthenticated)
     {
-        if (ViewBag.fav == true)
-        {
-            <a asp-controller="UtilizadorView" asp-action="RmReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Remover Receita de Favoritos
-            </a>
-        }
-        else
+        if (ViewBag.isFavorita == false)
         {
             <a asp-controller="UtilizadorView" asp-action="AddReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
                 Adicionar Receita a Favoritos
             </a>
         }
-
-
-        if (ViewBag.semanal == true)
+        else
         {
-            <a asp-controller="UtilizadorView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Remover Receita de Ementa Semanal
+            <a asp-controller="UtilizadorView" asp-action="RmReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Remover Receita de Favoritos
+            </a>
+        }
+
+
+        if (ViewBag.isSemanal == false)
+        {
+            <a asp-controller="ReceitaView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Adicionar Receita a Ementa Semanal
             </a>
         }
         else
         {
-            <a asp-controller="UtilizadorView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Adicionar Receita a Ementa Semanal
+            <a asp-controller="ReceitaView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                Remover Receita de Ementa Semanal
             </a>
         }
 

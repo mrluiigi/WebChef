@@ -31,9 +31,9 @@ namespace WebChef.shared
 
 
         // A função serve para verificar se o utilizador tem a receita como favorita
-        public bool TemReceitaFavorita(int idReceita)
+        public bool TemReceitaFavorita(int idReceita, int idUtilizador)
         {
-            return _contextRU.receitaUtilizador.Any(ru => ru.id_receita == idReceita);
+            return _contextRU.receitaUtilizador.Any(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador);
         }
 
     }

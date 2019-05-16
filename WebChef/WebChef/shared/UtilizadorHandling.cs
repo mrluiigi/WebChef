@@ -37,7 +37,7 @@ namespace WebChef.shared
             }
             
         }
-
+        
         public bool validateUser(Utilizador user)
         {
             user.password = MyHelpers.HashPassword(user.password);
@@ -50,9 +50,9 @@ namespace WebChef.shared
             return true;
         }
 
-        public int getUtilizadorLoggedIn(string email)
+        public Utilizador getUtilizadorLoggedIn(string email)
         {
-            return _context.utilizador.Where(u => u.email == email).FirstOrDefault().id_utilizador;
+            return _context.utilizador.Where(u => u.email == email).FirstOrDefault();
         }
 
 
