@@ -12,12 +12,13 @@ namespace WebChef.Models
     {
         public int id_receita { get; set; }
         public int id_utilizador { get; set; }
-        public TimeSpan duracao { get; set; }
+        public TimeSpan? duracao { get; set; }
         public string favorita { get; set; }
         public string avaliacao_dificuldade { get; set; }
         public string dia_da_semana { get; set; }
+        public string refeicao { get; set; }
         public int? classificacao { get; set; }
-        public DateTime data_realizacao { get; set; }
+        public DateTime? data_realizacao { get; set; }
         public string anotacao { get; set; }
 
         [NotMapped]
@@ -26,7 +27,7 @@ namespace WebChef.Models
         public Receita receita { get; set; }
 
 
-        public ReceitaUtilizador(int id_receita, int id_utilizador, TimeSpan duracao, string favorita, string avaliacao_dificuldade, string dia_da_semana, int? classificacao, DateTime data_realizacao, string anotacao)
+        public ReceitaUtilizador(int id_receita, int id_utilizador, TimeSpan? duracao, string favorita, string avaliacao_dificuldade, string dia_da_semana, string refeicao, int? classificacao, DateTime? data_realizacao, string anotacao)
         {
             this.id_receita = id_receita;
             this.id_utilizador = id_utilizador;
@@ -34,6 +35,7 @@ namespace WebChef.Models
             this.favorita = favorita;
             this.avaliacao_dificuldade = avaliacao_dificuldade;
             this.dia_da_semana = dia_da_semana;
+            this.refeicao = refeicao;
             this.classificacao = classificacao;
             this.data_realizacao = data_realizacao;
             this.anotacao = anotacao;

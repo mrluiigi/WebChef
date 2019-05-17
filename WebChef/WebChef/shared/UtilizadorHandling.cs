@@ -56,16 +56,32 @@ namespace WebChef.shared
         }
 
 
-        public void AddReceitaFavorita(ReceitaUtilizador ru)
+        public void AddReceitaFavorita(int idReceita, int idUtilizador)
         {
-            _contextRU.receitaUtilizador.Add(ru);
+            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
+            if(r != null)
+            {
+                r.favorita = "S";
+            }
+            else
+            {
+                ReceitaUtilizador ru = new ReceitaUtilizador(idReceita, idUtilizador, null, "S", null, null, null, null, null, null);
+                _contextRU.receitaUtilizador.Add(ru);
+            }
             _contextRU.SaveChanges();
         }
 
         public void RmReceitaFavorita(int idReceita, int idUtilizador) {
 
-            ReceitaUtilizador rU = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
-            _contextRU.receitaUtilizador.Remove(rU);
+            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
+            if(r != null)
+            {
+                r.favorita = null;
+            }
+            else
+            {
+                _contextRU.receitaUtilizador.Remove(r);
+            }
             _contextRU.SaveChanges();
         }
     }

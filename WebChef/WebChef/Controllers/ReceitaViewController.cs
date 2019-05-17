@@ -30,21 +30,37 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
-            
+
         [Route("{id=int}")]
-        [Authorize]            
+        [Authorize]
         public IActionResult getReceita(int id)
-        {   
-            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(User.Identity.Name));  //User.Identity.Name é o id do utilizador logged in
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(userID.ToString()));  //User.Identity.Name é o id do utilizador logged in
+            ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, int.Parse(userID.ToString()));
             Receita receita = receitaHandling.getReceita(id);
             return View(receita);
         }
 
-
         [Route("{id=int}")]
         public IActionResult AddReceitaSemana(int id)
         {
+            Receita r = receitaHandling.getReceita(id);
+            return View(r);
+        }
 
+
+        [Route("{id=int}/{text=string}")]
+        public IActionResult ReceitaNaEmenta(int id, string text)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.addReceitaEmenta(id, int.Parse(userID.ToString()), text);
+            return RedirectToAction("getReceita", "ReceitaView");
+        }
+
+
+        public IActionResult ConfecionaReceita()
+        {
             return View();
         }
     }

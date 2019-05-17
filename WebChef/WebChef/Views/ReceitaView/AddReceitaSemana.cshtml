@@ -1,7 +1,138 @@
-﻿
+﻿@model WebChef.Models.Receita
 @{
-    ViewData["Title"] = "AddReceitaSemana";
+    ViewData["Title"] = "Adicionar receita a ementa semanal";
 }
 
-<h1>AddReceitaSemana</h1>
+<h1>Adicionar receita a ementa semanal</h1>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SegA" class="btn btn-secondary">
+                Segunda(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SegJ" class="btn btn-secondary">
+                Segunda(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SegO" class="btn btn-secondary">
+                Segunda(Outro)
+            </a>
+        </dt>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="TerA" class="btn btn-secondary">
+                Terça(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="TerJ" class="btn btn-secondary">
+                Terça(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="TerO" class="btn btn-secondary">
+                Terça(Outro)
+            </a>
+        </dt>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuaA" class="btn btn-secondary">
+                Quarta(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuaJ" class="btn btn-secondary">
+                Quarta(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuaO" class="btn btn-secondary">
+                Quarta(Outro)
+            </a>
+        </dt>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuiA" class="btn btn-secondary">
+                Quinta(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuiJ" class="btn btn-secondary">
+                Quinta(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="QuiO" class="btn btn-secondary">
+                Quinta(Outro)
+            </a>
+        </dt>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SexA" class="btn btn-secondary">
+                Sexta(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SexJ" class="btn btn-secondary">
+                Sexta(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SexO" class="btn btn-secondary">
+                Sexta(Outro)
+            </a>
+        </dt>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SabA" class="btn btn-secondary">
+                Sábado(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SabJ" class="btn btn-secondary">
+                Sábado(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="SabO" class="btn btn-secondary">
+                Sábado(Outro)
+            </a>
+        </dt>
+    </dl>
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="DomA" class="btn btn-secondary">
+                Domingo(Almoço)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="DomJ" class="btn btn-secondary">
+                Domingo(Jantar)
+            </a>
+        </dt>
+        <dt class="col-sm-2">
+            <a asp-controller="ReceitaView" asp-action="ReceitaNaEmenta" asp-route-id=@Model.id_receita asp-route-text="DomO" class="btn btn-secondary">
+                Domingo(Outro)
+            </a>
+        </dt>
+    </dl>
+
+</div>
+
+
+
 

@@ -45,8 +45,8 @@ namespace WebChef.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, u.id_utilizador.ToString()),
-                        new Claim(ClaimTypes.NameIdentifier, u.nome)
+                        new Claim(ClaimTypes.Name, u.email),
+                        new Claim(ClaimTypes.NameIdentifier, u.id_utilizador.ToString())
                     };
                     ClaimsIdentity userIdentity = new ClaimsIdentity(claims, "login");
                     
@@ -98,16 +98,17 @@ namespace WebChef.Controllers
         [Route("{id=int}")] //talvez seja necessário alterar o receitaUtilizador
         public IActionResult AddReceitaFavoritos(int id)
         {
-            int idUtilizador = int.Parse(User.Identity.Name);
-            ReceitaUtilizador ru = new ReceitaUtilizador(id, idUtilizador, new TimeSpan(), "s", "", "", null, new DateTime(), "");
-            utilizadorHandling.AddReceitaFavorita(ru);
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            int idUtilizador = int.Parse(userID.ToString());
+            utilizadorHandling.AddReceitaFavorita(id, idUtilizador);
             return RedirectToAction("getReceita", "ReceitaView");
         }
 
         [Route("{id=int}")]
         public IActionResult RmReceitaFavoritos(int id)
         {
-            int idUtilizador = int.Parse(User.Identity.Name);
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            int idUtilizador = int.Parse(userID.ToString());
             utilizadorHandling.RmReceitaFavorita(id, idUtilizador);
             return RedirectToAction("getReceita", "ReceitaView");
         }
