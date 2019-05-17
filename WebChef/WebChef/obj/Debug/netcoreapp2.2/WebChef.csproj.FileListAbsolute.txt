@@ -89,3 +89,4 @@ C:\Users\Utilizador\Desktop\ASP.NET-Training\LI4\WebChef\WebChef\obj\Debug\netco
 C:\Users\Utilizador\Desktop\ASP.NET-Training\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.pdb
 C:\Users\Utilizador\Desktop\ASP.NET-Training\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.csproj.CopyComplete
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\AddReceitaSemana.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\ConfecionaReceita.g.cshtml.cs

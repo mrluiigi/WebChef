@@ -37,20 +37,7 @@ namespace WebChef.Models
         public string dificuldade { set; get; }
 
         public string categoria { set; get; }
-
-        public Receita()
-        {
-            this.id_receita = 5;
-            this.nome = "ol";
-            this.descricao = "a";
-            this.informacao_nutricional = "qwe";
-            this.duracao_prevista = new TimeSpan();
-            this.link_ajuda = "#";
-            this.imagem = "im";
-            this.nr_pessoas = 10;
-            this.dificuldade = "facil";
-            this.categoria = "carne";
-        }
+        
     }
 
     public class ReceitaContext : DbContext

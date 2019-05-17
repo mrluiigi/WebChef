@@ -11,12 +11,16 @@ namespace WebChef.shared
     {
         private readonly ReceitaContext _context;
         private readonly ReceitaUtilizadorContext _contextRU;
+        private readonly ReceitaPassoContext _contextRP;
+        private readonly PassoContext _contextPasso;
 
 
-        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU)
+        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso)
         {
             _context = context;
             _contextRU = contextRU;
+            _contextRP = contextRP;
+            _contextPasso = contextPasso;
         }
 
         public Receita[] getReceitas()
@@ -58,6 +62,12 @@ namespace WebChef.shared
                 _contextRU.receitaUtilizador.Add(ru);
                 _contextRU.SaveChanges();
             }
+        }
+
+        public Passo GetPasso(int idReceita, int numpasso)
+        {
+            int idPasso = _contextRP.receitaPasso.Where(r => r.id_receita == idReceita && r.numero == numpasso).FirstOrDefault().id_passo;
+            return _contextPasso.passo.Where(p => p.id == idPasso).FirstOrDefault();
         }
 
     }

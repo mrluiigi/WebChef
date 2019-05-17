@@ -1,7 +1,12 @@
-﻿
+﻿@model WebChef.Models.Passo
+
 @{
     ViewData["Title"] = "ConfecionaReceita";
 }
 
-<h1>ConfecionaReceita</h1>
+<h1>@Model.descricao</h1>
+
+<a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=ViewBag.ordem+1 class="btn btn-secondary">
+    Seguinte
+</a>
 
