@@ -82,6 +82,9 @@ namespace WebChef.Controllers
             ViewBag.tamanho = p.Length;
             ViewBag.id = id;
             ViewBag.passo = passo;
+            string timestamp = p[passo-1].timestamp;
+            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp + "s";
+            
             return View(p);
         }
     }

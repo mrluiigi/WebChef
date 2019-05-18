@@ -9,6 +9,10 @@
 
 <h2>@Model[@ViewBag.passo - 1].Acao.descricao</h2>
 
+<dd class="col-sm-10">
+    <a href=@ViewBag.link>Link do passo</a>
+
+</dd>
 
 @if(@ViewBag.passo > 1){
     <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.anterior class="btn btn-secondary">
@@ -21,3 +25,4 @@
         Seguinte
     </a>
 }
+

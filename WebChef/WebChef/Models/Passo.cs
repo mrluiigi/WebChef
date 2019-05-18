@@ -14,7 +14,7 @@ namespace WebChef.Models
         [Key]
         public int id_passo { set; get; }
         public string descricao { set; get; }
-        public TimeSpan timestamp { set; get; }
+        public string timestamp { set; get; }
         public int id_acao { set; get; }
         
         public Acao Acao { set; get; }

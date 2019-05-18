@@ -18,7 +18,7 @@ namespace WebChef
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = @"Server=DESKTOP-MCDNNQN;Database=WebChef;Trusted_Connection=True;ConnectRetryCount=0";
+            var connection = @"Server=localhost;Database=WebChef;Trusted_Connection=True;ConnectRetryCount=0";
             services.AddDbContext<UtilizadorContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ReceitaContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ReceitaUtilizadorContext>(options => options.UseSqlServer(connection));

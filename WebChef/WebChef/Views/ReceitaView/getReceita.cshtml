@@ -31,11 +31,10 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.duracao_prevista)
         </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.link_ajuda)
-        </dt>
+        <dt class="col-sm-2"></dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.link_ajuda)
+            <a href=@Model.link_ajuda>Link do vídeo</a>
+
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.imagem)
