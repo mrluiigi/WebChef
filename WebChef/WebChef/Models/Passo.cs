@@ -10,10 +10,9 @@ namespace WebChef.Models
     public class Passo
     {
         [Key]
-        public int id { set; get; }
+        public int id_passo { set; get; }
         public string descricao { set; get; }
-        public string timestamp { set; get; }
-        public string descricaoAcao { set; get; }
+        public TimeSpan timestamp { set; get; }
     }
 
     public class PassoContext : DbContext

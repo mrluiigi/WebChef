@@ -67,7 +67,25 @@ namespace WebChef.shared
         public Passo GetPasso(int idReceita, int numpasso)
         {
             int idPasso = _contextRP.receitaPasso.Where(r => r.id_receita == idReceita && r.numero == numpasso).FirstOrDefault().id_passo;
-            return _contextPasso.passo.Where(p => p.id == idPasso).FirstOrDefault();
+            return _contextPasso.passo.Where(p => p.id_passo == idPasso).FirstOrDefault();
+        }
+
+        public Passo[] GetPassos(int idReceita)
+        {
+            ReceitaPasso[] receitaPassos = _contextRP.receitaPasso.Where(r => r.id_receita == idReceita).OrderBy(r => r.numero).ToArray();
+            List<int> idPassos = new List<int>();
+
+            foreach (ReceitaPasso r in receitaPassos) {
+                idPassos.Add(r.id_passo);
+            }
+
+            Passo[] passos = new Passo[idPassos.Count];
+            for(int i = 0; i< idPassos.Count; i++)
+            {
+                passos[i] = _contextPasso.passo.Where(p => p.id_passo == idPassos[i]).FirstOrDefault();
+            }
+
+            return passos;
         }
 
     }

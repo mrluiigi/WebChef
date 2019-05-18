@@ -1,12 +1,19 @@
-﻿@model WebChef.Models.Passo
+﻿@model WebChef.Models.Passo[]
 
 @{
     ViewData["Title"] = "ConfecionaReceita";
 }
 
-<h1>@Model.descricao</h1>
+<h1>@Model[@ViewBag.passo-1].descricao</h1>
 
-<a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=ViewBag.ordem+1 class="btn btn-secondary">
-    Seguinte
-</a>
+@if(@ViewBag.passo > 1){
+    <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.anterior class="btn btn-secondary">
+        Anterior
+    </a>
+}
 
+@if(@ViewBag.passo + 1 <= @ViewBag.tamanho){
+    <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.seguinte class="btn btn-secondary">
+        Seguinte
+    </a>
+}

@@ -12,15 +12,30 @@ Delete from Receita;
 
 
 
-Insert into ReceitaUtilizador (id_receita, id_utilizador, duracao, favorita, avaliacao_dificuldade, dia_da_semana, classificacao,
-								data_realizacao, anotacao)
-		values
-				(1,1, '00:20:00.0000000', 'S', 'facil', 'segunda', 3, '2019-04-03', 'oiii');
 
-select * from ReceitaUtilizador;
+select * from ReceitaPasso;
 
 delete from ReceitaUtilizador;
 
+
+Insert into Acao (id_acao, nome, descricao)
+	VALUES
+		(1, 'cozer', 'meter na agua quente'),
+		(2, 'fritar', 'meter em oleo quente');
+
+
+Insert into Passo (id_passo, descricao, timestamp, id_acao)
+	VALUES
+		(1, 'Meter ovos a cozer', '00:05:00.0000000', 1),
+		(2, 'Fritas os bifes', '00:05:00.0000000', 2),
+		(3, 'Fritar os cogumelos', '00:05:00.0000000', 3),;
+
+
+Insert into ReceitaPasso (id_passo, id_receita, numero)
+	VALUES
+		(2, 1, 1),
+		(1, 1, 2),
+		(3, 1, 3);
 
 
 
