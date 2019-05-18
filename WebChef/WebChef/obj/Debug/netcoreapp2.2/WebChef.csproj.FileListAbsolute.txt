@@ -122,3 +122,4 @@ C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.Vie
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.dll
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.pdb
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.csproj.CopyComplete
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RmReceitaSemana.g.cshtml.cs

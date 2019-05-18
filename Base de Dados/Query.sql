@@ -28,7 +28,7 @@ Insert into Passo (id_passo, descricao, timestamp, id_acao)
 	VALUES
 		(1, 'Meter ovos a cozer', '00:05:00.0000000', 1),
 		(2, 'Fritas os bifes', '00:05:00.0000000', 2),
-		(3, 'Fritar os cogumelos', '00:05:00.0000000', 3),;
+		(3, 'Fritar os cogumelos', '00:05:00.0000000', 2);
 
 
 Insert into ReceitaPasso (id_passo, id_receita, numero)

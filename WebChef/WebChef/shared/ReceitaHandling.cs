@@ -13,15 +13,17 @@ namespace WebChef.shared
         private readonly ReceitaUtilizadorContext _contextRU;
         private readonly ReceitaPassoContext _contextRP;
         private readonly PassoContext _contextPasso;
+        private readonly AcaoContext _contextAcao;
 
 
-        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso)
+        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao)
         {
             _context = context;
             _contextRU = contextRU;
             _contextRP = contextRP;
             _contextPasso = contextPasso;
-        }
+            _contextAcao = contextAcao;
+            }
 
         public Receita[] getReceitas()
         {
@@ -64,11 +66,28 @@ namespace WebChef.shared
             }
         }
 
-        public Passo GetPasso(int idReceita, int numpasso)
+        public ReceitaUtilizador[] getDiasEmenta(int idReceita)
         {
-            int idPasso = _contextRP.receitaPasso.Where(r => r.id_receita == idReceita && r.numero == numpasso).FirstOrDefault().id_passo;
-            return _contextPasso.passo.Where(p => p.id_passo == idPasso).FirstOrDefault();
+            return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita).ToArray();
         }
+
+
+        public void rmReceitaEmenta(int idReceita, int idUtilizador, string text)
+        {
+            string diaSemana = text.Substring(0, 3);
+            string refeicao = text[3].ToString();
+            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita &&
+                                                                     ru.id_utilizador == idUtilizador &&
+                                                                     ru.dia_da_semana == diaSemana &&
+                                                                     ru.refeicao == refeicao).FirstOrDefault();
+            if (r != null) {
+                r.dia_da_semana = null;
+                r.refeicao = null;
+                _contextRU.SaveChanges();
+            }
+        }
+
+     
 
         public Passo[] GetPassos(int idReceita)
         {
@@ -82,7 +101,10 @@ namespace WebChef.shared
             Passo[] passos = new Passo[idPassos.Count];
             for(int i = 0; i< idPassos.Count; i++)
             {
-                passos[i] = _contextPasso.passo.Where(p => p.id_passo == idPassos[i]).FirstOrDefault();
+                Passo p = _contextPasso.passo.Where(passo => passo.id_passo == idPassos[i]).FirstOrDefault();
+                Acao a = _contextAcao.acao.Where(ac => ac.id_acao == p.id_acao).FirstOrDefault();
+                p.Acao = a;
+                passos[i] = p;
             }
 
             return passos;

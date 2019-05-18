@@ -1,0 +1,20 @@
+﻿@model WebChef.Models.ReceitaUtilizador[]
+@{
+    ViewData["Title"] = "RmReceitaSemana";
+}
+
+<h1>RmReceitaSemana</h1>
+
+@foreach (var ru in Model)
+{
+    @if (ru.dia_da_semana == "Seg")
+    {
+        if (ru.refeicao == "A")
+        {
+            <a asp-controller="ReceitaView" asp-action="rmReceitaEmenta" asp-route-id=@ru.id_receita asp-route-text="SegA" class="btn btn-secondary">
+                Segunda(Almoço)
+            </a>
+        }
+    }
+}
+

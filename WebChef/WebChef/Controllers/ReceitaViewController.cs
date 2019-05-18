@@ -18,10 +18,10 @@ namespace WebChef.Controllers
 
         private ReceitaHandling receitaHandling;
 
-        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso)
+        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso);
+            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao);
         }
 
         public IActionResult getReceitas()
@@ -55,6 +55,21 @@ namespace WebChef.Controllers
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             receitaHandling.addReceitaEmenta(id, int.Parse(userID.ToString()), text);
+            return RedirectToAction("getReceita", "ReceitaView");
+        }
+
+        [Route("{id=int}")]  //Quando é clicado o botão vem para esta action
+        public IActionResult RmReceitaSemana(int id)
+        {
+            ReceitaUtilizador[] ru = receitaHandling.getDiasEmenta(id);
+            return View(ru);
+        }
+
+        [Route("{id=int}/{text=string}")]    //Quando clica no dia da semana para retirar da ementa
+        public IActionResult rmReceitaEmenta(int id, string text)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.rmReceitaEmenta(id, int.Parse(userID.ToString()), text);
             return RedirectToAction("getReceita", "ReceitaView");
         }
 
