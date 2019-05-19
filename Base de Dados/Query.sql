@@ -2,13 +2,14 @@ Use WebChef;
 
 INSERT INTO Receita (id_receita, nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
-		(1, 'Bifinhos', 'com cogumelos', '50Kcal', '00:20:00.0000000', 'https://youtu.be/gS2WtZHvvWk?t=', 'coise', 2, 'facil', 'carne'),
+		(1, 'Bifinhos', 'com cogumelos', '50Kcal', '00:20:00.0000000', 'https://youtu.be/gS2WtZHvvWk?t=', '~/Images/sopaAgriao.jpg', 2, 'facil', 'carne'),
 		(2, 'Massa', 'bolonhesa', '60Kcal', '00:40:00.0000000', 'www.ajuda.com', 'massa.jpg', 4, 'média', 'carne');
 
 
 SELECT * FROM Receita;
 
 Delete from Receita;
+
 
 
 

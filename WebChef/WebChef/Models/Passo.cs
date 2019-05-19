@@ -17,6 +17,7 @@ namespace WebChef.Models
         public string timestamp { set; get; }
         public int id_acao { set; get; }
         public Acao Acao { set; get; }
+        public ICollection<Ingrediente> ingredientes { set; get; }
     }
 
     public class PassoContext : DbContext

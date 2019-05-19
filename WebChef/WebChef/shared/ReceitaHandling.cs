@@ -14,15 +14,19 @@ namespace WebChef.shared
         private readonly ReceitaPassoContext _contextRP;
         private readonly PassoContext _contextPasso;
         private readonly AcaoContext _contextAcao;
+        private readonly IngredienteContext _contextIngrediente;
+        private readonly PassoIngredienteContext _contextPassoIngrediente;
 
 
-        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao)
+        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente)
         {
             _context = context;
             _contextRU = contextRU;
             _contextRP = contextRP;
             _contextPasso = contextPasso;
             _contextAcao = contextAcao;
+            _contextIngrediente = contextIngrediente;
+            _contextPassoIngrediente = contextPassoIngrediente;
             }
 
         public Receita[] getReceitas()
@@ -99,10 +103,18 @@ namespace WebChef.shared
             }
 
             Passo[] passos = new Passo[idPassos.Count];
-            for(int i = 0; i< idPassos.Count; i++)
+            for (int i = 0; i < idPassos.Count; i++)
             {
                 Passo p = _contextPasso.passo.Where(passo => passo.id_passo == idPassos[i]).FirstOrDefault();
                 Acao a = _contextAcao.acao.Where(ac => ac.id_acao == p.id_acao).FirstOrDefault();
+
+                PassoIngrediente[] passoIngredientes = _contextPassoIngrediente.passoIngrediente.Where(pi => pi.id_passo == p.id_passo).ToArray();
+                Ingrediente[] ingredientes = new Ingrediente[passoIngredientes.Length];
+                for (int j = 0; j < passoIngredientes.Length; j++)
+                {
+                    ingredientes[j] = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == passoIngredientes[j].id_ingrediente).FirstOrDefault();
+                }
+                p.ingredientes = ingredientes;
                 p.Acao = a;
                 passos[i] = p;
             }

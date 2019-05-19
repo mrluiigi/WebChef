@@ -18,10 +18,10 @@ namespace WebChef.Controllers
 
         private ReceitaHandling receitaHandling;
 
-        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao)
+        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao);
+            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, contextPassoIngrediente);
         }
 
         public IActionResult getReceitas()
@@ -84,7 +84,6 @@ namespace WebChef.Controllers
             ViewBag.passo = passo;
             string timestamp = p[passo-1].timestamp;
             ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp + "s";
-            ViewBag.imagem = receitaHandling.getReceita(id).imagem;
 
             return View(p);
         }
