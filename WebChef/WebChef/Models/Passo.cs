@@ -16,7 +16,6 @@ namespace WebChef.Models
         public string descricao { set; get; }
         public string timestamp { set; get; }
         public int id_acao { set; get; }
-        
         public Acao Acao { set; get; }
     }
 
