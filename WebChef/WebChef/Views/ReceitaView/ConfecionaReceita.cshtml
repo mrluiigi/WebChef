@@ -3,6 +3,48 @@
 @{
     ViewData["Title"] = "ConfecionaReceita";
 }
+    <script language="javascript">
+        function toTimeString(seconds) {
+            return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+        }
+
+        function startTimer() {
+            var nextElem = $(this).parents('td').next();
+            var duration = nextElem.text();
+            var a = duration.split(':');
+            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
+            setInterval(function () {
+                seconds--;
+                if (seconds >= 0) {
+                    nextElem.html(toTimeString(seconds));
+                }
+                if (seconds === 0) {
+                    alert('sorry, out of time');
+                    clearInterval(seconds);
+                }
+            }, 1000);
+        }
+        $('.btn').on('click', startTimer);
+    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<table>
+    <tr>
+        <td>
+            <form action="http://www.google.fr">
+                <input class="btn" type="button" formtarget="_blank" value="Google 3 seconds">
+            </form>
+        </td>
+        <td>00:00:03</td>
+    </tr>
+    <tr>
+        <td>
+            <form action="http://www.google.fr">
+                <input class="btn" type="button" formtarget="_blank" value="Google 2h30mins">
+            </form>
+        </td>
+        <td>02:30:00</td>
+    </tr>
+</table>
 
 <h1>@Model[@ViewBag.passo - 1].descricao</h1>
 
