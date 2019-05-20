@@ -1,4 +1,4 @@
-declare @TableName sysname = 'ReceitaUtilizador'
+declare @TableName sysname = 'PassoIngrediente'
 declare @Result varchar(max) = 'public class ' + @TableName + '
 {'
 

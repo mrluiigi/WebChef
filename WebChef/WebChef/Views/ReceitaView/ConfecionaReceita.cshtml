@@ -28,7 +28,7 @@
 
 @foreach (var ing in @Model[@ViewBag.passo - 1].ingredientes)
 {
-    <div class="card">
-        <img class="card-img-top img-fluid" src=@Url.Content(ing.imagem) alt="Card image cap">
+    <div class="img">
+        <img class="rounded float-right" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
     </div>
 }

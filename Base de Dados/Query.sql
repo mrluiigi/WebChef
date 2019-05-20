@@ -6,20 +6,6 @@ INSERT INTO Receita (id_receita, nome, descricao, informacao_nutricional, duraca
 		(2, 'Massa', 'bolonhesa', '60Kcal', '00:40:00.0000000', 'www.ajuda.com', 'massa.jpg', 4, 'média', 'carne');
 
 
-SELECT * FROM Receita;
-
-Delete from Receita;
-
-
-
-
-
-select * from ReceitaPasso;
-
-delete from ReceitaPasso;
-delete from Passo;
-
-
 Insert into Acao (id_acao, nome, descricao)
 	VALUES
 		(1, 'cozer', 'meter na agua quente'),
@@ -40,10 +26,40 @@ Insert into ReceitaPasso (id_passo, id_receita, numero)
 		(3, 1, 3);
 
 
+Insert into Ingrediente (id_ingrediente, designacao, imagem)
+	VALUES
+		(1, 'cogumelo', '~/Images/cogumelos.jpg'),
+		(2, 'bife', '~/Images/bife.jpg'),
+		(3, 'óleo', '~/Images/oleo.jpg');
+
+
+Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
+	VALUES
+		(3, 1, 16),
+		(2, 2, 2),
+		(2, 3, 1);
+
+
+
+
+
+
 
 SELECT * FROM Utilizador;
 
-Delete from Utilizador;
+Delete from Ingrediente;
 
 
+SELECT * FROM Receita;
+
+Delete from Receita;
+
+
+
+
+
+select * from ReceitaPasso;
+
+delete from ReceitaPasso;
+delete from Passo;
 
