@@ -4,7 +4,7 @@
     ViewData["Title"] = "ConfecionaReceita";
 }
 
-<h1>@Model[@ViewBag.passo-1].descricao</h1>
+<h1>@Model[@ViewBag.passo - 1].descricao</h1>
 
 
 <h2>@Model[@ViewBag.passo - 1].Acao.descricao</h2>
@@ -14,13 +14,17 @@
 
 </dd>
 
-@if(@ViewBag.passo > 1){
+
+
+@if (@ViewBag.passo > 1)
+{
     <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.anterior class="btn btn-secondary">
         Anterior
     </a>
 }
 
-@if(@ViewBag.passo + 1 <= @ViewBag.tamanho){
+@if (@ViewBag.passo + 1 <= @ViewBag.tamanho)
+{
     <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.seguinte class="btn btn-secondary">
         Seguinte
     </a>
@@ -28,7 +32,11 @@
 
 @foreach (var ing in @Model[@ViewBag.passo - 1].ingredientes)
 {
-    <div class="img">
-        <img class="rounded float-right" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
-    </div>
+    <figure class="img">
+        <img class="figure-img img-fluid rounded" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
+        <figcaption class="figure-caption">@ing.designacao (@ing.quantidade)</figcaption>
+    </figure>
+
 }
+
+

@@ -113,8 +113,10 @@ namespace WebChef.shared
                 for (int j = 0; j < passoIngredientes.Length; j++)
                 {
                     ingredientes[j] = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == passoIngredientes[j].id_ingrediente).FirstOrDefault();
+                    ingredientes[j].quantidade = passoIngredientes[j].quantidade;
                 }
                 p.ingredientes = ingredientes;
+                p.passosIngrediente = passoIngredientes;
                 p.Acao = a;
                 passos[i] = p;
             }

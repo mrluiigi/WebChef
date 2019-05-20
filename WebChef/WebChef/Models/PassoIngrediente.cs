@@ -22,10 +22,12 @@ namespace WebChef.Models
         }
 
         public DbSet<PassoIngrediente> passoIngrediente { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PassoIngrediente>()
                 .HasKey(pi => new { pi.id_passo, pi.id_ingrediente });
         }
+
     }
 }
