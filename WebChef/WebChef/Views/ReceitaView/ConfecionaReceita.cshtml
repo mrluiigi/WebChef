@@ -3,48 +3,65 @@
 @{
     ViewData["Title"] = "ConfecionaReceita";
 }
-    <script language="javascript">
-        function toTimeString(seconds) {
-            return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
-        }
 
-        function startTimer() {
-            var nextElem = $(this).parents('td').next();
-            var duration = nextElem.text();
-            var a = duration.split(':');
-            var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
-            setInterval(function () {
-                seconds--;
-                if (seconds >= 0) {
-                    nextElem.html(toTimeString(seconds));
-                }
-                if (seconds === 0) {
-                    alert('sorry, out of time');
-                    clearInterval(seconds);
-                }
-            }, 1000);
-        }
-        $('.btn').on('click', startTimer);
-    </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<table>
-    <tr>
-        <td>
-            <form action="http://www.google.fr">
-                <input class="btn" type="button" formtarget="_blank" value="Google 3 seconds">
-            </form>
-        </td>
-        <td>00:00:03</td>
-    </tr>
-    <tr>
-        <td>
-            <form action="http://www.google.fr">
-                <input class="btn" type="button" formtarget="_blank" value="Google 2h30mins">
-            </form>
-        </td>
-        <td>02:30:00</td>
-    </tr>
-</table>
+
+
+<!DOCTYPE HTML>
+@if(@ViewBag.duracao != null){
+    <html>
+    
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            p {
+                text-align: center;
+                font-size: 60px;
+                margin-top: 0px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <p id="demo"></p>
+
+        <script>
+            var countDownDate = @ViewBag.duracao;
+             document.getElementById("demo").innerHTML = countDownDate;
+            var y = 0;
+            var x;
+
+            function startTime() {
+
+
+                // Atualizador o contador a cada segundo
+                x = setInterval(function () {
+
+                    // O output é um valor com o id "demo"
+                    document.getElementById("demo").innerHTML = countDownDate;
+
+                    // Quando o temporizador acaba escreve Terminou!
+                    if (countDownDate < 0) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "Terminou!";
+                    } else countDownDate--
+                }, 1000);
+
+            }
+
+            /**/</script>
+        <div class="col text-center">
+            <button class="btn btn-primary" onclick="startTime()">Start</button>
+            <button class="btn btn-primary" onclick="clearInterval(x)">Stop</button>
+        </div>
+        
+
+    </body>
+</html>
+}
+
+
+
+
 
 <h1>@Model[@ViewBag.passo - 1].descricao</h1>
 
@@ -82,3 +99,17 @@
 }
 
 
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            text-align: center;
+            font-size: 60px;
+            margin-top: 0px;
+        }
+    </style>
+</head>
+
+</html>

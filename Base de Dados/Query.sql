@@ -12,11 +12,11 @@ Insert into Acao (id_acao, nome, descricao)
 		(2, 'fritar', 'meter em oleo quente');
 
 
-Insert into Passo (id_passo, descricao, timestamp, id_acao)
+Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)
 	VALUES
-		(1, 'Meter ovos a cozer', '0073', 1),
-		(2, 'Fritas os bifes', '0010', 2),
-		(3, 'Fritar os cogumelos', '0017', 2);
+		(1, 'Meter ovos a cozer', '0073', 1, 300),
+		(2, 'Fritas os bifes', '0010', 2, 450),
+		(3, 'Fritar os cogumelos', '0017', 2, NULL);
 
 
 Insert into ReceitaPasso (id_passo, id_receita, numero)
@@ -47,7 +47,7 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 
 SELECT * FROM Utilizador;
 
-Delete from Ingrediente;
+Delete from Passo;
 
 
 SELECT * FROM Receita;
@@ -58,7 +58,7 @@ Delete from Receita;
 
 
 
-select * from ReceitaPasso;
+select * from Passo;
 
 delete from ReceitaPasso;
 delete from Passo;
