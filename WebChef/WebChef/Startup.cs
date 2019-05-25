@@ -27,6 +27,10 @@ namespace WebChef
             services.AddDbContext<AcaoContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<IngredienteContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<PassoIngredienteContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ReceitaIngredienteContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<LocalizacaoContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<IngredienteLocalizacaoContext>(options => options.UseSqlServer(connection));
+
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options =>

@@ -16,9 +16,15 @@ namespace WebChef.shared
         private readonly AcaoContext _contextAcao;
         private readonly IngredienteContext _contextIngrediente;
         private readonly PassoIngredienteContext _contextPassoIngrediente;
+        private readonly ReceitaIngredienteContext _contextReceitaIngrediente;
+        private readonly LocalizacaoContext _contextLocalizacao;
+        private readonly IngredienteLocalizacaoContext _contextIngredienteLocalizacao;
 
 
-        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente)
+
+        public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
+                                AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
+                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
         {
             _context = context;
             _contextRU = contextRU;
@@ -27,7 +33,10 @@ namespace WebChef.shared
             _contextAcao = contextAcao;
             _contextIngrediente = contextIngrediente;
             _contextPassoIngrediente = contextPassoIngrediente;
-            }
+            _contextReceitaIngrediente = contextRI;
+            _contextLocalizacao = contextLocalizacao;
+            _contextIngredienteLocalizacao = contextIngredienteLocalizacao;
+        }
 
         public Receita[] getReceitas()
         {
@@ -36,7 +45,31 @@ namespace WebChef.shared
         
         public Receita getReceita(int id)
         {
-            return _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
+            Receita res = _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
+            ReceitaIngrediente[] receitaIng = _contextReceitaIngrediente.receitaIngrediente.Where(ri => ri.id_receita == res.id_receita).ToArray();
+            Ingrediente[] ingredientes = new Ingrediente[receitaIng.Length];
+            for (int j = 0; j < receitaIng.Length; j++)
+            {
+                Ingrediente ing = _contextIngrediente.ingrediente.Where(i => i.id_ingrediente == receitaIng[j].id_ingrediente).FirstOrDefault();
+                ingredientes[j] = ing;
+                ingredientes[j].quantidade = receitaIng[j].quantidade;
+            }
+
+            res.ingredientes = ingredientes;
+            return res;
+        }
+
+        public Ingrediente GetIngrediente(int idIngrediente)
+        {
+            Ingrediente i = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == idIngrediente).FirstOrDefault();
+            IngredienteLocalizacao[] ingLocal = _contextIngredienteLocalizacao.ingredienteLocalizacao.Where(il => il.id_ingrediente == i.id_ingrediente).ToArray();
+            Localizacao[] localizacoes = new Localizacao[ingLocal.Length];
+            for (int k = 0; k < ingLocal.Length; k++)
+            {
+                localizacoes[k] = _contextLocalizacao.localizacao.Where(lo => lo.id_localizacao == ingLocal[k].id_localizacao).FirstOrDefault();
+            }
+            i.localizacoes = localizacoes;
+            return i;
         }
 
         // A função serve para verificar se o utilizador tem a receita como favorita

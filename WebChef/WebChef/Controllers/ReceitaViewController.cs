@@ -18,10 +18,12 @@ namespace WebChef.Controllers
 
         private ReceitaHandling receitaHandling;
 
-        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente)
+        public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
+                                    AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
+                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, contextPassoIngrediente);
+            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao);
         }
 
         public IActionResult getReceitas()
@@ -41,6 +43,21 @@ namespace WebChef.Controllers
             Receita receita = receitaHandling.getReceita(id);
             return View(receita);
         }
+
+        [Route("{receita=int}/{id=int}")]
+        public IActionResult GetIngrediente(int receita, int id)
+        {
+            Ingrediente i = receitaHandling.GetIngrediente(id);
+            ViewBag.idReceita = receita;
+            return View(i);
+        }
+
+        [Route("{id=int}")]
+        public IActionResult VoltaAReceita(int id)
+        {
+            return RedirectToAction("getReceita", "ReceitaView");
+        }
+
 
         [Route("{id=int}")]
         public IActionResult AddReceitaSemana(int id)

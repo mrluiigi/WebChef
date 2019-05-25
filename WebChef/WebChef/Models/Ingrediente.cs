@@ -17,6 +17,8 @@ namespace WebChef.Models
 
         [NotMapped]
         public double? quantidade { set; get; }
+        [NotMapped]
+        public Localizacao[] localizacoes { set; get; }
     }
 
     public class IngredienteContext : DbContext

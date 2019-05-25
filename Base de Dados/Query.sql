@@ -53,6 +53,28 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 		(3, 1, 16),
 		(2, 2, 2),
 		(2, 3, 1);
+
+
+Insert into ReceitaIngrediente (id_receita, id_ingrediente, quantidade)
+	VALUES
+		(1, 1, 16),
+		(1, 2, 4),
+		(1, 3, 1);
+
+
+Insert into Localizacao (id_localizacao, nome, coordenadas)
+	VALUES
+		(1, 'Jumbo', 'Ali'),
+		(2, 'Pingo Doce', 'Aqui');
+
+Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
+	VALUES
+		(1, 1),
+		(2, 2),
+		(2, 3);
+
+
+
 SELECT * FROM PassoIngrediente;
 DELETE FROM PassoIngrediente;
 
