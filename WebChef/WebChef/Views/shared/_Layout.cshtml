@@ -28,6 +28,7 @@
                                     Registar
                                 </a>
                             }
+
                         </li>
                     </ul>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -37,6 +38,20 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="ReceitaView" asp-action="getReceitas">Catálogo</a>
                         </li>
+                        @if (string.Equals(User.Identity.Name, "admin@gmail.com") == true)
+                        {
+                            <li class="nav-item dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Registar
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarReceita", "ReceitaView")">Receita</a>
+                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarIngrediente", "ReceitaView")">Ingrediente</a>
+                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarAcao", "ReceitaView")">Ação</a>
+                                </div>
+                            </li>
+                        }
+
                     </ul>
 
 

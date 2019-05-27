@@ -4,12 +4,11 @@
     ViewData["Title"] = "ConfecionaReceita";
 }
 
-
-
 <!DOCTYPE HTML>
-@if(@ViewBag.duracao != null){
+@if (@ViewBag.duracao != null)
+{
     <html>
-    
+
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -26,7 +25,10 @@
 
         <script>
             var countDownDate = @ViewBag.duracao;
-             document.getElementById("demo").innerHTML = countDownDate;
+            var hours = Math.floor((countDownDate % (60 * 60 * 24)) / (60 * 60));
+            var minutes = Math.floor((countDownDate % (60 * 60)) / (60));
+            var seconds = Math.floor((countDownDate % 60));
+            document.getElementById("demo").innerHTML = hours + ":" + minutes + ":" + seconds;
             var y = 0;
             var x;
 
@@ -35,9 +37,11 @@
 
                 // Atualizador o contador a cada segundo
                 x = setInterval(function () {
-
+                    hours = Math.floor((countDownDate % (60 * 60 * 24)) / (60 * 60));
+                    minutes = Math.floor((countDownDate % (60 * 60)) / (60));
+                    seconds = Math.floor((countDownDate % 60));
                     // O output é um valor com o id "demo"
-                    document.getElementById("demo").innerHTML = countDownDate;
+                    document.getElementById("demo").innerHTML = hours + ":" + minutes + ":" + seconds;
 
                     // Quando o temporizador acaba escreve Terminou!
                     if (countDownDate < 0) {
@@ -53,12 +57,11 @@
             <button class="btn btn-primary" onclick="startTime()">Start</button>
             <button class="btn btn-primary" onclick="clearInterval(x)">Stop</button>
         </div>
-        
+
 
     </body>
 </html>
 }
-
 
 <h1>@Model[@ViewBag.passo - 1].descricao</h1>
 

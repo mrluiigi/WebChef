@@ -157,5 +157,28 @@ namespace WebChef.shared
             return passos;
         }
 
+
+
+        public bool registarReceita(Receita receita)
+        {
+            _context.receita.Add(receita);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public bool registarIngrediente(Ingrediente ingrediente)
+        {
+            _contextIngrediente.ingrediente.Add(ingrediente);
+            _contextIngrediente.SaveChanges();
+            return true;
+        }
+
+        public bool registarAcao(Acao acao)
+        {
+            _contextAcao.acao.Add(acao);
+            _contextAcao.SaveChanges();
+            return true;
+        }
+
     }
 }

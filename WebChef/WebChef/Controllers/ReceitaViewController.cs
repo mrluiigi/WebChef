@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using WebChef.Models;
 using WebChef.shared;
 
@@ -107,6 +108,90 @@ namespace WebChef.Controllers
             
 
             return View(p);
+        }
+
+
+        [HttpGet]
+        public IActionResult RegistarReceita()
+        {
+            var list = new List<SelectListItem>();
+            for (var i = 1; i < 31; i++)
+                list.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString()});
+            ViewBag.list = list;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RegistarReceita([Bind] Receita receita)
+        {
+            if (ModelState.IsValid)
+            {
+                bool RegistrationStatus = this.receitaHandling.registarReceita(receita);
+                if (RegistrationStatus)
+                {
+                    ModelState.Clear();
+                    TempData["Success"] = "Registado com sucesso!\n";
+                }
+                else
+                {
+                    TempData["Fail"] = "Não foi possível registar.";
+                }
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult RegistarIngrediente()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RegistarIngrediente([Bind] Ingrediente i)
+        {
+
+            if (ModelState.IsValid)
+            {
+                bool RegistrationStatus = this.receitaHandling.registarIngrediente(i);
+                if (RegistrationStatus)
+                {
+                    ModelState.Clear();
+                    TempData["Success"] = "Registado com sucesso!\n";
+                }
+                else
+                {
+                    TempData["Fail"] = "Não foi possível registar.";
+                }
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult RegistarAcao()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RegistarAcao([Bind] Acao a)
+        {
+
+            if (ModelState.IsValid)
+            {
+                bool RegistrationStatus = this.receitaHandling.registarAcao(a);
+                if (RegistrationStatus)
+                {
+                    ModelState.Clear();
+                    TempData["Success"] = "Registado com sucesso!\n";
+                }
+                else
+                {
+                    TempData["Fail"] = "Não foi possível registar.";
+                }
+            }
+            return View();
         }
 
 

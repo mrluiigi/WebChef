@@ -11,7 +11,9 @@ namespace WebChef.Models
     {
         [Key]
         public int id_acao { set; get; }
+        [Display(Name = "Nome")]
         public string nome { set; get; }
+        [Display(Name = "Designação")]
         public string descricao { set; get; }
 
         public ICollection<Passo> Passos { get; set; }

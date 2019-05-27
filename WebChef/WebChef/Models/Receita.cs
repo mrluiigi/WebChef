@@ -24,19 +24,19 @@ namespace WebChef.Models
         [Display(Name = "Informação Nutricional")]
         public string informacao_nutricional { set; get; }
 
-        [Display(Name = "Duração")]
-        public TimeSpan duracao_prevista { set; get; }
+        [Display(Name = "Duração Prevista")]
+        public int duracao_prevista { set; get; }
 
         public string link_ajuda { set; get; }
         public string imagem { set; get; }
 
-        [StringLength(50)]
         [Display(Name = "Número de Pessoas")]
         public int nr_pessoas { set; get; }
 
         [Display(Name = "Dificuldade")]
         public string dificuldade { set; get; }
 
+        [Display(Name = "Categoria")]
         public string categoria { set; get; }
 
         [NotMapped]
