@@ -94,6 +94,7 @@ namespace WebChef.Controllers
         [Route("{id=int}/{passo=int}")]
         public IActionResult ConfecionaReceita(int id, int passo)
         {
+            
             Passo[] p = receitaHandling.GetPassos(id);
             ViewBag.anterior = passo - 1;
             ViewBag.seguinte = passo + 1;
