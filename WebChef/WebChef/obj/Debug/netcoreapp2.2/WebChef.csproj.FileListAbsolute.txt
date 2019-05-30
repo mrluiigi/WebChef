@@ -134,3 +134,4 @@ C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarReceita.g.cshtml.cs
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\AvaliarReceita.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\AvaliarReceita.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getFavoritos.g.cshtml.cs

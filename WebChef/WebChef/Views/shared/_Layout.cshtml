@@ -17,6 +17,8 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
+                                <a asp-controller="ReceitaView" asp-action="getFavoritos">Favoritos</a>
+
                                 <a asp-controller="UtilizadorView" asp-action="Logout">Olá @User.Identity.Name (Sign Out)</a>
                             }
                             else

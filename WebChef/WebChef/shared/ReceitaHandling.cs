@@ -42,7 +42,26 @@ namespace WebChef.shared
         {
             return _context.receita.ToArray();
         }
-        
+
+
+        public Receita[] getReceitasFavoritas(int idUtilizador)
+        {
+            ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador && r.favorita == "S").ToArray();
+            if (ru != null)
+            {
+                Receita[] res = new Receita[ru.Length];
+                for (int i = 0; i < ru.Length; i++)
+                {
+                    res[i] = _context.receita.Where(r => r.id_receita == ru[i].id_receita).FirstOrDefault();
+                }
+                return res;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public Receita getReceita(int id)
         {
             Receita res = _context.receita.Where(r => r.id_receita == id).FirstOrDefault();

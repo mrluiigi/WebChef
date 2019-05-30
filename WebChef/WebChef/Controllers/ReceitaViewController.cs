@@ -32,6 +32,15 @@ namespace WebChef.Controllers
             Receita[] receitas = receitaHandling.getReceitas();
             return View(receitas);
         }
+        
+        
+        public IActionResult getFavoritos()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Receita[] receitas = receitaHandling.getReceitasFavoritas(int.Parse(userID.ToString()));
+
+            return View(receitas);
+        }
 
 
         [Route("{id=int}")]
@@ -247,5 +256,12 @@ namespace WebChef.Controllers
         }
 
 
+
+
+
+        public IActionResult Favoritos()
+        {
+            return View();
+        }
     }
 }
