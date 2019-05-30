@@ -180,5 +180,24 @@ namespace WebChef.shared
             return true;
         }
 
+        public void adicionarAvaliacao(int receitaID, int userID, int classificacao, string dificuldade, string anotacao)
+        {
+            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == receitaID && ru.id_utilizador == userID).FirstOrDefault();
+            if (r != null)
+            {
+                r.classificacao = classificacao;
+                r.avaliacao_dificuldade = dificuldade;
+                r.anotacao = anotacao;
+                r.data_realizacao = DateTime.Today;
+                _contextRU.SaveChanges();
+            }
+            else
+            {
+                ReceitaUtilizador ru = new ReceitaUtilizador(receitaID, userID, null, null, dificuldade, null, null, classificacao, DateTime.Today, anotacao);
+                _contextRU.receitaUtilizador.Add(ru);
+                _contextRU.SaveChanges();
+            }
+        }
+
     }
 }

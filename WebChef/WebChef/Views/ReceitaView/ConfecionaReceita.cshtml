@@ -89,6 +89,13 @@
     </a>
 }
 
+@if (@ViewBag.passo == @ViewBag.tamanho)
+{
+    <a asp-controller="ReceitaView" asp-action="ConcluirReceita" asp-route-id=@ViewBag.id class="btn btn-primary">
+        Concluir
+    </a>
+}
+
 @foreach (var ing in @Model[@ViewBag.passo - 1].ingredientes)
 {
     <figure class="img">

@@ -110,6 +110,28 @@ namespace WebChef.Controllers
             return View(p);
         }
 
+        [Route("{id=int}")]
+        public IActionResult ConcluirReceita(int id)
+        {
+            return RedirectToAction("AvaliarReceita", "ReceitaView");
+        }
+
+        [HttpGet]
+        [Route("{id=int}")]
+        public IActionResult AvaliarReceita(int id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Route("{id=int}")]
+        public IActionResult AvaliarReceita([Bind] int id, int classificacao, string avaliacao_dificuldade, string anotacao)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.adicionarAvaliacao(id, int.Parse(userID.ToString()), classificacao, avaliacao_dificuldade, anotacao);
+            return RedirectToAction("getReceitas", "ReceitaView");
+        }
+
 
         [HttpGet]
         public IActionResult RegistarReceita()

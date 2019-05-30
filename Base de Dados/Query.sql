@@ -59,6 +59,7 @@ Insert into Localizacao (id_localizacao, nome, coordenadas)
 		(1, 'Jumbo', 'Ali'),
 		(2, 'Pingo Doce', 'Aqui');
 
+
 Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
 	VALUES
 		(1, 1),
@@ -67,7 +68,7 @@ Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
 
 
 
-
+SELECT * FROM ReceitaUtilizador;
 Delete from ReceitaIngrediente;
 
 SELECT * FROM PassoIngrediente;

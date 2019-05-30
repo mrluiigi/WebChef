@@ -25,6 +25,7 @@ namespace WebChef.Models
         public Utilizador utilizador { get; set; }
         [NotMapped]
         public Receita receita { get; set; }
+        
 
 
         public ReceitaUtilizador(int id_receita, int id_utilizador, TimeSpan? duracao, string favorita, string avaliacao_dificuldade, string dia_da_semana, string refeicao, int? classificacao, DateTime? data_realizacao, string anotacao)
