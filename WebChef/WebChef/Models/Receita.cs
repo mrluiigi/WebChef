@@ -38,9 +38,18 @@ namespace WebChef.Models
 
         [Display(Name = "Categoria")]
         public string categoria { set; get; }
+        
 
         [NotMapped]
         public Ingrediente[] ingredientes { set; get; }
+        [NotMapped]
+        public int horas { set; get; }
+        [NotMapped]
+        public int minutos { set; get; }
+        [NotMapped]
+        public int segundos { set; get; }
+        [NotMapped]
+        public string duracao_prevista_display { get { return Math.Round((float)duracao_prevista / 3600) + ":" + Math.Round((float)(duracao_prevista / 60) % 60) + ":" + Math.Round((float)duracao_prevista % 60); } }
 
     }
 

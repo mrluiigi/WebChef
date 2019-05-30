@@ -126,6 +126,7 @@ namespace WebChef.Controllers
         {
             if (ModelState.IsValid)
             {
+                receita.duracao_prevista = receita.horas * 60 * 60 + receita.minutos * 60 + receita.segundos;
                 bool RegistrationStatus = this.receitaHandling.registarReceita(receita);
                 if (RegistrationStatus)
                 {

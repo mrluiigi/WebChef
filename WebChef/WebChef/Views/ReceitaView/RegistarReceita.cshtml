@@ -17,58 +17,103 @@
         {
             <p class="alert alert-danger">@TempData["Fail"]</p>
         }
-        <form asp-action="RegistarReceita">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="RegistarReceita">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="nome" class="control-label"></label>
-                <input asp-for="nome" class="form-control" />
-                <span asp-validation-for="nome" class="text-danger"></span>
+
+        <div class="form-group">
+            <label asp-for="nome" class="control-label"></label>
+            <input asp-for="nome" class="form-control" />
+            <span asp-validation-for="nome" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="descricao" class="control-label"></label>
+            <input asp-for="descricao" class="form-control" />
+            <span asp-validation-for="descricao" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="dificuldade" class="control-label"></label>
+            <select asp-for="dificuldade">
+                <option value="Fácil">Fácil</option>
+                <option value="Médio">Médio</option>
+                <option value="Difícil">Difícil</option>
+            </select>
+            <span asp-validation-for="dificuldade" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="nr_pessoas" class="control-label"></label>
+            <input asp-for="nr_pessoas" class="form-control" />
+            <span asp-validation-for="nr_pessoas" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="column">
+                    <label asp-for="horas" class="control-label"></label>
+                    <input asp-for="horas" class="form-control" />
+                    <span asp-validation-for="horas" class="text-danger"></span>
+                </div>
+
+                <div class="column">
+                    <label asp-for="minutos" class="control-label"></label>
+                    <input asp-for="minutos" class="form-control" />
+                    <span asp-validation-for="minutos" class="text-danger"></span>
+                </div>
+
+                <div class="column">
+                    <label asp-for="segundos" class="control-label"></label>
+                    <input asp-for="segundos" class="form-control" />
+                    <span asp-validation-for="segundos" class="text-danger"></span>
+                </div>
+                                
             </div>
-            <div class="form-group">
-                <label asp-for="descricao" class="control-label"></label>
-                <input asp-for="descricao" class="form-control" />
-                <span asp-validation-for="descricao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="informacao_nutricional" class="control-label"></label>
-                <input asp-for="informacao_nutricional" class="form-control" />
-                <span asp-validation-for="informacao_nutricional" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="duracao_prevista" class="control-label"></label>
-                <input asp-for="duracao_prevista" class="form-control" />
-                <span asp-validation-for="duracao_prevista" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="link_ajuda" class="control-label"></label>
-                <input asp-for="link_ajuda" class="form-control" />
-                <span asp-validation-for="link_ajuda" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="imagem" class="control-label"></label>
-                <input asp-for="imagem" class="form-control" />
-                <span asp-validation-for="imagem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="nr_pessoas" class="control-label"></label>
-                <input asp-for="nr_pessoas" class="form-control" />
-                <span asp-validation-for="nr_pessoas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="dificuldade" class="control-label"></label>
-                <input asp-for="dificuldade" class="form-control" />
-                <span asp-validation-for="dificuldade" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="categoria" class="control-label"></label>
-                <input asp-for="categoria" class="form-control" />
-                <span asp-validation-for="categoria" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="categoria" class="control-label"></label>
+            <select asp-for="categoria">
+                <option value="Sopas">Sopas</option>
+                <option value="Sobremesas">Sobremesas</option>
+                <option value="Prato principal">Prato principal</option>
+                <option value="Salada">Salada</option>
+            </select>
+            <span asp-validation-for="categoria" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="informacao_nutricional" class="control-label"></label>
+            <input asp-for="informacao_nutricional" class="form-control" />
+            <span asp-validation-for="informacao_nutricional" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="link_ajuda" class="control-label"></label>
+            <input asp-for="link_ajuda" class="form-control" />
+            <span asp-validation-for="link_ajuda" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <label asp-for="imagem" class="control-label"></label>
+            <input asp-for="imagem" class="form-control" />
+            <span asp-validation-for="imagem" class="text-danger"></span>
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="Adicionar" class="btn btn-primary" />
+        </div>
+    </form>
     </div>
 </div>
 

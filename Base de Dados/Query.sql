@@ -11,10 +11,10 @@ INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, 
 		('Massa', 'bolonhesa', '60Kcal', 400, 'www.ajuda.com', 'massa.jpg', 4, 'média', 'carne');
 
 
-Insert into Acao (id_acao, nome, descricao)
+Insert into Acao (nome, descricao)
 	VALUES
-		(1, 'cozer', 'meter na agua quente'),
-		(2, 'fritar', 'meter em oleo quente');
+		('cozer', 'meter na agua quente'),
+		('fritar', 'meter em oleo quente');
 
 
 Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)

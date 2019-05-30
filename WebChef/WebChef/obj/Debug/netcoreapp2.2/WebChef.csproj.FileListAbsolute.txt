@@ -128,3 +128,7 @@ C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Vi
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarReceita.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarIngrediente.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarAcao.g.cshtml.cs
+C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\GetIngrediente.g.cshtml.cs
+C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarAcao.g.cshtml.cs
+C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarIngrediente.g.cshtml.cs
+C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarReceita.g.cshtml.cs
