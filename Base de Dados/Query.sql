@@ -7,9 +7,8 @@ INSERT INTO Utilizador(nome, email, password)
 
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
-		('Bifinhos', 'com cogumelos', '50Kcal', 200, 'https://youtu.be/gS2WtZHvvWk?t=', '~/Images/sopaAgriao.jpg', 2, 'facil', 'carne'),
-		('Massa', 'bolonhesa', '60Kcal', 400, 'www.ajuda.com', 'massa.jpg', 4, 'média', 'carne');
-
+		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 200, 'https://youtu.be/gS2WtZHvvWk?t=', '~/Images/sopaAgriao.jpg', 2, 'facil', 'Prato Principal'),
+		('Massa', 'bolonhesa', '50|15|2|13|23|4|2|3|', 400, 'https://youtu.be/gS2WtZHvvWk?t=', '~/Images/oleo.jpg', 4, 'média', 'carne');
 
 Insert into Acao (nome, descricao)
 	VALUES
@@ -69,6 +68,7 @@ Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
 
 
 SELECT * FROM ReceitaUtilizador;
+Delete from ReceitaUtilizador;
 Delete from ReceitaIngrediente;
 
 SELECT * FROM PassoIngrediente;

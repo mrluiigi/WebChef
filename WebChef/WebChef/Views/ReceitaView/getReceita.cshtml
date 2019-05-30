@@ -12,10 +12,10 @@
     </div>
 </div>
 
-<div style="float: right;  margin-left:20px;; display: inline-block; ">
+<div style="float: right;  margin-left:20px; display: inline-block; ">
     @for (int i = 0; i < Model.ingredientes.Length; i++)
     {
-        <div class="col-md-4" style="float: right;  margin-left:20px;; display: inline-block; ">
+        <div class="col-md-4" style="float: right;  margin-left:20px; display: inline-block; ">
             <div class="thumbnail">
                 <img src=@Url.Content(Model.ingredientes[i].imagem) style="width:100%">
                 
@@ -35,12 +35,6 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.descricao)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.informacao_nutricional)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.informacao_nutricional)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.duracao_prevista)
@@ -79,44 +73,97 @@
     </dl>
 </div>
 
+<table class="table">
+    <tr bgcolor='@("#EEE")'>
+        <th>
+            @Html.DisplayNameFor(model => model.energia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lipidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.saturados)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hidratosCarbono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.acucares)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fibras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.proteinas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sal)
+        </th>
+    </tr>
+    <tr>
+        <th>
+            @Html.DisplayFor(model => model.energia)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.lipidos)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.saturados)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.hidratosCarbono)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.acucares)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.fibras)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.proteinas)
+        </th>
+        <th>
+            @Html.DisplayFor(model => model.sal)
+        </th>
+    </tr>
+</table>
 
 
 
-
-<div>
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (ViewBag.isFavorita == false)
-        {
-            <a asp-controller="UtilizadorView" asp-action="AddReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Adicionar Receita a Favoritos
-            </a>
-        }
-        else
-        {
-            <a asp-controller="UtilizadorView" asp-action="RmReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Remover Receita de Favoritos
-            </a>
-        }
-
-
-        if (ViewBag.isSemanal == false)
-        {
-            <a asp-controller="ReceitaView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Adicionar Receita a Ementa Semanal
-            </a>
-        }
-        else
-        {
-            <a asp-controller="ReceitaView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Remover Receita de Ementa Semanal
-            </a>
-        }
-
-        <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@Model.id_receita asp-route-passo=1 class="btn btn-secondary">
-            Confecionar Receita
-        </a>
+            <div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (ViewBag.isFavorita == false)
+                    {
+                        <a asp-controller="UtilizadorView" asp-action="AddReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                            Adicionar Receita a Favoritos
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="UtilizadorView" asp-action="RmReceitaFavoritos" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                            Remover Receita de Favoritos
+                        </a>
+                    }
 
 
-    }
-</div>
+                    if (ViewBag.isSemanal == false)
+                    {
+                        <a asp-controller="ReceitaView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                            Adicionar Receita a Ementa Semanal
+                        </a>
+                    }
+                    else
+                    {
+                        <a asp-controller="ReceitaView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+                            Remover Receita de Ementa Semanal
+                        </a>
+                    }
+
+                    <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@Model.id_receita asp-route-passo=1 class="btn btn-secondary">
+                        Confecionar Receita
+                    </a>
+
+
+                }
+            </div>

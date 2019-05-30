@@ -97,7 +97,7 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador ru = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, diaSemana, refeicao, null, null, null);
+                ReceitaUtilizador ru = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, diaSemana, refeicao, null, null, null, null);
                 _contextRU.receitaUtilizador.Add(ru);
                 _contextRU.SaveChanges();
             }
@@ -106,6 +106,11 @@ namespace WebChef.shared
         public ReceitaUtilizador[] getDiasEmenta(int idReceita)
         {
             return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita).ToArray();
+        }
+
+        public ReceitaUtilizador getReceitaUtilizador(int idReceita, int idUtilizador)
+        {
+            return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
         }
 
 
@@ -193,13 +198,52 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador ru = new ReceitaUtilizador(receitaID, userID, null, null, dificuldade, null, null, classificacao, DateTime.Today, anotacao);
+                ReceitaUtilizador ru = new ReceitaUtilizador(receitaID, userID, null, null, dificuldade, null, null, classificacao, DateTime.Today, anotacao, null);
                 _contextRU.receitaUtilizador.Add(ru);
                 _contextRU.SaveChanges();
             }
         }
 
-        
+
+        public void setTimeInicio(int idReceita, int idUtilizador)
+        {
+            ReceitaUtilizador ru = _contextRU.receitaUtilizador.Where(r => r.id_receita == idReceita && r.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ru != null)
+            {
+                if (ru.timeInicio == null)
+                {
+                    ru.timeInicio = DateTime.Now.TimeOfDay;
+                    _contextRU.SaveChanges();
+                }
+            }
+            else
+            {
+                ReceitaUtilizador r = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, null, null, null, null, null, DateTime.Now.TimeOfDay);
+                _contextRU.receitaUtilizador.Add(r);
+                _contextRU.SaveChanges();
+            }
+            
+        }
+
+
+        public void setDuracao(int idReceita, int idUtilizador)
+        {
+            ReceitaUtilizador ru = _contextRU.receitaUtilizador.Where(r => r.id_receita == idReceita && r.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ru != null)
+            {
+                ru.duracao = DateTime.Now.TimeOfDay - ru.timeInicio;
+                ru.timeInicio = null;
+                _contextRU.SaveChanges();
+            }
+            else
+            {
+                ReceitaUtilizador r = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, null, null, null, null, null, null);
+                _contextRU.receitaUtilizador.Add(r);
+                _contextRU.SaveChanges();
+            }
+        }
+
+
 
     }
 }

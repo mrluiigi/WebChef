@@ -9,22 +9,22 @@
 <table class="table">
     <tr bgcolor='@("#EEE")'>
         <th>
+
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.nome)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.descricao)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.informacao_nutricional)
+            @Html.DisplayNameFor(model => model.energia)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.duracao_prevista)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.link_ajuda)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.imagem)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.nr_pessoas)
@@ -39,38 +39,36 @@
 
     @foreach (var receita in Model)
     {
-        <tr>
-            <td>
-                <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
-                    @Html.DisplayFor(modelreceita => receita.nome)
-                </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.descricao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.informacao_nutricional)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.duracao_prevista_display)
-            </td>
-            <td>
-                <a href=@receita.link_ajuda>Link do vídeo</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.imagem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.nr_pessoas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.dificuldade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.categoria)
-            </td>
+    <tr>
+        <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
+        <td>
+            <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
+                @Html.DisplayFor(modelreceita => receita.nome)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.descricao)
+        </td>
+        <td>
+            @receita.informacao_nutricional.Split("|")[0]
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.duracao_prevista_display)
+        </td>
+        <td>
+            <a href=@receita.link_ajuda>Link do vídeo</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.nr_pessoas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.dificuldade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.categoria)
+        </td>
 
-        </tr>
+    </tr>
         }
 
     </table>

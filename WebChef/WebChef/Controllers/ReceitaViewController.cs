@@ -42,6 +42,16 @@ namespace WebChef.Controllers
             ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(userID.ToString()));  //User.Identity.Name é o id do utilizador logged in
             ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, int.Parse(userID.ToString()));
             Receita receita = receitaHandling.getReceita(id);
+
+            string[] tokens = receita.informacao_nutricional.Split('|');
+            receita.energia = float.Parse(tokens[0]);
+            receita.lipidos = float.Parse(tokens[1]);
+            receita.saturados = float.Parse(tokens[2]);
+            receita.hidratosCarbono = float.Parse(tokens[3]);
+            receita.acucares = float.Parse(tokens[4]);
+            receita.fibras = float.Parse(tokens[5]);
+            receita.proteinas = float.Parse(tokens[6]);
+            receita.sal = float.Parse(tokens[7]);
             return View(receita);
         }
 
@@ -95,6 +105,8 @@ namespace WebChef.Controllers
         public IActionResult ConfecionaReceita(int id, int passo)
         {
             
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.setTimeInicio(id, int.Parse(userID.ToString()));
             Passo[] p = receitaHandling.GetPassos(id);
             ViewBag.anterior = passo - 1;
             ViewBag.seguinte = passo + 1;
@@ -114,6 +126,8 @@ namespace WebChef.Controllers
         [Route("{id=int}")]
         public IActionResult ConcluirReceita(int id)
         {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.setDuracao(id, int.Parse(userID.ToString()));
             return RedirectToAction("AvaliarReceita", "ReceitaView");
         }
 
@@ -121,6 +135,12 @@ namespace WebChef.Controllers
         [Route("{id=int}")]
         public IActionResult AvaliarReceita(int id)
         {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            ReceitaUtilizador ru = receitaHandling.getReceitaUtilizador(id, int.Parse(userID.ToString()));
+
+            TimeSpan duracao = (TimeSpan)ru.duracao; 
+            ViewBag.duracao = duracao.Hours + ":" + duracao.Minutes + ":" + duracao.Seconds;
+
             return View();
         }
 
@@ -150,6 +170,14 @@ namespace WebChef.Controllers
             if (ModelState.IsValid)
             {
                 receita.duracao_prevista = receita.horas * 60 * 60 + receita.minutos * 60 + receita.segundos;
+                receita.informacao_nutricional = receita.energia + "|" +
+                                                 receita.lipidos + "|" +
+                                                 receita.saturados + "|" +
+                                                 receita.hidratosCarbono + "|" +
+                                                 receita.acucares + "|" +
+                                                 receita.fibras + "|" +
+                                                 receita.proteinas + "|" +
+                                                 receita.sal + "|";
                 bool RegistrationStatus = this.receitaHandling.registarReceita(receita);
                 if (RegistrationStatus)
                 {
