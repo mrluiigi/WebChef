@@ -84,7 +84,7 @@ Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)
 
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
-		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 1800, 'https://youtu.be/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
+		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
 		('Massa', 'bolonhesa', '50|15|2|13|23|4|2|3|', 400, 'https://youtu.be/gS2WtZHvvWk?start=', '~/Images/oleo.jpg', 4, 'média', 'carne');
 -- SELECT * FROM Receita;
 -- Delete from Receita;
@@ -147,8 +147,10 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 		(12, 15, null),
 		(12, 4, '600 g'),
 		(12, 3, '200 g'),
-		(12, 25, null), -- marinada
+		(12, 25, null),
 		(12, 19, null),
+
+		(13, 5, '4 unidades'),
 
 		(14, 24, '4 unidade'),
 
