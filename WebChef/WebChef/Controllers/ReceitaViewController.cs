@@ -125,7 +125,7 @@ namespace WebChef.Controllers
             ViewBag.id = id;
             ViewBag.passo = passo;
             string timestamp = p[passo-1].timestamp;
-            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp + "s";
+            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp;
             if(p[passo - 1].duracao != null) {
                 ViewBag.duracao = p[passo - 1].duracao;
             }
