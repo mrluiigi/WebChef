@@ -10,7 +10,7 @@ namespace WebChef.Models
     {
         public int id_receita { get; set; }
         public int id_ingrediente { get; set; }
-        public double? quantidade { get; set; }
+        public string quantidade { get; set; }
     }
 
     public class ReceitaIngredienteContext : DbContext

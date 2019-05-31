@@ -19,7 +19,7 @@ namespace WebChef.Models
         public string imagem { set; get; }
 
         [NotMapped]
-        public double? quantidade { set; get; }
+        public string quantidade { set; get; }
         [NotMapped]
         public Localizacao[] localizacoes { set; get; }
 
