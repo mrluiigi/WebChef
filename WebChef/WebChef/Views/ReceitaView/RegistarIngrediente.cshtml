@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "RegistarIngrediente";
-}
+}   
 
 <h1>Registar Ingrediente</h1>
 
@@ -17,23 +17,19 @@
         {
             <p class="alert alert-danger">@TempData["Fail"]</p>
         }
-        <form asp-action="RegistarIngrediente">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="designacao" class="control-label"></label>
-                <input asp-for="designacao" class="form-control" />
-                <span asp-validation-for="designacao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="imagem" class="control-label"></label>
-                <input asp-for="imagem" class="form-control" />
-                <span asp-validation-for="imagem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Adicionar" class="btn btn-primary" />
-            </div>
-        </form>
+    <form asp-action="RegistarIngrediente" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="designacao" class="control-label"></label>
+            <input asp-for="designacao" class="form-control" />
+            <span asp-validation-for="designacao" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input asp-for="imagemFicheiro" type="file" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Adicionar" class="btn btn-primary" />
+        </div>
+    </form>
     </div>
 </div>
-
-

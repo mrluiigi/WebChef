@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,6 +31,9 @@ namespace WebChef.Models
         public string link_ajuda { set; get; }
         [Display(Name = "Imagem")]
         public string imagem { set; get; }
+
+        [NotMapped]
+        public IFormFile imagemFicheiro { set; get; }
 
         [Display(Name = "Número de Pessoas")]
         public int nr_pessoas { set; get; }

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebChef.Models;
@@ -178,6 +180,11 @@ namespace WebChef.Controllers
         {
             if (ModelState.IsValid)
             {
+                receita.imagem = "~/Images/" + receita.imagemFicheiro.FileName;
+                using (var stream = new FileStream("wwwroot\\Images\\" + receita.imagemFicheiro.FileName, FileMode.Create))
+                {
+                    receita.imagemFicheiro.CopyTo(stream);
+                }
                 receita.duracao_prevista = receita.horas * 60 * 60 + receita.minutos * 60 + receita.segundos;
                 receita.informacao_nutricional = receita.energia + "|" +
                                                  receita.lipidos + "|" +
@@ -211,9 +218,13 @@ namespace WebChef.Controllers
         [HttpPost]
         public IActionResult RegistarIngrediente([Bind] Ingrediente i)
         {
-
             if (ModelState.IsValid)
             {
+                i.imagem = "~/Images/" + i.imagemFicheiro.FileName;
+                using (var stream = new FileStream("wwwroot\\Images\\" + i.imagemFicheiro.FileName, FileMode.Create))
+                {
+                    i.imagemFicheiro.CopyTo(stream);
+                }
                 bool RegistrationStatus = this.receitaHandling.registarIngrediente(i);
                 if (RegistrationStatus)
                 {
@@ -226,6 +237,32 @@ namespace WebChef.Controllers
                 }
             }
             return View();
+        }
+
+
+        [HttpPost("UploadFiles")]
+        public async Task<IActionResult> Post(List<IFormFile> files)
+        {
+            long size = files.Sum(f => f.Length);
+
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
+
+            foreach (var formFile in files)
+            {
+                if (formFile.Length > 0)
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formFile.CopyToAsync(stream);
+                    }
+                }
+            }
+
+            // process uploaded files
+            // Don't rely on or trust the FileName property without validation.
+
+            return Ok(new { count = files.Count, size, filePath });
         }
 
 

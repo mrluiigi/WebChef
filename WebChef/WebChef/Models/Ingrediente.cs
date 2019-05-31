@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,9 @@ namespace WebChef.Models
         public double? quantidade { set; get; }
         [NotMapped]
         public Localizacao[] localizacoes { set; get; }
+
+        [NotMapped]
+        public IFormFile imagemFicheiro { set; get; }
     }
 
     public class IngredienteContext : DbContext
