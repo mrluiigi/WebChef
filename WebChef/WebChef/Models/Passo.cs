@@ -13,10 +13,14 @@ namespace WebChef.Models
     {
         [Key]
         public int id_passo { set; get; }
+        [Display(Name = "Descrição")]
         public string descricao { set; get; }
+        [Display(Name = "Timestamp")]
         public string timestamp { set; get; }
+        [Display(Name = "Ação")]
         public int id_acao { set; get; }
         public Acao Acao { set; get; }
+        [Display(Name = "Duração")]
         public int? duracao { set; get; }
         public ICollection<Ingrediente> ingredientes { set; get; }
         [NotMapped]

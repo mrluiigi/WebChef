@@ -203,6 +203,7 @@ namespace WebChef.Controllers
         [HttpPost]
         public IActionResult RegistarReceita([Bind] Receita receita)
         {
+            int idReceita = -1;
             if (ModelState.IsValid)
             {
                 receita.imagem = "~/Images/" + receita.imagemFicheiro.FileName;
@@ -219,8 +220,8 @@ namespace WebChef.Controllers
                                                  receita.fibras + "|" +
                                                  receita.proteinas + "|" +
                                                  receita.sal + "|";
-                bool RegistrationStatus = this.receitaHandling.registarReceita(receita);
-                if (RegistrationStatus)
+                idReceita = this.receitaHandling.registarReceita(receita);
+                if (idReceita > 0)
                 {
                     ModelState.Clear();
                     TempData["Success"] = "Registado com sucesso!\n";
@@ -230,9 +231,36 @@ namespace WebChef.Controllers
                     TempData["Fail"] = "Não foi possível registar.";
                 }
             }
+            return RedirectToAction("RegistarPassos", "ReceitaView", new { id = idReceita });
+        }
+
+
+        [HttpGet]
+        [Route("{id=int}")]
+        public IActionResult RegistarPassos(int id)
+        {
+            ViewBag.contador = 1;
+            ViewBag.acoes = receitaHandling.getAcoes();
             return View();
         }
 
+        [HttpPost]
+        [Route("{id=int}/{contador=int}")]
+        public IActionResult RegistarPassos(string submit, int id, int contador, [Bind] Passo p)
+        {
+            ViewBag.acoes = receitaHandling.getAcoes();
+            receitaHandling.registarPasso(p, id, contador);
+            ViewBag.contador = contador + 1;
+            if (submit.Equals("Adicionar"))
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("RegistarReceita", "ReceitaView");
+            }
+        }
+        
 
         [HttpGet]
         public IActionResult RegistarIngrediente()

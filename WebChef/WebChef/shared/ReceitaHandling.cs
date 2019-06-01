@@ -57,6 +57,11 @@ namespace WebChef.shared
             return _contextIngrediente.ingrediente.ToArray();
         }
 
+        public Acao[] getAcoes()
+        {
+            return _contextAcao.acao.ToArray();
+        }
+
 
         public Receita[] getReceitasFavoritas(int idUtilizador)
         {
@@ -203,11 +208,24 @@ namespace WebChef.shared
 
 
 
-        public bool registarReceita(Receita receita)
+        public int registarReceita(Receita receita)
         {
             _context.receita.Add(receita);
             _context.SaveChanges();
-            return true;
+            return receita.id_receita;
+        }
+
+
+        public void registarPasso(Passo p, int idReceita, int numero)
+        {
+            _contextPasso.passo.Add(p);
+            _contextPasso.SaveChanges();
+            ReceitaPasso rp = new ReceitaPasso();
+            rp.id_receita = idReceita;
+            rp.id_passo = p.id_passo;
+            rp.numero = numero;
+            _contextRP.receitaPasso.Add(rp);
+            _contextRP.SaveChanges();
         }
 
         public bool registarIngrediente(Ingrediente ingrediente)
@@ -354,6 +372,9 @@ namespace WebChef.shared
             }
             return res;
         }
+
+
+
 
     }
 }

@@ -177,3 +177,4 @@ C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.cspro
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getHistorico.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getIngredientes.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getPreferencias.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarPassos.g.cshtml.cs
