@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="RegistarPassos" asp-route-contador=@ViewBag.contador>
+        <form asp-action="RegistarPassos" asp-route-passo=@ViewBag.passo>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="descricao" class="control-label"></label>
@@ -37,8 +37,9 @@
                 <span asp-validation-for="duracao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input name="submit" type="submit" value="Adicionar" class="btn btn-primary" />
-                <input name="submit" type="submit" value="Concluir" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Próximo Passo" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Ingredientes a Passo" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Passo e Concluir" class="btn btn-primary" />
             </div>
         </form>
     </div>

@@ -214,9 +214,36 @@ namespace WebChef.shared
             _context.SaveChanges();
             return receita.id_receita;
         }
+        
+        public void addReceitaIngrediente(ReceitaIngrediente pi)
+        {
+            ReceitaIngrediente p = _contextReceitaIngrediente.receitaIngrediente.Where(ping => ping.id_receita == pi.id_receita && ping.id_ingrediente == pi.id_ingrediente).FirstOrDefault();
+            if (p != null)
+            {
 
+            }
+            else
+            {
+                _contextReceitaIngrediente.receitaIngrediente.Add(pi);
+                _contextReceitaIngrediente.SaveChanges();
+            }
+        }
 
-        public void registarPasso(Passo p, int idReceita, int numero)
+        public void addPassoIngrediente(PassoIngrediente pi)
+        {
+            PassoIngrediente p = _contextPassoIngrediente.passoIngrediente.Where(ping => ping.id_passo == pi.id_passo && ping.id_ingrediente == pi.id_ingrediente).FirstOrDefault();
+            if (p != null)
+            {
+
+            }
+            else
+            {
+                _contextPassoIngrediente.passoIngrediente.Add(pi);
+                _contextPassoIngrediente.SaveChanges();
+            }
+        }
+
+        public int registarPasso(Passo p, int idReceita, int numero)
         {
             _contextPasso.passo.Add(p);
             _contextPasso.SaveChanges();
@@ -226,6 +253,7 @@ namespace WebChef.shared
             rp.numero = numero;
             _contextRP.receitaPasso.Add(rp);
             _contextRP.SaveChanges();
+            return p.id_passo;
         }
 
         public bool registarIngrediente(Ingrediente ingrediente)
@@ -282,9 +310,9 @@ namespace WebChef.shared
             else
             {
                 ReceitaUtilizador r = new ReceitaUtilizador();
-                ru.id_receita = idReceita;
-                ru.id_utilizador = idUtilizador;
-                ru.timeInicio = DateTime.Now.TimeOfDay;
+                r.id_receita = idReceita;
+                r.id_utilizador = idUtilizador;
+                r.timeInicio = DateTime.Now.TimeOfDay;
                 _contextRU.receitaUtilizador.Add(r);
                 _contextRU.SaveChanges();
             }

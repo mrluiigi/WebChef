@@ -231,36 +231,96 @@ namespace WebChef.Controllers
                     TempData["Fail"] = "Não foi possível registar.";
                 }
             }
-            return RedirectToAction("RegistarPassos", "ReceitaView", new { id = idReceita });
+            return RedirectToAction("AdicionarIngredientesReceita", "ReceitaView", new { id = idReceita});
         }
 
 
         [HttpGet]
         [Route("{id=int}")]
-        public IActionResult RegistarPassos(int id)
+        public IActionResult AdicionarIngredientesReceita(int id)
         {
-            ViewBag.contador = 1;
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("{id=int}")]
+        public IActionResult AdicionarIngredientesReceita(string submit, int id, [Bind] ReceitaIngrediente ri)
+        {
+            ri.id_receita = id;
+            receitaHandling.addReceitaIngrediente(ri);
+            if (submit.Equals("Adicionar próximo Ingrediente"))
+            {
+                ViewBag.ingredientes = receitaHandling.getIngredientes();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("RegistarPassos", "ReceitaView", new { id = id, passo = 1 });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("{id=int}/{passo=int}")]
+        public IActionResult RegistarPassos(int id, int passo)
+        {
+            ViewBag.passo = passo;
             ViewBag.acoes = receitaHandling.getAcoes();
             return View();
         }
 
         [HttpPost]
-        [Route("{id=int}/{contador=int}")]
-        public IActionResult RegistarPassos(string submit, int id, int contador, [Bind] Passo p)
+        [Route("{id=int}/{passo=int}")]          //passo é o número do passo
+        public IActionResult RegistarPassos(string submit, int id, int passo, [Bind] Passo p)
         {
             ViewBag.acoes = receitaHandling.getAcoes();
-            receitaHandling.registarPasso(p, id, contador);
-            ViewBag.contador = contador + 1;
-            if (submit.Equals("Adicionar"))
+            int idPasso = receitaHandling.registarPasso(p, id, passo);
+            if (submit.Equals("Adicionar Próximo Passo"))
             {
+                ViewBag.passo = passo + 1;
                 return View();
+            }
+            else if (submit.Equals("Adicionar Ingredientes a Passo"))
+            {
+                return RedirectToAction("AdicionarIngredientes", "ReceitaView", new { idPasso = idPasso });
             }
             else
             {
                 return RedirectToAction("RegistarReceita", "ReceitaView");
             }
         }
-        
+
+
+        [HttpGet]
+        [Route("{id=int}/{passo=int}/{idPasso=int}")]
+        public IActionResult AdicionarIngredientes(int idPasso)
+        {
+            ViewBag.idPasso = idPasso;
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("{id=int}/{passo=int}/{idPasso=int}")]
+        public IActionResult AdicionarIngredientes(string submit, int passo, int idPasso, [Bind] PassoIngrediente pi)
+        {
+            pi.id_passo = idPasso;
+            receitaHandling.addPassoIngrediente(pi);
+
+            if (submit.Equals("Adicionar próximo Ingrediente"))
+            {
+                ViewBag.idPasso = idPasso;
+                ViewBag.ingredientes = receitaHandling.getIngredientes();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("RegistarPassos", "ReceitaView", new { passo = passo + 1 });
+            }
+        }
 
         [HttpGet]
         public IActionResult RegistarIngrediente()

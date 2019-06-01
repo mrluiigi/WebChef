@@ -14,8 +14,10 @@ namespace WebChef.Models
         [Key]
         public int id_passo { set; get; }
         [Display(Name = "Descrição")]
+        [Required]
         public string descricao { set; get; }
         [Display(Name = "Timestamp")]
+        [Required]
         public string timestamp { set; get; }
         [Display(Name = "Ação")]
         public int id_acao { set; get; }
