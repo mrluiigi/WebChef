@@ -62,6 +62,25 @@ namespace WebChef.shared
             }
         }
 
+
+        public Receita[] getHistorico(int idUtilizador)
+        {
+            ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador && r.data_realizacao != null).ToArray();
+            if (ru != null)
+            {
+                Receita[] res = new Receita[ru.Length];
+                for (int i = 0; i < ru.Length; i++)
+                {
+                    res[i] = _context.receita.Where(r => r.id_receita == ru[i].id_receita).FirstOrDefault();
+                }
+                return res;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public Receita getReceita(int id)
         {
             Receita res = _context.receita.Where(r => r.id_receita == id).FirstOrDefault();
@@ -244,7 +263,7 @@ namespace WebChef.shared
             
         }
 
-
+        // É chamada quando utilizador conclui confeção da receita
         public void setDuracao(int idReceita, int idUtilizador)
         {
             ReceitaUtilizador ru = _contextRU.receitaUtilizador.Where(r => r.id_receita == idReceita && r.id_utilizador == idUtilizador).FirstOrDefault();

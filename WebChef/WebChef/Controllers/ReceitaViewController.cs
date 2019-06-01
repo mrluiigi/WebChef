@@ -44,6 +44,14 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+        public IActionResult getHistorico()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Receita[] receitas = receitaHandling.getHistorico(int.Parse(userID.ToString()));
+
+            return View(receitas);
+        }
+
 
         [Route("{id=int}")]
         [Authorize]
