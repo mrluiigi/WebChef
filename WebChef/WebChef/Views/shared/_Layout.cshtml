@@ -17,13 +17,14 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Preferências
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="nav-link dropdown-item" href="@Url.Action("getIngredientes", "ReceitaView")">Editar</a>
-                                        <a class="nav-link dropdown-item" href="@Url.Action("getPreferencias", "ReceitaView")">Ver</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="@Url.Action("getIngredientes", "ReceitaView")">Editar</a>
+                                        <a class="dropdown-item" href="@Url.Action("getPreferencias", "ReceitaView")">Ver</a>
                                     </div>
                                 </div>
                                 
@@ -54,21 +55,18 @@
                         </li>
                         @if (string.Equals(User.Identity.Name, "admin@gmail.com") == true)
                         {
-                            <li class="nav-item dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Registar
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarReceita", "ReceitaView")">Receita</a>
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarIngrediente", "ReceitaView")">Ingrediente</a>
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarAcao", "ReceitaView")">Ação</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="@Url.Action("RegistarReceita", "ReceitaView")">Receita</a>
+                                    <a class="dropdown-item" href="@Url.Action("RegistarIngrediente", "ReceitaView")">Ingrediente</a>
+                                    <a class="dropdown-item" href="@Url.Action("RegistarAcao", "ReceitaView")">Ação</a>
                                 </div>
-                            </li>
+                            </div>
                         }
-
                     </ul>
-
-
                 </div>
             </div>
         </nav>
