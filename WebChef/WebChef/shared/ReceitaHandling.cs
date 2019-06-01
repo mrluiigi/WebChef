@@ -19,12 +19,14 @@ namespace WebChef.shared
         private readonly ReceitaIngredienteContext _contextReceitaIngrediente;
         private readonly LocalizacaoContext _contextLocalizacao;
         private readonly IngredienteLocalizacaoContext _contextIngredienteLocalizacao;
-
+        private readonly IngredientePreferidoUtilizadorContext _contextIPU;
+        private readonly EmentaSemanalContext _contextEmentaSemanal;
 
 
         public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                 AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
+                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
+                                IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU, EmentaSemanalContext contextES)
         {
             _context = context;
             _contextRU = contextRU;
@@ -36,6 +38,8 @@ namespace WebChef.shared
             _contextReceitaIngrediente = contextRI;
             _contextLocalizacao = contextLocalizacao;
             _contextIngredienteLocalizacao = contextIngredienteLocalizacao;
+            _contextIPU = contextIPU;
+            _contextEmentaSemanal = contextES;
         }
 
         public Receita[] getReceitas()
@@ -43,10 +47,44 @@ namespace WebChef.shared
             return _context.receita.ToArray();
         }
 
+        public ReceitaUtilizador getReceitaUtilizador(int idReceita, int idUtilizador)
+        {
+            return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
+        }
+
+        public Ingrediente[] getIngredientes()
+        {
+            return _contextIngrediente.ingrediente.ToArray();
+        }
+
+        public Acao[] getAcoes()
+        {
+            return _contextAcao.acao.ToArray();
+        }
+
 
         public Receita[] getReceitasFavoritas(int idUtilizador)
         {
             ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador && r.favorita == "S").ToArray();
+            if (ru != null)
+            {
+                Receita[] res = new Receita[ru.Length];
+                for (int i = 0; i < ru.Length; i++)
+                {
+                    res[i] = _context.receita.Where(r => r.id_receita == ru[i].id_receita).FirstOrDefault();
+                }
+                return res;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        public Receita[] getHistorico(int idUtilizador)
+        {
+            ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador && r.data_realizacao != null).ToArray();
             if (ru != null)
             {
                 Receita[] res = new Receita[ru.Length];
@@ -100,55 +138,42 @@ namespace WebChef.shared
         // A função serve para verificar se o utilizador tem a receita na ementa semanal
         public bool TemReceitaNaEmenta(int idReceita, int idUtilizador)
         {
-            return _contextRU.receitaUtilizador.Any(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador && ru.dia_da_semana != null && ru.refeicao != null);
+            return _contextEmentaSemanal.ementaSemanal.Any(es => es.id_receita == idReceita && es.id_utilizador == idUtilizador && es.dia_da_semana != null);
         }
 
         public void addReceitaEmenta(int idReceita, int idUtilizador, string text)
         {
-            string diaSemana = text.Substring(0,3);
-            string refeicao = text[3].ToString();
-            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
-            if (r != null)
+            
+            EmentaSemanal es = _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador && ru.dia_da_semana == text).FirstOrDefault();
+            if (es == null)
             {
-                r.dia_da_semana = diaSemana;
-                r.refeicao = refeicao;
-                _contextRU.SaveChanges();
-            }
-            else
-            {
-                ReceitaUtilizador ru = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, diaSemana, refeicao, null, null, null, null);
-                _contextRU.receitaUtilizador.Add(ru);
-                _contextRU.SaveChanges();
+                EmentaSemanal e = new EmentaSemanal();
+                e.id_receita = idReceita;
+                e.id_utilizador = idUtilizador;
+                e.dia_da_semana = text;
+                _contextEmentaSemanal.ementaSemanal.Add(e);
+                _contextEmentaSemanal.SaveChanges();
             }
         }
 
-        public ReceitaUtilizador[] getDiasEmenta(int idReceita)
+        public EmentaSemanal[] getDiasEmenta(int idReceita, int idUtilizador)
         {
-            return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita).ToArray();
+            return _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).ToArray();
         }
 
-        public ReceitaUtilizador getReceitaUtilizador(int idReceita, int idUtilizador)
-        {
-            return _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).FirstOrDefault();
-        }
 
 
         public void rmReceitaEmenta(int idReceita, int idUtilizador, string text)
         {
-            string diaSemana = text.Substring(0, 3);
-            string refeicao = text[3].ToString();
-            ReceitaUtilizador r = _contextRU.receitaUtilizador.Where(ru => ru.id_receita == idReceita &&
-                                                                     ru.id_utilizador == idUtilizador &&
-                                                                     ru.dia_da_semana == diaSemana &&
-                                                                     ru.refeicao == refeicao).FirstOrDefault();
+            EmentaSemanal r = _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_receita == idReceita &&
+                                                                        ru.id_utilizador == idUtilizador &&
+                                                                        ru.dia_da_semana == text).FirstOrDefault();
             if (r != null) {
-                r.dia_da_semana = null;
-                r.refeicao = null;
-                _contextRU.SaveChanges();
+                _contextEmentaSemanal.Remove(r);
+                _contextEmentaSemanal.SaveChanges();
             }
         }
 
-     
 
         public Passo[] GetPassos(int idReceita)
         {
@@ -183,11 +208,52 @@ namespace WebChef.shared
 
 
 
-        public bool registarReceita(Receita receita)
+        public int registarReceita(Receita receita)
         {
             _context.receita.Add(receita);
             _context.SaveChanges();
-            return true;
+            return receita.id_receita;
+        }
+        
+        public void addReceitaIngrediente(ReceitaIngrediente pi)
+        {
+            ReceitaIngrediente p = _contextReceitaIngrediente.receitaIngrediente.Where(ping => ping.id_receita == pi.id_receita && ping.id_ingrediente == pi.id_ingrediente).FirstOrDefault();
+            if (p != null)
+            {
+
+            }
+            else
+            {
+                _contextReceitaIngrediente.receitaIngrediente.Add(pi);
+                _contextReceitaIngrediente.SaveChanges();
+            }
+        }
+
+        public void addPassoIngrediente(PassoIngrediente pi)
+        {
+            PassoIngrediente p = _contextPassoIngrediente.passoIngrediente.Where(ping => ping.id_passo == pi.id_passo && ping.id_ingrediente == pi.id_ingrediente).FirstOrDefault();
+            if (p != null)
+            {
+
+            }
+            else
+            {
+                _contextPassoIngrediente.passoIngrediente.Add(pi);
+                _contextPassoIngrediente.SaveChanges();
+            }
+        }
+
+        public int registarPasso(Passo p, int idReceita, int numero)
+        {
+            _contextPasso.passo.Add(p);
+            _contextPasso.SaveChanges();
+            ReceitaPasso rp = new ReceitaPasso();
+            rp.id_receita = idReceita;
+            rp.id_passo = p.id_passo;
+            rp.numero = numero;
+            _contextRP.receitaPasso.Add(rp);
+            _contextRP.SaveChanges();
+            return p.id_passo;
         }
 
         public bool registarIngrediente(Ingrediente ingrediente)
@@ -217,7 +283,13 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador ru = new ReceitaUtilizador(receitaID, userID, null, null, dificuldade, null, null, classificacao, DateTime.Today, anotacao, null);
+                ReceitaUtilizador ru = new ReceitaUtilizador();
+                ru.id_receita = receitaID;
+                ru.id_utilizador = userID;
+                ru.avaliacao_dificuldade = dificuldade;
+                ru.classificacao = classificacao;
+                ru.data_realizacao = DateTime.Today;
+                ru.anotacao = anotacao;
                 _contextRU.receitaUtilizador.Add(ru);
                 _contextRU.SaveChanges();
             }
@@ -237,14 +309,17 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador r = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, null, null, null, null, null, DateTime.Now.TimeOfDay);
+                ReceitaUtilizador r = new ReceitaUtilizador();
+                r.id_receita = idReceita;
+                r.id_utilizador = idUtilizador;
+                r.timeInicio = DateTime.Now.TimeOfDay;
                 _contextRU.receitaUtilizador.Add(r);
                 _contextRU.SaveChanges();
             }
             
         }
 
-
+        // É chamada quando utilizador conclui confeção da receita
         public void setDuracao(int idReceita, int idUtilizador)
         {
             ReceitaUtilizador ru = _contextRU.receitaUtilizador.Where(r => r.id_receita == idReceita && r.id_utilizador == idUtilizador).FirstOrDefault();
@@ -256,11 +331,76 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador r = new ReceitaUtilizador(idReceita, idUtilizador, null, null, null, null, null, null, null, null, null);
+                ReceitaUtilizador r = new ReceitaUtilizador();
+                r.id_receita = idReceita;
+                r.id_utilizador = idUtilizador;
                 _contextRU.receitaUtilizador.Add(r);
                 _contextRU.SaveChanges();
             }
         }
+
+
+
+        public void IngredienteAPreferido(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = "S";
+                _contextIPU.SaveChanges();
+            }
+            else
+            {
+                IngredientePreferidoUtilizador i = new IngredientePreferidoUtilizador();
+                i.id_ingrediente = idIngrediente;
+                i.id_utilizador = idUtilizador;
+                i.favorito = "S";
+                _contextIPU.ingredientePreferidoUtilizador.Add(i);
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public void IngredienteAEvitar(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = "N";
+                _contextIPU.SaveChanges();
+            }
+            else
+            {
+                IngredientePreferidoUtilizador i = new IngredientePreferidoUtilizador();
+                i.id_ingrediente = idIngrediente;
+                i.id_utilizador = idUtilizador;
+                i.favorito = "N";
+                _contextIPU.ingredientePreferidoUtilizador.Add(i);
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public void Remover(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = null;
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public Ingrediente[] getPreferencias(int idUtilizador)
+        {
+            IngredientePreferidoUtilizador[] ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_utilizador == idUtilizador).ToArray();
+            Ingrediente[] res = new Ingrediente[ipu.Length];
+            for(int i = 0; i < ipu.Length; i++)
+            {
+                res[i] = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == ipu[i].id_ingrediente).FirstOrDefault();
+                res[i].favorito = ipu[i].favorito;
+            }
+            return res;
+        }
+
 
 
 

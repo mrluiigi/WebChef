@@ -85,7 +85,7 @@ namespace WebChef.Controllers
                     TempData["Fail"] = "Já existe um utilizador associado a este email.";
                 }
             }
-            return RedirectToAction("LoginUtilizador", "UtilizadorView");
+            return View();
         }
 
         [HttpGet]

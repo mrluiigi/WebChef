@@ -15,11 +15,14 @@ namespace WebChef.Models
         [Display(Name = "Nome")]
         public string nome { set; get; }
 
+        [Required]
         [Display(Name = "Email")]
         [DataType(DataType.EmailAddress)]
         public string email { set; get; }
 
+        [Required]
         [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string password { set; get; }
 
         

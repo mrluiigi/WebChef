@@ -60,24 +60,24 @@ Insert into Localizacao (id_localizacao, nome, coordenadas)
 
 Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)
 	VALUES
-		(1, 'Cortar aos cubos', '0073', 1, null),
-		(2, 'Espremer', '0010', 2, null),
-		(3, 'Marinar', '0010', 3, 7200),
-		(4, 'Cortar casca', '0010', 4, null),
-		(5, 'Descascar', '0010', 5, null),
-		(6, 'Descascar', '0010', 5, null),
-		(7, 'Cortar', '0010', 4, null),
-		(8, 'Ferver água ao lume', '0010', 6, null),
-		(9, 'Adicionar à água ao lume', '0010', 7, null),
-		(10, 'Cortar em tiras', '0010', 4, null),
-		(11, 'Picar', '0010', 8, null),
-		(12, 'Adicionar à água ao lume', '0010', 7, null),
-		(13, 'Partir os ovos', '0010', 9, null),
-		(14, 'Escalfar', '0010', 10, 180),
-		(15, 'Servir', '0010', 13, null),
-		(16, 'Ralar', '0010', 11, null),
-		(17, 'Polvilhar', '0010', 12, null),
-		(18, 'Polvilhar', '0017', 12, null);
+		(1, 'Cortar aos cubos', '38', 1, null),
+		(2, 'Espremer', '43', 2, null),
+		(3, 'Marinar', '43', 3, 7200),
+		(4, 'Cortar casca', '50', 4, null),
+		(5, 'Descascar', '50', 5, null),
+		(6, 'Descascar', '50', 5, null),
+		(7, 'Cortar', '50', 4, null),
+		(8, 'Ferver água ao lume', '50', 6, null),
+		(9, 'Adicionar à água ao lume', '50', 7, null),
+		(10, 'Cortar em tiras', '50', 4, null),
+		(11, 'Picar', '50', 8, null),
+		(12, 'Adicionar à água ao lume', '50', 7, null),
+		(13, 'Partir os ovos', '76', 9, null),
+		(14, 'Escalfar', '76', 10, 180),
+		(15, 'Servir', '82', 13, null),
+		(16, 'Ralar', '86', 11, null),
+		(17, 'Polvilhar', '86', 12, null),
+		(18, 'Polvilhar', '86', 12, null);
 -- SELECT * FROM Passo;
 -- Delete from Passo;
 
@@ -213,4 +213,9 @@ Insert into ReceitaUtilizador(id_receita, id_utilizador, duracao, favorita, aval
 	VALUES
 		(1, 1, NULL, 's', 'Fácil', NULL, 4, NULL, 'Muito bom', NULL, NULL);
 -- SELECT * FROM ReceitaUtilizador;
--- Delete from ReceitaUtilizador;		
+-- Delete from ReceitaUtilizador;
+
+
+-- Select * from IngredientePreferidoUtilizador;
+
+-- Select * from Utilizador;

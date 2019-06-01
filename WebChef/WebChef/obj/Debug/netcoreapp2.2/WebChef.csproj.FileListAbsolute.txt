@@ -174,3 +174,9 @@ C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.Views
 C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.dll
 C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.pdb
 C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\WebChef.csproj.CopyComplete
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getHistorico.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getIngredientes.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getPreferencias.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\RegistarPassos.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\AdicionarIngredientes.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\AdicionarIngredientesReceita.g.cshtml.cs

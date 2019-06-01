@@ -15,6 +15,7 @@ namespace WebChef.Models
         public int id_ingrediente { set; get; }
         [Display(Name = "Designação")]
         public string designacao { set; get; }
+
         [Display(Name = "Imagem")]
         public string imagem { set; get; }
 
@@ -24,7 +25,12 @@ namespace WebChef.Models
         public Localizacao[] localizacoes { set; get; }
 
         [NotMapped]
+        [Required]
         public IFormFile imagemFicheiro { set; get; }
+
+        [NotMapped]
+        public string favorito { set; get; }
+
     }
 
     public class IngredienteContext : DbContext

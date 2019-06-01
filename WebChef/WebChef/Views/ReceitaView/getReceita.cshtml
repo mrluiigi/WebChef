@@ -28,6 +28,8 @@
     }
 </div>
 
+<iframe width="560" height="315" src=@Model.link_ajuda frameborder="0" allowfullscreen></iframe>
+
 <div>
     <dl class="row">
         <dt class="col-sm-2">
@@ -146,21 +148,16 @@
             </a>
         }
 
-
-        if (ViewBag.isSemanal == false)
-        {
-            <a asp-controller="ReceitaView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Adicionar Receita a Ementa Semanal
-            </a>
-        }
-        else
-        {
-            <a asp-controller="ReceitaView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
-                Remover Receita de Ementa Semanal
-            </a>
-        }
-
-        <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@Model.id_receita asp-route-passo=1 class="btn btn-secondary">
+        
+        <a asp-controller="ReceitaView" asp-action="AddReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+            Adicionar Receita a Ementa Semanal
+        </a>
+        
+        <a asp-controller="ReceitaView" asp-action="RmReceitaSemana" asp-route-id=@Model.id_receita class="btn btn-secondary">
+            Remover Receita de Ementa Semanal
+        </a>
+        
+        <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@Model.id_receita asp-route-passo=1 class="btn btn-primary">
             Confecionar Receita
         </a>
 

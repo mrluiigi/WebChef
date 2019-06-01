@@ -17,7 +17,7 @@
         {
             <p class="alert alert-danger">@TempData["Fail"]</p>
         }
-            <form asp-action="RegistarReceita">
+            <form asp-action="RegistarReceita" enctype="multipart/form-data">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 
@@ -153,6 +153,7 @@
 
                     <div class="form-group">
                         <input asp-for="imagemFicheiro" type="file" />
+                        <span asp-validation-for="imagemFicheiro" class="text-danger"></span>
                     </div>
 
 

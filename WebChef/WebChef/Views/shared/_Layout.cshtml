@@ -17,22 +17,35 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a asp-controller="ReceitaView" asp-action="getFavoritos">Favoritos</a>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Preferências
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="@Url.Action("getIngredientes", "ReceitaView")">Editar</a>
+                                        <a class="dropdown-item" href="@Url.Action("getPreferencias", "ReceitaView")">Ver</a>
+                                    </div>
+                                </div>
+                                
+                                <a asp-controller="ReceitaView" asp-action="getFavoritos" class="btn btn-light">Favoritos</a>
+
+                                <a asp-controller="ReceitaView" asp-action="getHistorico" class="btn btn-light">Histórico</a>
 
                                 <a asp-controller="UtilizadorView" asp-action="Logout">Olá @User.Identity.Name (Sign Out)</a>
-                            }
-                            else
-                            {
-                                <a asp-controller="UtilizadorView" asp-action="LoginUtilizador" class="btn btn-primary">
-                                    Login
-                                </a>
-                                <a asp-controller="UtilizadorView" asp-action="RegistarUtilizador" class="btn btn-secondary">
-                                    Registar
-                                </a>
-                            }
+                        }
+                        else
+                        {
+                            <a asp-controller="UtilizadorView" asp-action="LoginUtilizador" class="btn btn-primary">
+                                Login
+                            </a>
+                            <a asp-controller="UtilizadorView" asp-action="RegistarUtilizador" class="btn btn-secondary">
+                                Registar
+                            </a>
+                        }
 
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
@@ -42,21 +55,18 @@
                         </li>
                         @if (string.Equals(User.Identity.Name, "admin@gmail.com") == true)
                         {
-                            <li class="nav-item dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <li class="btn-group">
+                                <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Registar
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarReceita", "ReceitaView")">Receita</a>
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarIngrediente", "ReceitaView")">Ingrediente</a>
-                                    <a class="nav-link dropdown-item" href="@Url.Action("RegistarAcao", "ReceitaView")">Ação</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="@Url.Action("RegistarReceita", "ReceitaView")">Receita</a>
+                                    <a class="dropdown-item" href="@Url.Action("RegistarIngrediente", "ReceitaView")">Ingrediente</a>
+                                    <a class="dropdown-item" href="@Url.Action("RegistarAcao", "ReceitaView")">Ação</a>
                                 </div>
                             </li>
                         }
-
                     </ul>
-
-
                 </div>
             </div>
         </nav>

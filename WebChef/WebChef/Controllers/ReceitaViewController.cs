@@ -23,10 +23,13 @@ namespace WebChef.Controllers
 
         public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                     AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
+                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
+                                    IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU,
+                                    EmentaSemanalContext contextES)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao);
+            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, 
+                                                    contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao, contextIPU, contextES);
         }
 
         public IActionResult getReceitas()
@@ -34,14 +37,35 @@ namespace WebChef.Controllers
             Receita[] receitas = receitaHandling.getReceitas();
             return View(receitas);
         }
-        
-        
+
+        public IActionResult getIngredientes()
+        {
+            Ingrediente[] ingredientes = receitaHandling.getIngredientes();
+            return View(ingredientes);
+        }
+
+
         public IActionResult getFavoritos()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             Receita[] receitas = receitaHandling.getReceitasFavoritas(int.Parse(userID.ToString()));
 
             return View(receitas);
+        }
+
+        public IActionResult getHistorico()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Receita[] receitas = receitaHandling.getHistorico(int.Parse(userID.ToString()));
+
+            return View(receitas);
+        }
+
+        public IActionResult getPreferencias()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Ingrediente[] ingredientes = receitaHandling.getPreferencias(int.Parse(userID.ToString()));
+            return View(ingredientes);
         }
 
 
@@ -100,8 +124,9 @@ namespace WebChef.Controllers
         [Route("{id=int}")]  //Quando é clicado o botão vem para esta action
         public IActionResult RmReceitaSemana(int id)
         {
-            ReceitaUtilizador[] ru = receitaHandling.getDiasEmenta(id);
-            return View(ru);
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            EmentaSemanal[] es = receitaHandling.getDiasEmenta(id, int.Parse(userID.ToString()));
+            return View(es);
         }
 
         [Route("{id=int}/{text=string}")]    //Quando clica no dia da semana para retirar da ementa
@@ -125,7 +150,7 @@ namespace WebChef.Controllers
             ViewBag.id = id;
             ViewBag.passo = passo;
             string timestamp = p[passo-1].timestamp;
-            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp + "s";
+            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp;
             if(p[passo - 1].duracao != null) {
                 ViewBag.duracao = p[passo - 1].duracao;
             }
@@ -178,6 +203,7 @@ namespace WebChef.Controllers
         [HttpPost]
         public IActionResult RegistarReceita([Bind] Receita receita)
         {
+            int idReceita = -1;
             if (ModelState.IsValid)
             {
                 receita.imagem = "~/Images/" + receita.imagemFicheiro.FileName;
@@ -194,8 +220,8 @@ namespace WebChef.Controllers
                                                  receita.fibras + "|" +
                                                  receita.proteinas + "|" +
                                                  receita.sal + "|";
-                bool RegistrationStatus = this.receitaHandling.registarReceita(receita);
-                if (RegistrationStatus)
+                idReceita = this.receitaHandling.registarReceita(receita);
+                if (idReceita > 0)
                 {
                     ModelState.Clear();
                     TempData["Success"] = "Registado com sucesso!\n";
@@ -205,9 +231,96 @@ namespace WebChef.Controllers
                     TempData["Fail"] = "Não foi possível registar.";
                 }
             }
+            return RedirectToAction("AdicionarIngredientesReceita", "ReceitaView", new { id = idReceita});
+        }
+
+
+        [HttpGet]
+        [Route("{id=int}")]
+        public IActionResult AdicionarIngredientesReceita(int id)
+        {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
             return View();
         }
 
+
+        [HttpPost]
+        [Route("{id=int}")]
+        public IActionResult AdicionarIngredientesReceita(string submit, int id, [Bind] ReceitaIngrediente ri)
+        {
+            ri.id_receita = id;
+            receitaHandling.addReceitaIngrediente(ri);
+            if (submit.Equals("Adicionar próximo Ingrediente"))
+            {
+                ViewBag.ingredientes = receitaHandling.getIngredientes();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("RegistarPassos", "ReceitaView", new { id = id, passo = 1 });
+            }
+        }
+
+
+        [HttpGet]
+        [Route("{id=int}/{passo=int}")]
+        public IActionResult RegistarPassos(int id, int passo)
+        {
+            ViewBag.passo = passo;
+            ViewBag.acoes = receitaHandling.getAcoes();
+            return View();
+        }
+
+        [HttpPost]
+        [Route("{id=int}/{passo=int}")]          //passo é o número do passo
+        public IActionResult RegistarPassos(string submit, int id, int passo, [Bind] Passo p)
+        {
+            ViewBag.acoes = receitaHandling.getAcoes();
+            int idPasso = receitaHandling.registarPasso(p, id, passo);
+            if (submit.Equals("Adicionar Próximo Passo"))
+            {
+                ViewBag.passo = passo + 1;
+                return View();
+            }
+            else if (submit.Equals("Adicionar Ingredientes a Passo"))
+            {
+                return RedirectToAction("AdicionarIngredientes", "ReceitaView", new { idPasso = idPasso });
+            }
+            else
+            {
+                return RedirectToAction("RegistarReceita", "ReceitaView");
+            }
+        }
+
+
+        [HttpGet]
+        [Route("{id=int}/{passo=int}/{idPasso=int}")]
+        public IActionResult AdicionarIngredientes(int idPasso)
+        {
+            ViewBag.idPasso = idPasso;
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            return View();
+        }
+
+
+        [HttpPost]
+        [Route("{id=int}/{passo=int}/{idPasso=int}")]
+        public IActionResult AdicionarIngredientes(string submit, int passo, int idPasso, [Bind] PassoIngrediente pi)
+        {
+            pi.id_passo = idPasso;
+            receitaHandling.addPassoIngrediente(pi);
+
+            if (submit.Equals("Adicionar próximo Ingrediente"))
+            {
+                ViewBag.idPasso = idPasso;
+                ViewBag.ingredientes = receitaHandling.getIngredientes();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("RegistarPassos", "ReceitaView", new { passo = passo + 1 });
+            }
+        }
 
         [HttpGet]
         public IActionResult RegistarIngrediente()
@@ -300,5 +413,31 @@ namespace WebChef.Controllers
         {
             return View();
         }
+
+        [Route("{id=int}")]
+        public IActionResult IngredienteAPreferido(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.IngredienteAPreferido(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getIngredientes", "ReceitaView");
+        }
+
+        [Route("{id=int}")]
+        public IActionResult IngredienteAEvitar(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.IngredienteAEvitar(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getIngredientes", "ReceitaView");
+        }
+
+        [Route("{id=int}")]
+        public IActionResult Remover(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.Remover(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getPreferencias", "ReceitaView");
+        }
+
+
     }
 }

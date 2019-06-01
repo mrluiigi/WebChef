@@ -1,0 +1,48 @@
+﻿@model WebChef.Models.Passo
+
+@{
+    ViewData["Title"] = "RegistarPassos";
+}
+
+<h1>Registar Passo</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegistarPassos" asp-route-passo=@ViewBag.passo>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="descricao" class="control-label"></label>
+                <input asp-for="descricao" class="form-control" />
+                <span asp-validation-for="descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="timestamp" class="control-label"></label>
+                <input asp-for="timestamp" class="form-control" />
+                <span asp-validation-for="timestamp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_acao" class="control-label"></label>
+                <select asp-for="id_acao">
+                    @foreach (var acao in ViewBag.acoes)
+                    {
+                        <option value=@acao.id_acao>@acao.nome</option>
+                    }
+                </select>
+                <span asp-validation-for="id_acao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="duracao" class="control-label"></label>
+                <input asp-for="duracao" class="form-control" />
+                <span asp-validation-for="duracao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input name="submit" type="submit" value="Adicionar Próximo Passo" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Ingredientes a Passo" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Passo e Concluir" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
