@@ -213,4 +213,9 @@ Insert into ReceitaUtilizador(id_receita, id_utilizador, duracao, favorita, aval
 	VALUES
 		(1, 1, NULL, 's', 'Fácil', NULL, 4, NULL, 'Muito bom', NULL, NULL);
 -- SELECT * FROM ReceitaUtilizador;
--- Delete from ReceitaUtilizador;		
+-- Delete from ReceitaUtilizador;
+
+
+-- Select * from IngredientePreferidoUtilizador;
+
+-- Select * from Utilizador;

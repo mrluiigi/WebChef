@@ -65,7 +65,10 @@ namespace WebChef.shared
             }
             else
             {
-                ReceitaUtilizador ru = new ReceitaUtilizador(idReceita, idUtilizador, null, "S", null, null, null, null, null, null, null);
+                ReceitaUtilizador ru = new ReceitaUtilizador();
+                ru.id_receita = idReceita;
+                ru.id_utilizador = idUtilizador;
+                ru.favorita = "S";
                 _contextRU.receitaUtilizador.Add(ru);
             }
             _contextRU.SaveChanges();

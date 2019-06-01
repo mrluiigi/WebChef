@@ -1,20 +1,65 @@
-﻿@model WebChef.Models.ReceitaUtilizador[]
+﻿@model WebChef.Models.EmentaSemanal[]
 @{
     ViewData["Title"] = "RmReceitaSemana";
+    string text;
+    string diaSemana;
+    string refeicao;
 }
 
-<h1>RmReceitaSemana</h1>
+<h1>Remover Receita da Ementa Semana</h1>
 
-@foreach (var ru in Model)
+@foreach (var es in Model)
 {
-    @if (ru.dia_da_semana == "Seg")
     {
-        if (ru.refeicao == "A")
+        diaSemana= es.dia_da_semana.Substring(0, 3);
+        refeicao = es.dia_da_semana.Substring(3, 1);
+        if (diaSemana.Equals("Seg"))
         {
-            <a asp-controller="ReceitaView" asp-action="rmReceitaEmenta" asp-route-id=@ru.id_receita asp-route-text="SegA" class="btn btn-secondary">
-                Segunda(Almoço)
-            </a>
+            diaSemana = "Segunda";
         }
+        else if(diaSemana.Equals("Ter"))
+        {
+            diaSemana = "Terça";
+        }
+        else if (diaSemana.Equals("Qua"))
+        {
+            diaSemana = "Quarta";
+        }
+        else if (diaSemana.Equals("Qui"))
+        {
+            diaSemana = "Quinta";
+        }
+        else if (diaSemana.Equals("Sex"))
+        {
+            diaSemana = "Sexta";
+        }
+        else if (diaSemana.Equals("Sab"))
+        {
+            diaSemana = "Sábado";
+        }
+        else if (diaSemana.Equals("Dom"))
+        {
+            diaSemana = "Domingo";
+        }
+        if (refeicao.Equals("A"))
+        {
+            refeicao = "Almoço";
+        }
+        else if(refeicao.Equals("J"))
+        {
+            refeicao = "Jantar";
+        }
+        else if (refeicao.Equals("O"))
+        {
+            refeicao = "Outro";
+        }
+        text = diaSemana + "(" + refeicao + ")";
     }
+
+    <a asp-controller="ReceitaView" asp-action="rmReceitaEmenta" asp-route-id=@es.id_receita asp-route-text=@es.dia_da_semana class="btn btn-secondary">
+        @text
+    </a>
 }
+
+
 

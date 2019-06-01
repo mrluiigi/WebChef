@@ -16,10 +16,12 @@ namespace WebChef.Models
 
         [Display(Name = "Nome")]
         [StringLength(75)]
+        [Required]
         public string nome { set; get; }
         
         [StringLength(300)]
         [Display(Name = "Descrição")]
+        [Required]
         public string descricao { set; get; }
 
         [Display(Name = "Informação Nutricional")]
@@ -33,6 +35,7 @@ namespace WebChef.Models
         public string imagem { set; get; }
 
         [NotMapped]
+        [Required]
         public IFormFile imagemFicheiro { set; get; }
 
         [Display(Name = "Número de Pessoas")]
@@ -60,27 +63,35 @@ namespace WebChef.Models
         public string duracao_prevista_display { get { return Math.Round((float)duracao_prevista / 3600) + ":" + Math.Round((float)(duracao_prevista / 60) % 60) + ":" + Math.Round((float)duracao_prevista % 60); } }
 
         [NotMapped]
+        [Required]
         [Display(Name = "Energia(Kcal)")]
         public float energia { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Lípidos(g)")]
         public float lipidos { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Saturados(g)")]
         public float saturados { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Hidratos de Carbono(g)")]
         public float hidratosCarbono { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Açúcares(g)")]
         public float acucares { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Fibras(g)")]
         public float fibras { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Proteínas(g)")]
         public float proteinas { get; set; }
         [NotMapped]
+        [Required]
         [Display(Name = "Sal(g)")]
         public float sal { get; set; }
 

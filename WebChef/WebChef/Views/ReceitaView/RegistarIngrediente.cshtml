@@ -26,6 +26,7 @@
         </div>
         <div class="form-group">
             <input asp-for="imagemFicheiro" type="file" />
+            <span asp-validation-for="imagemFicheiro" class="text-danger"></span>
         </div>
         <div class="form-group">
             <input type="submit" value="Adicionar" class="btn btn-primary" />
