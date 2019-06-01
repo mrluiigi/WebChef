@@ -14,7 +14,12 @@ Insert into Acao (nome, descricao)
 		('Escalfar', 'Deixar estar algum tempo em água muito quente (a ferver)'), -- 10
 		('Ralar', 'Raspar com o ralador; esmagar; moer; triturar'),
 		('Polvilhar', 'Cobrir ou salpicar com uma especiaria ou alimento'),
-		('Servir', 'Pôr na mesa num recipiente apropriado'); -- 13
+		('Servir', 'Pôr na mesa num recipiente apropriado'),
+		('Retirar concha e adicionar a uma tijela', 'Retirar com uma concha conteúdo do caldo e colocar num recipiente à parte'),
+		('Misturar', 'Juntar os vários ingredientes'), -- 15
+		('Cortar às rodelas', 'Cortar o alimento em forma de rodelas'),
+		('Cortar às fatias', 'Cortar o alimento em forma de fatia'),
+		('Deixar cozinhar', 'Deixar a panela ao lume durante um certo intervalo de tempo'); -- 18
 -- SELECT * FROM Acao;
 -- Delete from Acao;
 
@@ -45,7 +50,21 @@ Insert into Ingrediente (designacao, imagem)
 		('Ovo escalfado', '~/Images/ovoEscalfado.jpg'),
 		('Sumo de lima', '~/Images/sumoLima.jpg'),
 		('Ovo sem casca', '~/Images/ovoAberto.jpg'),
-		('Marinada', '~/Images/marinada.jpg');
+		('Marinada', '~/Images/marinada.jpg'),
+
+		('Cenoura', '~/Images/cenoura.jpg'),
+		('Curgete', '~/Images/curgete.jpg'),
+		('Cebolinho', '~/Images/cebolinho.jpg'),
+		('Miso', '~/Images/miso.jpg'),
+		('Cogumelos', '~/Images/cogumelos.jpg'),
+		('Noodles de arroz', '~/Images/noodlesArroz.jpg'),
+		('Óleo de coco', '~/Images/oleoCoco.jpg'),
+		('Flocos de malagueta', '~/Images/flocosMalagueta.jpg'),
+		('Caldo de miso','~/Images/sopaSemMiso.jpg'),
+		('Cenoura em fatias', '~/Images/cenouraFatiada.jpg'),
+		('Rodelas de curgete', '~/Images/curgeteRodelas.jpg'),
+		('Cebolinho picado', '~/Images/cebolinhoPicado.jpg'),
+		('Rodelas de cogumelos', '~/Images/cogumelosFatiados.jpg');
 -- SELECT * FROM Ingrediente;
 -- Delete from Ingrediente;
 
@@ -58,26 +77,44 @@ Insert into Localizacao (id_localizacao, nome, coordenadas)
 -- Delete from Localizacao;
 
 
-Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)
+Insert into Passo (descricao, timestamp, id_acao, duracao)
 	VALUES
-		(1, 'Cortar aos cubos', '38', 1, null),
-		(2, 'Espremer', '43', 2, null),
-		(3, 'Marinar', '43', 3, 7200),
-		(4, 'Cortar casca', '50', 4, null),
-		(5, 'Descascar', '50', 5, null),
-		(6, 'Descascar', '50', 5, null),
-		(7, 'Cortar', '50', 4, null),
-		(8, 'Ferver água ao lume', '50', 6, null),
-		(9, 'Adicionar à água ao lume', '50', 7, null),
-		(10, 'Cortar em tiras', '50', 4, null),
-		(11, 'Picar', '50', 8, null),
-		(12, 'Adicionar à água ao lume', '50', 7, null),
-		(13, 'Partir os ovos', '76', 9, null),
-		(14, 'Escalfar', '76', 10, 180),
-		(15, 'Servir', '82', 13, null),
-		(16, 'Ralar', '86', 11, null),
-		(17, 'Polvilhar', '86', 12, null),
-		(18, 'Polvilhar', '86', 12, null);
+		('Cortar aos cubos', '0073', 1, null),
+		('Espremer', '0010', 2, null),
+		('Marinar', '0010', 3, 7200),
+		('Cortar casca', '0010', 4, null),
+		('Descascar', '0010', 5, null),
+		('Descascar', '0010', 5, null),
+		('Cortar', '0010', 4, null),
+		('Ferver água ao lume', '0010', 6, null),
+		('Adicionar à água ao lume', '0010', 7, null),
+		('Cortar em tiras', '0010', 4, null),
+		('Picar', '0010', 8, null),
+		('Adicionar à água ao lume', '0010', 7, null),
+		('Partir os ovos', '0010', 9, null),
+		('Escalfar', '0010', 10, 180),
+		('Servir', '0010', 13, null),
+		('Ralar', '0010', 11, null),
+		('Polvilhar', '0010', 12, null),
+		('Polvilhar', '0017', 12, null),
+		
+
+
+		('Ferver água ao lume', null, 6, null),
+		('Cortar às rodelas', null, 16, null),
+		('Cortar às fatias', null, 17, null),
+		('Picar', null, 18, null),
+		('Adicionar à água ao lume', null, 7, null),
+		('Deixar cozinhar', null, 18, 600),
+		('Retirar uma concha e colocar na tigela', null, 14, null),
+		('Misturar', null, 15, null),
+		('Adicionar à água ao lume', null, 7, null),
+		('Cortar aos cubos', null, 1, null),
+		('Adicionar à água ao lume', null, 7, null),
+		('Deixar cozinhar', null, 18, 300),
+		('Servir', null, 13, null),
+		('Picar', null, 8, null),
+		('Polvilhar', null, 12, null);
 -- SELECT * FROM Passo;
 -- Delete from Passo;
 
@@ -85,7 +122,7 @@ Insert into Passo (id_passo, descricao, timestamp, id_acao, duracao)
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
 		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
-		('Massa', 'bolonhesa', '50|15|2|13|23|4|2|3|', 400, 'https://youtu.be/gS2WtZHvvWk?start=', '~/Images/oleo.jpg', 4, 'média', 'carne');
+		('Sopa de Miso', 'Sopa de miso', '149|5|1|16|4|3|9|1,16|', 3600, null, '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
 -- SELECT * FROM Receita;
 -- Delete from Receita;
 
@@ -160,7 +197,44 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 
 		(17, 21, null),
 
-		(18, 6, null);
+		(18, 6, null),
+		
+		
+		
+		(19, 1, null),
+
+		(20, 30, null),
+		(20, 27, null),
+
+		(21, 26, null),
+
+		(22, 28, null),
+
+		(23, 38, null),
+		(23, 37, null),
+		(23, 36, null),
+		(23, 35, null),
+
+		(25, 34, null),
+
+		(26, 34, null),
+		(26, 29, null),
+
+		(27, 25, null), -- juncao dos anteriores
+
+		(28, 3, null),
+
+		(29, 3, null),
+		(29, 32, null),
+		(29, 8, null),
+		(29, 31, null),
+
+		(31, 25, null), -- ver este
+
+		(32, 28, null),
+
+		(33, 37, null),
+		(33, 33, null); 
 -- SELECT * FROM PassoIngrediente;
 -- Delete from PassoIngrediente;
 
@@ -180,7 +254,19 @@ Insert into ReceitaIngrediente (id_receita, id_ingrediente, quantidade)
 		(1, 11, '1 unidade'),
 		(1, 12, '20 g'),
 		(1, 13, '100 g'),
-		(1, 14, '10 g');
+		(1, 14, '10 g'),
+		
+		(2, 1, '6 chávenas'),
+		(2, 26, '1 unidade'),
+		(2, 27, '1 unidade'),
+		(2, 28, '30 g'),
+		(2, 29, '2 colheres de sopa'),
+		(2, 30, '10 unidades'),
+		(2, 3, '200 g'),
+		(2, 31, '50 g'),
+		(2, 32, '1 colher de café'),
+		(2, 8, '1 colher de chá'),
+		(2, 33, '10 g');
 -- SELECT * FROM ReceitaIngrediente;
 -- Delete from ReceitaIngrediente;
 
@@ -204,18 +290,29 @@ Insert into ReceitaPasso (id_passo, id_receita, numero)
 		(15, 1, 15),
 		(16, 1, 16),
 		(17, 1, 17),
-		(18, 1, 18);
+		(18, 1, 18),
+		
+		(19, 2, 1),
+		(20, 2, 2),
+		(21, 2, 3),
+		(22, 2, 4),
+		(23, 2, 5),
+		(24, 2, 6),
+		(25, 2, 7),
+		(26, 2, 8),
+		(27, 2, 9),
+		(28, 2, 10),
+		(29, 2, 11),
+		(30, 2, 12),
+		(31, 2, 13),
+		(32, 2, 14),
+		(33, 2, 15);
 -- SELECT * FROM ReceitaPasso;
 -- Delete from ReceitaPasso;
 
 
-Insert into ReceitaUtilizador(id_receita, id_utilizador, duracao, favorita, avaliacao_dificuldade, dia_da_semana, classificacao, data_realizacao, anotacao, refeicao, timeInicio)
+Insert into ReceitaUtilizador(id_receita, id_utilizador, duracao, favorita, avaliacao_dificuldade, classificacao, data_realizacao, anotacao, timeInicio)
 	VALUES
-		(1, 1, NULL, 's', 'Fácil', NULL, 4, NULL, 'Muito bom', NULL, NULL);
+		(1, 1, NULL, 's', 'Fácil', 4, NULL, 'Muito bom', NULL);
 -- SELECT * FROM ReceitaUtilizador;
--- Delete from ReceitaUtilizador;
-
-
--- Select * from IngredientePreferidoUtilizador;
-
--- Select * from Utilizador;
+-- Delete from ReceitaUtilizador;		

@@ -9,36 +9,14 @@
 <table class="table">
     <tr bgcolor='@("#EEE")'>
         <th>
-
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descricao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.energia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.duracao_prevista)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.link_ajuda)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nr_pessoas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dificuldade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.categoria)
+            Receitas não concluídas
         </th>
     </tr>
 
     @foreach (var receita in Model)
     {
+        if (receita.receitaUtilizador.timeInicio != null)
+        {
         <tr>
             <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
             <td>
@@ -46,29 +24,40 @@
                     @Html.DisplayFor(modelreceita => receita.nome)
                 </a>
             </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.descricao)
-            </td>
-            <td>
-                @receita.informacao_nutricional.Split("|")[0]
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.duracao_prevista_display)
-            </td>
-            <td>
-                <a href=@receita.link_ajuda>Link do vídeo</a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.nr_pessoas)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.dificuldade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.categoria)
-            </td>
 
         </tr>
+        }
+    }
+</table>
+
+
+<table class="table">
+    <tr bgcolor='@("#EEE")'>
+        <th>
+            Receitas concluídas
+        </th>
+    </tr>
+
+    @foreach (var receita in Model)
+    {
+        if (receita.receitaUtilizador.timeInicio == null && receita.receitaUtilizador.duracao != null)
+        {
+    <tr>
+        <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
+        <td>
+            <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
+                @Html.DisplayFor(modelreceita => receita.nome)
+            </a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.duracao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.data_realizacao)
+        </td>
+
+    </tr>
+        }
     }
 </table>
 

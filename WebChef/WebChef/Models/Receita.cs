@@ -95,6 +95,9 @@ namespace WebChef.Models
         [Display(Name = "Sal(g)")]
         public float sal { get; set; }
 
+        [NotMapped]
+        public ReceitaUtilizador receitaUtilizador { set; get; }
+
     }
 
 

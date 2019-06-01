@@ -84,13 +84,14 @@ namespace WebChef.shared
 
         public Receita[] getHistorico(int idUtilizador)
         {
-            ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador && r.data_realizacao != null).ToArray();
+            ReceitaUtilizador[] ru = _contextRU.receitaUtilizador.Where(r => r.id_utilizador == idUtilizador).ToArray();
             if (ru != null)
             {
                 Receita[] res = new Receita[ru.Length];
                 for (int i = 0; i < ru.Length; i++)
                 {
                     res[i] = _context.receita.Where(r => r.id_receita == ru[i].id_receita).FirstOrDefault();
+                    res[i].receitaUtilizador = ru[i];
                 }
                 return res;
             }
