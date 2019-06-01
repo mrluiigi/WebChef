@@ -19,12 +19,14 @@ namespace WebChef.shared
         private readonly ReceitaIngredienteContext _contextReceitaIngrediente;
         private readonly LocalizacaoContext _contextLocalizacao;
         private readonly IngredienteLocalizacaoContext _contextIngredienteLocalizacao;
+        private readonly IngredientePreferidoUtilizadorContext _contextIPU;
 
 
 
         public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                 AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
+                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
+                                IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU)
         {
             _context = context;
             _contextRU = contextRU;
@@ -36,11 +38,17 @@ namespace WebChef.shared
             _contextReceitaIngrediente = contextRI;
             _contextLocalizacao = contextLocalizacao;
             _contextIngredienteLocalizacao = contextIngredienteLocalizacao;
+            _contextIPU = contextIPU;
         }
 
         public Receita[] getReceitas()
         {
             return _context.receita.ToArray();
+        }
+
+        public Ingrediente[] getIngredientes()
+        {
+            return _contextIngrediente.ingrediente.ToArray();
         }
 
 
@@ -282,6 +290,66 @@ namespace WebChef.shared
         }
 
 
+
+        public void IngredienteAPreferido(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = "S";
+                _contextIPU.SaveChanges();
+            }
+            else
+            {
+                IngredientePreferidoUtilizador i = new IngredientePreferidoUtilizador();
+                i.id_ingrediente = idIngrediente;
+                i.id_utilizador = idUtilizador;
+                i.favorito = "S";
+                _contextIPU.ingredientePreferidoUtilizador.Add(i);
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public void IngredienteAEvitar(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = "N";
+                _contextIPU.SaveChanges();
+            }
+            else
+            {
+                IngredientePreferidoUtilizador i = new IngredientePreferidoUtilizador();
+                i.id_ingrediente = idIngrediente;
+                i.id_utilizador = idUtilizador;
+                i.favorito = "N";
+                _contextIPU.ingredientePreferidoUtilizador.Add(i);
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public void Remover(int idIngrediente, int idUtilizador)
+        {
+            IngredientePreferidoUtilizador ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_ingrediente == idIngrediente && i.id_utilizador == idUtilizador).FirstOrDefault();
+            if (ipu != null)
+            {
+                ipu.favorito = null;
+                _contextIPU.SaveChanges();
+            }
+        }
+
+        public Ingrediente[] getPreferencias(int idUtilizador)
+        {
+            IngredientePreferidoUtilizador[] ipu = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_utilizador == idUtilizador).ToArray();
+            Ingrediente[] res = new Ingrediente[ipu.Length];
+            for(int i = 0; i < ipu.Length; i++)
+            {
+                res[i] = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == ipu[i].id_ingrediente).FirstOrDefault();
+                res[i].favorito = ipu[i].favorito;
+            }
+            return res;
+        }
 
     }
 }

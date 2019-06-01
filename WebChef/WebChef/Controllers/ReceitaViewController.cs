@@ -23,10 +23,12 @@ namespace WebChef.Controllers
 
         public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                     AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, IngredienteLocalizacaoContext contextIngredienteLocalizacao)
+                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
+                                    IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU)
         {
             //_context = context;
-            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao);
+            receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, 
+                                                    contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao, contextIPU);
         }
 
         public IActionResult getReceitas()
@@ -34,8 +36,14 @@ namespace WebChef.Controllers
             Receita[] receitas = receitaHandling.getReceitas();
             return View(receitas);
         }
-        
-        
+
+        public IActionResult getIngredientes()
+        {
+            Ingrediente[] ingredientes = receitaHandling.getIngredientes();
+            return View(ingredientes);
+        }
+
+
         public IActionResult getFavoritos()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -50,6 +58,13 @@ namespace WebChef.Controllers
             Receita[] receitas = receitaHandling.getHistorico(int.Parse(userID.ToString()));
 
             return View(receitas);
+        }
+
+        public IActionResult getPreferencias()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Ingrediente[] ingredientes = receitaHandling.getPreferencias(int.Parse(userID.ToString()));
+            return View(ingredientes);
         }
 
 
@@ -308,5 +323,31 @@ namespace WebChef.Controllers
         {
             return View();
         }
+
+        [Route("{id=int}")]
+        public IActionResult IngredienteAPreferido(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.IngredienteAPreferido(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getIngredientes", "ReceitaView");
+        }
+
+        [Route("{id=int}")]
+        public IActionResult IngredienteAEvitar(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.IngredienteAEvitar(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getIngredientes", "ReceitaView");
+        }
+
+        [Route("{id=int}")]
+        public IActionResult Remover(int id)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.Remover(id, int.Parse(userID.ToString()));
+            return RedirectToAction("getPreferencias", "ReceitaView");
+        }
+
+
     }
 }

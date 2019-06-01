@@ -30,6 +30,7 @@ namespace WebChef
             services.AddDbContext<ReceitaIngredienteContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<LocalizacaoContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<IngredienteLocalizacaoContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<IngredientePreferidoUtilizadorContext>(options => options.UseSqlServer(connection));
 
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)

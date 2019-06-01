@@ -25,6 +25,10 @@ namespace WebChef.Models
 
         [NotMapped]
         public IFormFile imagemFicheiro { set; get; }
+
+        [NotMapped]
+        public string favorito { set; get; }
+
     }
 
     public class IngredienteContext : DbContext
