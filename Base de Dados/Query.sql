@@ -2,7 +2,7 @@ Use WebChef;
 
 Insert into Acao (nome, descricao)
 	VALUES
-		('Cortar aos cubos', 'Cortar em cubinhos um alimento'), -- 1
+		('Cortar aos cubos', 'Cortar em cubos pequenos um alimento'), -- 1
 		('Espremer', ' Extrair, por compressão, o suco ou o líquido de um fruto ou de qualquer outro alimento'),
 		('Marinar', 'Colocar um alimento, numa mistura de um líquido e temperos, durante um intervalo de tempo variado'),
 		('Cortar', 'Cortar um alimento'),
@@ -11,15 +11,15 @@ Insert into Acao (nome, descricao)
 		('Adicionar à água ao lume', 'Adicionar algum alimento à água que está a ferver'),
 		('Picar', 'Cortar em pedaços muito pequeninos qualquer tipo de alimento'),
 		('Partir os ovos', 'Partir a casca do ovo de modo a aproveitar o conteúdo'),
-		('Escalfar', 'Deixar estar algum tempo em água muito quente (a ferver)'), -- 10
-		('Ralar', 'Raspar com o ralador; esmagar; moer; triturar'),
+		('Escalfar', 'Deixar estar durante algum tempo em água muito quente (a ferver)'), -- 10
+		('Ralar', 'Raspar com o ralador'),
 		('Polvilhar', 'Cobrir ou salpicar com uma especiaria ou alimento'),
 		('Servir', 'Pôr na mesa num recipiente apropriado'),
-		('Retirar concha e adicionar a uma tijela', 'Retirar com uma concha conteúdo do caldo e colocar num recipiente à parte'),
+		('Retirar concha e adicionar a uma tijela', 'Retirar com uma concha(colher grande e funda usada para retirar líquidos de um recepiente) conteúdo do caldo e colocar num recipiente à parte'),
 		('Misturar', 'Juntar os vários ingredientes'), -- 15
 		('Cortar às rodelas', 'Cortar o alimento em forma de rodelas'),
-		('Cortar às fatias', 'Cortar o alimento em forma de fatia'),
-		('Deixar cozinhar', 'Deixar a panela ao lume durante um certo intervalo de tempo'); -- 18
+		('Cortar em tiras', 'Cortar o alimento em tiras'),
+		('Deixar cozinhar', 'Deixar a panela ao lume durante um certo intervalo de tempo');-- 18
 -- SELECT * FROM Acao;
 -- Delete from Acao;
 
@@ -51,6 +51,7 @@ Insert into Ingrediente (designacao, imagem)
 		('Sumo de lima', '~/Images/sumoLima.jpg'),
 		('Ovo sem casca', '~/Images/ovoAberto.jpg'),
 		('Marinada', '~/Images/marinada.jpg'),
+		
 
 		('Cenoura', '~/Images/cenoura.jpg'),
 		('Curgete', '~/Images/curgete.jpg'),
@@ -60,11 +61,15 @@ Insert into Ingrediente (designacao, imagem)
 		('Noodles de arroz', '~/Images/noodlesArroz.jpg'),
 		('Óleo de coco', '~/Images/oleoCoco.jpg'),
 		('Flocos de malagueta', '~/Images/flocosMalagueta.jpg'),
-		('Caldo de miso','~/Images/sopaSemMiso.jpg'),
+		('Caldo para o miso','~/Images/sopaSemMiso.jpg'),
 		('Cenoura em fatias', '~/Images/cenouraFatiada.jpg'),
 		('Rodelas de curgete', '~/Images/curgeteRodelas.jpg'),
 		('Cebolinho picado', '~/Images/cebolinhoPicado.jpg'),
-		('Rodelas de cogumelos', '~/Images/cogumelosFatiados.jpg');
+		('Rodelas de cogumelos', '~/Images/cogumelosFatiados.jpg'),
+
+		('Sopa de agrião com ovos', '~/Images/sopaAgriao.jpg'),
+		('Sopa de miso', '~/Images/sopaMiso.jpg'),
+		('Caldo com o miso', '~/Images/caldoMiso.jpg');
 -- SELECT * FROM Ingrediente;
 -- Delete from Ingrediente;
 
@@ -79,42 +84,42 @@ Insert into Localizacao (id_localizacao, nome, coordenadas)
 
 Insert into Passo (descricao, timestamp, id_acao, duracao)
 	VALUES
-		('Cortar aos cubos', '0073', 1, null),
-		('Espremer', '0010', 2, null),
-		('Marinar', '0010', 3, 7200),
-		('Cortar casca', '0010', 4, null),
-		('Descascar', '0010', 5, null),
-		('Descascar', '0010', 5, null),
-		('Cortar', '0010', 4, null),
+		('Cortar o tofu em cubos pequenos', '0073', 1, null),
+		('Espremer a lima para um recipiente', '0010', 2, null),
+		('Colocar o tofu cortado aos cubos a marinar juntamente com o sumo de lima, molho de soja e pimenta durante 2 horas', '0010', 3, 7200),
+		('Cortar casca da lima', '0010', 4, null),
+		('Descascar o alho', '0010', 5, null),
+		('Descascar a cebola', '0010', 5, null),
+		('Cortar a cebola', '0010', 17, null),
 		('Ferver água ao lume', '0010', 6, null),
-		('Adicionar à água ao lume', '0010', 7, null),
-		('Cortar em tiras', '0010', 4, null),
-		('Picar', '0010', 8, null),
-		('Adicionar à água ao lume', '0010', 7, null),
+		('Adicionar cebola cortada, folha de louro, os dentes de alho e a casca de lima à água', '0010', 7, null),
+		('Cortar o alho-francês em tiras', '0010', 17, null),
+		('Picar os coentros', '0010', 8, null),
+		('Adicionar o alfo-francês cortado em tiras, os coentros picados, agrião, tofu e respetiva marinada à água', '0010', 7, null),
 		('Partir os ovos', '0010', 9, null),
-		('Escalfar', '0010', 10, 180),
-		('Servir', '0010', 13, null),
-		('Ralar', '0010', 11, null),
-		('Polvilhar', '0010', 12, null),
-		('Polvilhar', '0017', 12, null),
+		('Escalfar os ovos junto da sopa que está ao lume durante 3 minutos', '0010', 10, 180),
+		('Servir a sopa num recipiente apropriado', '0010', 13, null), --15
+		('Ralar o gengibre', '0010', 11, null),
+		('Polvilhar a sopa com o gengibre ralado', '0010', 12, null),
+		('Polvilhar a sopa com sementes de sésamo', '0017', 12, null), -- 18
 		
 
 
-		('Ferver água ao lume', null, 6, null),
-		('Cortar às rodelas', null, 16, null),
-		('Cortar às fatias', null, 17, null),
-		('Picar', null, 18, null),
-		('Adicionar à água ao lume', null, 7, null),
-		('Deixar cozinhar', null, 18, 600),
-		('Retirar uma concha e colocar na tigela', null, 14, null),
-		('Misturar', null, 15, null),
-		('Adicionar à água ao lume', null, 7, null),
-		('Cortar aos cubos', null, 1, null),
-		('Adicionar à água ao lume', null, 7, null),
-		('Deixar cozinhar', null, 18, 300),
-		('Servir', null, 13, null),
-		('Picar', null, 8, null),
-		('Polvilhar', null, 12, null);
+		('Ferver água ao lume', '0073', 6, null), --19
+		('Cortar os cogumelos e a curgete em rodelas', '0073', 16, null),
+		('Cortar a cenoura às fatias', '0073', 17, null),
+		('Picar o cebolinho', '0073', 8, null),
+		('Adicionar as rodelas de curgete, as rodelas de cogumelos, as tiras de cenoura e o cebolinho picado à água', '0073', 7, null),
+		('Deixar cozinhar durante 10 minutos', '0073', 18, 600),
+		('Retirar uma concha do caldo e colocar numa tigela', '0073', 14, null),
+		('Misturar o miso com o caldo na tigela', '0073', 15, null),
+		('Adicionar o caldo de volta', '0073', 7, null),
+		('Cortar o tofu em cubos pequenos', '0073', 1, null),
+		('Adicionar o tofu em cubos, o molho de soja, os noodles de arroz e o óleo de coco à água', '0073', 7, null),
+		('Deixar cozinhar durante 5 minutos', '0073', 18, 300),
+		('Servir a sopa num recipiente apropriado', '0073', 13, null),
+		('Picar o cebolinho', '0073', 8, null),
+		('Polvilhar a sopa com o cebolinho picado e os flocos de malagueta', '0073', 12, null);
 -- SELECT * FROM Passo;
 -- Delete from Passo;
 
@@ -122,7 +127,7 @@ Insert into Passo (descricao, timestamp, id_acao, duracao)
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
 		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
-		('Sopa de Miso', 'Sopa de miso', '149|5|1|16|4|3|9|1,16|', 3600, null, '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
+		('Sopa de Miso', 'Sopa de miso', '149|5|1|16|4|3|9|1,16|', 3600, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
 -- SELECT * FROM Receita;
 -- Delete from Receita;
 
@@ -191,7 +196,7 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 
 		(14, 24, '4 unidade'),
 
-		(15, 1, null),
+		(15, 39, null),
 
 		(16, 14, '10 g'),
 
@@ -201,14 +206,14 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 		
 		
 		
-		(19, 1, null),
+		(19, 1, '6 chávenas'),
 
-		(20, 30, null),
-		(20, 27, null),
+		(20, 30, '10 unidades'),
+		(20, 27, '1 unidade'),
 
-		(21, 26, null),
+		(21, 26, '1 unidade'),
 
-		(22, 28, null),
+		(22, 28, '15 g'),
 
 		(23, 38, null),
 		(23, 37, null),
@@ -218,23 +223,23 @@ Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 		(25, 34, null),
 
 		(26, 34, null),
-		(26, 29, null),
+		(26, 29, '2 colheres de sopa'),
 
-		(27, 25, null), -- juncao dos anteriores
+		(27, 41, null), -- juncao dos anteriores
 
-		(28, 3, null),
+		(28, 3, '200 g'),
 
 		(29, 3, null),
-		(29, 32, null),
-		(29, 8, null),
-		(29, 31, null),
+		(29, 32, '1 colher de café'),
+		(29, 8, '1 colher de chá'),
+		(29, 31, '50 g'),
 
-		(31, 25, null), -- ver este
+		(31, 40, null),
 
-		(32, 28, null),
+		(32, 28, '15 g'),
 
 		(33, 37, null),
-		(33, 33, null); 
+		(33, 33, '10 g'); 
 -- SELECT * FROM PassoIngrediente;
 -- Delete from PassoIngrediente;
 
