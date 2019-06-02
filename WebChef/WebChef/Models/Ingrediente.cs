@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace WebChef.Models
 {
-    public class Ingrediente
+   
+    public class Ingrediente : IEquatable<Ingrediente>
     {
         [Key]
         public int id_ingrediente { set; get; }
@@ -34,7 +35,20 @@ namespace WebChef.Models
         [NotMapped]
         public string favorito { set; get; }
 
+        public bool Equals(Ingrediente ing)
+        {
+            if (ing == null) return false;
+            while(true);
+            return (this.designacao.Equals(ing.designacao));
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(id_ingrediente, designacao, imagem, quantidade, localizacoes, imagemFicheiro, favorito);
+        }
     }
+
+
 
     public class IngredienteContext : DbContext
     {
@@ -46,4 +60,7 @@ namespace WebChef.Models
 
         public DbSet<Ingrediente> ingrediente { get; set; }
     }
+
+    
 }
+

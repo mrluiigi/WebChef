@@ -162,6 +162,10 @@ namespace WebChef.shared
             return _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_receita == idReceita && ru.id_utilizador == idUtilizador).ToArray();
         }
 
+        public EmentaSemanal[] getEmentaSemanal(int idUtilizador)
+        {
+            return _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_utilizador == idUtilizador).ToArray();
+        }
 
 
         public void rmReceitaEmenta(int idReceita, int idUtilizador, string text)
@@ -173,6 +177,36 @@ namespace WebChef.shared
                 _contextEmentaSemanal.Remove(r);
                 _contextEmentaSemanal.SaveChanges();
             }
+        }
+
+
+        public Ingrediente[] calculaListaCompras(int idUtilizador)
+        {
+            List < Ingrediente > listaIngredientes = new List<Ingrediente>();
+            EmentaSemanal[] es = getEmentaSemanal(idUtilizador);
+            int indice = 0;
+            string quantidade;
+
+            for (int i = 0; i < es.Length; i++)
+            {
+                Receita r = getReceita(es[i].id_receita);
+                for (int j = 0; j < r.ingredientes.Length; j++)
+                {
+                    if(listaIngredientes.Contains(r.ingredientes[j]))
+                    {
+                        indice = listaIngredientes.IndexOf(r.ingredientes[j]);
+                        quantidade = listaIngredientes[indice].quantidade;
+                        listaIngredientes[indice].quantidade = quantidade + "; " + r.ingredientes[j].quantidade;
+                    }
+                    else
+                    {
+                        listaIngredientes.Add(r.ingredientes[j]);
+                    }
+                    
+                }
+            }
+
+            return listaIngredientes.ToArray();
         }
 
 

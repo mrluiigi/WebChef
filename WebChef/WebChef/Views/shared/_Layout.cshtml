@@ -27,24 +27,26 @@
                                         <a class="dropdown-item" style="background-color: #ffffff;" href="@Url.Action("getIngredientes", "ReceitaView")">Editar</a>
                                     </div>
                                 </div>
-                                
+
                                 <a asp-controller="ReceitaView" asp-action="getFavoritos" class="btn btn-light">Favoritos</a>
 
                                 <a asp-controller="ReceitaView" asp-action="getHistorico" class="btn btn-light">Histórico</a>
 
-                                <a asp-controller="UtilizadorView" asp-action="Logout">Olá @User.Identity.Name (Sign Out)</a>
-                        }
-                        else
-                        {
-                            <a asp-controller="UtilizadorView" asp-action="LoginUtilizador" class="btn btn-primary">
-                                Login
-                            </a>
-                            <a asp-controller="UtilizadorView" asp-action="RegistarUtilizador" class="btn btn-secondary">
-                                Registar
-                            </a>
-                        }
+                                <a asp-controller="ReceitaView" asp-action="ListaCompras"class="btn btn-light">Lista de compras</a>
 
-                            </li>
+                                <a asp-controller="UtilizadorView" asp-action="Logout">Olá @User.Identity.Name (Sign Out)</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="UtilizadorView" asp-action="LoginUtilizador" class="btn btn-primary">
+                                    Login
+                                </a>
+                                <a asp-controller="UtilizadorView" asp-action="RegistarUtilizador" class="btn btn-secondary">
+                                    Registar
+                                </a>
+                            }
+
+                        </li>
                         </ul>
                     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li class="nav-item">

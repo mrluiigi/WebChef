@@ -1,0 +1,21 @@
+﻿@model WebChef.Models.Ingrediente[]
+
+@{
+    ViewData["Title"] = "ListaCompras";
+}
+
+    
+
+    <div class="row">
+        @foreach (var ing in Model)
+        {
+
+            <div class="col-md-2">
+                <figure class="img my-4">
+                    <img class="figure-img img-fluid rounded" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
+                    <figcaption class="figure-caption">@ing.designacao (@ing.quantidade)</figcaption>
+                </figure>
+            </div>
+
+        }
+    </div>
