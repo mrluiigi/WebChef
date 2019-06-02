@@ -1,25 +1,10 @@
 ﻿@model IEnumerable<WebChef.Models.Receita>
 
 @{
-    ViewData["Title"] = "Catálogo de Receitas";
+    ViewData["Title"] = "Sugestões de Receitas";
 }
 
-
-<form id="myForm" action="/ReceitaView/getReceitas/filtro">
-
-    <select name="opcao">
-        <option value="1">Duração</option>
-        <option value="2">Calorias</option>
-    </select>
-    <button type="submit">Filtrar</button>
-</form>
-
-
-<a asp-controller="ReceitaView" asp-action="SugerirReceitas" class="btn btn-secondary">
-    Sugestão de Receitas
-</a>
-
-<h1>Receitas</h1>
+<h1>Sugestões</h1>
 <div class="col-xs-12" style="height:50px;"></div>
 <table class="table">
     <tr bgcolor='@("#EEE")'>

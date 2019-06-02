@@ -38,6 +38,31 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+        [Route("{filtro=string}")]
+        public IActionResult getReceitas(string opcao)
+        {
+            Receita[] receitas = receitaHandling.getReceitas();
+            Receita[] res = new Receita[receitas.Length];
+            if (opcao.Equals("1") == true)
+            {
+                res = receitas.OrderBy(r => r.duracao_prevista).ToArray();
+            }
+            else if (opcao.Equals("2") == true)
+            {
+                res = receitas.OrderBy(r => float.Parse(r.informacao_nutricional.Split('|')[0].Split(".")[0].Split(",")[0])).ToArray();
+            }
+
+            return View(res);
+        }
+
+        public IActionResult SugerirReceitas()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            Receita[] receitas = receitaHandling.getReceitasSugeridas(int.Parse(userID.ToString()));
+
+            return View(receitas);
+        }
+
         public IActionResult getIngredientes()
         {
             Ingrediente[] ingredientes = receitaHandling.getIngredientes();

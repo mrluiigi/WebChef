@@ -117,6 +117,57 @@ namespace WebChef.shared
             return res;
         }
 
+
+        public Receita[] getReceitasSugeridas(int idUtilizador)
+        {
+            //Vai buscar todas as receitas
+            List<Receita> receitas = _context.receita.ToList();
+
+            //ingredientes preferidos
+            IngredientePreferidoUtilizador[] preferidos = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_utilizador == idUtilizador && i.favorito == "S").ToArray();
+            //Ingredientes a evitar do utilizador em sessão
+            IngredientePreferidoUtilizador[] aEvitar = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_utilizador == idUtilizador && i.favorito == "N").ToArray();
+
+            List<Receita> res = new List<Receita>();
+
+
+            //percorre todas as receitas
+            for (int i = 0; i < receitas.Count; i++)
+            {
+                //todos os ingredientes de uma receita
+                ReceitaIngrediente[] ri = _contextReceitaIngrediente.receitaIngrediente.Where(ring => ring.id_receita == receitas[i].id_receita).ToArray();
+                //percorre todos os ingredientes da receita
+
+                for (int j = 0; j < ri.Length; j++)
+                {
+                    //percorre os ingredientes preferidos
+                    bool b = true;
+                    for (int k = 0; k < preferidos.Length && b == true; k++)
+                    {
+                        if (ri[j].id_ingrediente == preferidos[k].id_ingrediente)
+                        {
+                            b = false;
+                            res.Add(receitas[i]);
+                        }
+                    }
+                }
+                for (int j = 0; j < ri.Length; j++)
+                {
+                    //percorre os ingredientes a evitar
+                    for (int k = 0; k < aEvitar.Length; k++)
+                    {
+                        //se esse ingrediente for um a Evitar
+                        if (ri[j].id_ingrediente == aEvitar[k].id_ingrediente)
+                        {
+                            // retira-o
+                            res.RemoveAll(r => r.id_receita == receitas[i].id_receita);
+                        }
+                    }
+                }
+            }
+            return res.ToArray();
+        }
+
         public Ingrediente GetIngrediente(int idIngrediente)
         {
             Ingrediente i = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == idIngrediente).FirstOrDefault();
