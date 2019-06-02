@@ -105,21 +105,21 @@ Insert into Passo (descricao, timestamp, id_acao, duracao)
 		
 
 
-		('Ferver água ao lume', '0073', 6, null), --19
-		('Cortar os cogumelos e a curgete em rodelas', '0073', 16, null),
-		('Cortar a cenoura às fatias', '0073', 17, null),
-		('Picar o cebolinho', '0073', 8, null),
-		('Adicionar as rodelas de curgete, as rodelas de cogumelos, as tiras de cenoura e o cebolinho picado à água', '0073', 7, null),
-		('Deixar cozinhar durante 10 minutos', '0073', 18, 600),
-		('Retirar uma concha do caldo e colocar numa tigela', '0073', 14, null),
-		('Misturar o miso com o caldo na tigela', '0073', 15, null),
-		('Adicionar o caldo de volta', '0073', 7, null),
-		('Cortar o tofu em cubos pequenos', '0073', 1, null),
-		('Adicionar o tofu em cubos, o molho de soja, os noodles de arroz e o óleo de coco à água', '0073', 7, null),
-		('Deixar cozinhar durante 5 minutos', '0073', 18, 300),
-		('Servir a sopa num recipiente apropriado', '0073', 13, null),
-		('Picar o cebolinho', '0073', 8, null),
-		('Polvilhar a sopa com o cebolinho picado e os flocos de malagueta', '0073', 12, null);
+		('Ferver água ao lume', null, 6, null), --19
+		('Cortar os cogumelos e a curgete em rodelas', null, 16, null),
+		('Cortar a cenoura às fatias', null, 17, null),
+		('Picar o cebolinho', null, 8, null),
+		('Adicionar as rodelas de curgete, as rodelas de cogumelos, as tiras de cenoura e o cebolinho picado à água', null, 7, null),
+		('Deixar cozinhar durante 10 minutos', null, 18, 600),
+		('Retirar uma concha do caldo e colocar numa tigela', null, 14, null),
+		('Misturar o miso com o caldo na tigela', null, 15, null),
+		('Adicionar o caldo de volta', null, 7, null),
+		('Cortar o tofu em cubos pequenos', null, 1, null),
+		('Adicionar o tofu em cubos, o molho de soja, os noodles de arroz e o óleo de coco à água', null, 7, null),
+		('Deixar cozinhar durante 5 minutos', null, 18, 300),
+		('Servir a sopa num recipiente apropriado', null, 13, null),
+		('Picar o cebolinho', null, 8, null),
+		('Polvilhar a sopa com o cebolinho picado e os flocos de malagueta', null, 12, null);
 -- SELECT * FROM Passo;
 -- Delete from Passo;
 
@@ -127,7 +127,7 @@ Insert into Passo (descricao, timestamp, id_acao, duracao)
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
 		('Sopa de Agrião', 'Sopa de agrião', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
-		('Sopa de Miso', 'Sopa de miso', '149|5|1|16|4|3|9|1,16|', 3600, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
+		('Sopa de Miso', 'Sopa de miso', '149|5|1|16|4|3|9|1,16|', 3600, null, '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
 -- SELECT * FROM Receita;
 -- Delete from Receita;
 

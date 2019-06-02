@@ -153,11 +153,16 @@ namespace WebChef.Controllers
             ViewBag.tamanho = p.Length;
             ViewBag.id = id;
             ViewBag.passo = passo;
-            string timestamp = p[passo-1].timestamp;
+            string timestamp = p[passo - 1].timestamp;
             string link = receitaHandling.getReceita(id).link_ajuda;
-            if (link != null)
+
+            if (link != null && timestamp != null)
             {
                 ViewBag.link = link + timestamp;
+            }
+            else
+            {
+                ViewBag.link = null;
             }
             
             if(p[passo - 1].duracao != null) {

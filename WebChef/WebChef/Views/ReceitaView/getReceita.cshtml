@@ -113,7 +113,7 @@
 
 @for (int i = 0; i < Model.ingredientes.Length; i++)
 {
-    <div class="col-md-4" style="float:right; display: inline-block; ">
+    <div class="col-md-4" style="float:left; display: inline-block; ">
         <div class="thumbnail">
             <img src=@Url.Content(Model.ingredientes[i].imagem) height="60" width="60">
 
@@ -127,7 +127,7 @@
 }
 
 
-<div>
+<div class="btn-group my-4" role="group">
     @if (User.Identity.IsAuthenticated)
     {
         if (ViewBag.isFavorita == false)

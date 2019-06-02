@@ -21,11 +21,11 @@ namespace WebChef.Models
         public string descricao { set; get; }
 
         [Display(Name = "Timestamp")]
-        [Required]
         [StringLength(4)]
         public string timestamp { set; get; }
 
         [Display(Name = "Ação")]
+        [Required]
         public int id_acao { set; get; }
 
         public Acao Acao { set; get; }

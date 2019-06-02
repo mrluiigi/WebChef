@@ -66,7 +66,7 @@
 <h1>@Model[@ViewBag.passo - 1].descricao</h1>
 
 
-<h2>@Model[@ViewBag.passo - 1].Acao.descricao</h2>
+<h5>@Model[@ViewBag.passo - 1].Acao.descricao</h5>
 
 
 @if(ViewBag.link != null)
@@ -74,33 +74,39 @@
     <iframe width="560" height="315" src=@ViewBag.link frameborder="0" allowfullscreen></iframe>
 }
 
+<div class="row">
+    @foreach (var ing in @Model[@ViewBag.passo - 1].ingredientes)
+    {
 
-@if (@ViewBag.passo > 1)
-{
-    <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.anterior class="btn btn-secondary">
-        Anterior
-    </a>
-}
+        <div class="col-md-2">
+            <figure class="img my-4">
+                <img class="figure-img img-fluid rounded" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
+                <figcaption class="figure-caption">@ing.designacao (@ing.quantidade)</figcaption>
+            </figure>
+        </div>
 
-@if (@ViewBag.passo + 1 <= @ViewBag.tamanho)
-{
-    <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.seguinte class="btn btn-secondary">
-        Seguinte
-    </a>
-}
+    }
+</div>
 
-@if (@ViewBag.passo == @ViewBag.tamanho)
-{
-    <a asp-controller="ReceitaView" asp-action="ConcluirReceita" asp-route-id=@ViewBag.id class="btn btn-primary">
-        Concluir
-    </a>
-}
+<div class="btn-group my-4" role="group">
+    @if (@ViewBag.passo > 1)
+    {
+        <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.anterior class="btn btn-secondary">
+            Anterior
+        </a>
+    }
 
-@foreach (var ing in @Model[@ViewBag.passo - 1].ingredientes)
-{
-    <figure class="img">
-        <img class="figure-img img-fluid rounded" src=@Url.Content(ing.imagem) style="width: 150px; height: 150px;">
-        <figcaption class="figure-caption">@ing.designacao (@ing.quantidade)</figcaption>
-    </figure>
+    @if (@ViewBag.passo + 1 <= @ViewBag.tamanho)
+    {
+        <a asp-controller="ReceitaView" asp-action="ConfecionaReceita" asp-route-id=@ViewBag.id asp-route-passo=@ViewBag.seguinte class="btn btn-secondary">
+            Seguinte
+        </a>
+    }
 
-}
+    @if (@ViewBag.passo == @ViewBag.tamanho)
+    {
+        <a asp-controller="ReceitaView" asp-action="ConcluirReceita" asp-route-id=@ViewBag.id class="btn btn-primary">
+            Concluir
+        </a>
+    }
+</div>
