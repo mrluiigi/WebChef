@@ -79,14 +79,14 @@ namespace WebChef.Controllers
             Receita receita = receitaHandling.getReceita(id);
 
             string[] tokens = receita.informacao_nutricional.Split('|');
-            receita.energia = float.Parse(tokens[0]);
-            receita.lipidos = float.Parse(tokens[1]);
-            receita.saturados = float.Parse(tokens[2]);
-            receita.hidratosCarbono = float.Parse(tokens[3]);
-            receita.acucares = float.Parse(tokens[4]);
-            receita.fibras = float.Parse(tokens[5]);
-            receita.proteinas = float.Parse(tokens[6]);
-            receita.sal = float.Parse(tokens[7]);
+            receita.energia = tokens[0];
+            receita.lipidos = tokens[1];
+            receita.saturados = tokens[2];
+            receita.hidratosCarbono = tokens[3];
+            receita.acucares = tokens[4];
+            receita.fibras = tokens[5];
+            receita.proteinas = tokens[6];
+            receita.sal = tokens[7];
             return View(receita);
         }
 
@@ -193,10 +193,6 @@ namespace WebChef.Controllers
         [HttpGet]
         public IActionResult RegistarReceita()
         {
-            var list = new List<SelectListItem>();
-            for (var i = 1; i < 31; i++)
-                list.Add(new SelectListItem { Value = i.ToString(), Text = i.ToString()});
-            ViewBag.list = list;
             return View();
         }
 
@@ -250,7 +246,7 @@ namespace WebChef.Controllers
         {
             ri.id_receita = id;
             receitaHandling.addReceitaIngrediente(ri);
-            if (submit.Equals("Adicionar próximo Ingrediente"))
+            if (submit.Equals("Adicionar Ingrediente"))
             {
                 ViewBag.ingredientes = receitaHandling.getIngredientes();
                 return View();
@@ -275,15 +271,17 @@ namespace WebChef.Controllers
         [Route("{id=int}/{passo=int}")]          //passo é o número do passo
         public IActionResult RegistarPassos(string submit, int id, int passo, [Bind] Passo p)
         {
-            ViewBag.acoes = receitaHandling.getAcoes();
-            int idPasso = receitaHandling.registarPasso(p, id, passo);
-            if (submit.Equals("Adicionar Próximo Passo"))
+            if (submit.Equals("Adicionar Passo"))
             {
                 ViewBag.passo = passo + 1;
+                ViewBag.acoes = receitaHandling.getAcoes();
+                int idPasso = receitaHandling.registarPasso(p, id, passo);
                 return View();
             }
-            else if (submit.Equals("Adicionar Ingredientes a Passo"))
+            else if (submit.Equals("Adicionar Ingredientes ao Passo"))
             {
+                ViewBag.acoes = receitaHandling.getAcoes();
+                int idPasso = receitaHandling.registarPasso(p, id, passo);
                 return RedirectToAction("AdicionarIngredientes", "ReceitaView", new { idPasso = idPasso });
             }
             else
@@ -307,12 +305,12 @@ namespace WebChef.Controllers
         [Route("{id=int}/{passo=int}/{idPasso=int}")]
         public IActionResult AdicionarIngredientes(string submit, int passo, int idPasso, [Bind] PassoIngrediente pi)
         {
-            pi.id_passo = idPasso;
-            receitaHandling.addPassoIngrediente(pi);
-
-            if (submit.Equals("Adicionar próximo Ingrediente"))
+            if (submit.Equals("Adicionar Ingrediente"))
             {
+                pi.id_passo = idPasso;
+                receitaHandling.addPassoIngrediente(pi);
                 ViewBag.idPasso = idPasso;
+                ViewBag.passo = passo + 1;   //quando clica em concluir mete a inserir para o proximo passo
                 ViewBag.ingredientes = receitaHandling.getIngredientes();
                 return View();
             }

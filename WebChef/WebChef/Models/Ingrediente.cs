@@ -13,10 +13,13 @@ namespace WebChef.Models
     {
         [Key]
         public int id_ingrediente { set; get; }
+
         [Display(Name = "Designação")]
+        [StringLength(50)]
         public string designacao { set; get; }
 
         [Display(Name = "Imagem")]
+        [StringLength(100)]
         public string imagem { set; get; }
 
         [NotMapped]

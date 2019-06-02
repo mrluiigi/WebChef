@@ -28,10 +28,10 @@
                 <span asp-validation-for="quantidade" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input name="submit" type="submit" value="Adicionar próximo Ingrediente" class="btn btn-primary" />
-                <input name="submit" type="submit" value="Adicionar Ingrediente e Concluir" class="btn btn-primary" />
+                <input name="submit" type="submit" value="Adicionar Ingrediente" class="btn btn-primary" />
             </div>
-        </form>
+        </form>     
+        <a asp-controller="ReceitaView" asp-action="RegistarPassos" asp-route-passo=1 class="btn btn-danger">Concluir</a>
     </div>
 </div>
 

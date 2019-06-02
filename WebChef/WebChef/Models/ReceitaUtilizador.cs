@@ -10,15 +10,31 @@ namespace WebChef.Models
 {
     public class ReceitaUtilizador
     {
+        [Display(Name = "Receita")]
         public int id_receita { get; set; }
+        [Display(Name = "Utilizador")]
         public int id_utilizador { get; set; }
+
         [Display(Name = "Duração")]
         public TimeSpan? duracao { get; set; }
+
+        [Display(Name = "Favorita")]
+        [StringLength(1)]
         public string favorita { get; set; }
+
+        [Display(Name = "Avalização dificuldade")]
+        [StringLength(10)]
         public string avaliacao_dificuldade { get; set; }
+
+        [Display(Name = "Classificação")]
         public int? classificacao { get; set; }
+
         public DateTime? data_realizacao { get; set; }
+
+        [Display(Name = "Anotações")]
+        [StringLength(50)]
         public string anotacao { get; set; }
+
         public TimeSpan? timeInicio { get; set; }
 
         [NotMapped]

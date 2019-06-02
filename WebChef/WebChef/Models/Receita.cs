@@ -12,6 +12,7 @@ namespace WebChef.Models
     public class Receita
     {
         [Key]
+        [Display(Name = "Receita")]
         public int id_receita { set; get; }
 
         [Display(Name = "Nome")]
@@ -29,8 +30,11 @@ namespace WebChef.Models
 
         [Display(Name = "Duração Prevista")]
         public int duracao_prevista { set; get; }
+
         [Display(Name = "Link de Ajuda")]
+        [StringLength(100)]
         public string link_ajuda { set; get; }
+
         [Display(Name = "Imagem")]
         public string imagem { set; get; }
 
@@ -65,35 +69,35 @@ namespace WebChef.Models
         [NotMapped]
         [Required]
         [Display(Name = "Energia(Kcal)")]
-        public float energia { get; set; }
+        public string energia { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Lípidos(g)")]
-        public float lipidos { get; set; }
+        public string lipidos { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Saturados(g)")]
-        public float saturados { get; set; }
+        public string saturados { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Hidratos de Carbono(g)")]
-        public float hidratosCarbono { get; set; }
+        public string hidratosCarbono { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Açúcares(g)")]
-        public float acucares { get; set; }
+        public string acucares { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Fibras(g)")]
-        public float fibras { get; set; }
+        public string fibras { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Proteínas(g)")]
-        public float proteinas { get; set; }
+        public string proteinas { get; set; }
         [NotMapped]
         [Required]
         [Display(Name = "Sal(g)")]
-        public float sal { get; set; }
+        public string sal { get; set; }
 
         [NotMapped]
         public ReceitaUtilizador receitaUtilizador { set; get; }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,9 @@ namespace WebChef.Models
     {
         public int id_receita { set; get; }
         public int id_utilizador { set; get; }
+
+        [Display(Name = "Dia da Semana")]
+        [StringLength(4)]
         public string dia_da_semana { set; get; }
     }
 

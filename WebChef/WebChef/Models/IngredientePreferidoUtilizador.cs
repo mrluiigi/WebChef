@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,13 @@ namespace WebChef.Models
 {
     public class IngredientePreferidoUtilizador
     {
+        [Display(Name = "Ingrediente")]
         public int id_ingrediente { set; get; }
+        [Display(Name = "Utilizador")]
         public int id_utilizador { set; get; }
+
+        [StringLength(1)]
+        [Display(Name = "Favorito")]
         public string favorito { set; get; }
     }
 

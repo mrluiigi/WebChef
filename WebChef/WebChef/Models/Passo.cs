@@ -12,16 +12,24 @@ namespace WebChef.Models
     public class Passo
     {
         [Key]
+        [Display(Name = "Passo")]
         public int id_passo { set; get; }
+
         [Display(Name = "Descrição")]
         [Required]
+        [StringLength(300)]
         public string descricao { set; get; }
+
         [Display(Name = "Timestamp")]
         [Required]
+        [StringLength(4)]
         public string timestamp { set; get; }
+
         [Display(Name = "Ação")]
         public int id_acao { set; get; }
+
         public Acao Acao { set; get; }
+
         [Display(Name = "Duração")]
         public int? duracao { set; get; }
         public ICollection<Ingrediente> ingredientes { set; get; }

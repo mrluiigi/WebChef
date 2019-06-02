@@ -10,10 +10,14 @@ namespace WebChef.Models
     public class Acao
     {
         [Key]
+        [Display(Name = "Ação")]
         public int id_acao { set; get; }
+
         [Display(Name = "Nome")]
+        [StringLength(50)]
         public string nome { set; get; }
         [Display(Name = "Designação")]
+        [StringLength(150)]
         public string descricao { set; get; }
 
         public ICollection<Passo> Passos { get; set; }
