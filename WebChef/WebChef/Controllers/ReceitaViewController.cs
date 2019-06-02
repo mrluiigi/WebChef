@@ -144,13 +144,22 @@ namespace WebChef.Controllers
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             receitaHandling.setTimeInicio(id, int.Parse(userID.ToString()));
             Passo[] p = receitaHandling.GetPassos(id);
+            if(p.Length == 0)
+            {
+                return RedirectToAction("ConcluirReceita");
+            }
             ViewBag.anterior = passo - 1;
             ViewBag.seguinte = passo + 1;
             ViewBag.tamanho = p.Length;
             ViewBag.id = id;
             ViewBag.passo = passo;
             string timestamp = p[passo-1].timestamp;
-            ViewBag.link = receitaHandling.getReceita(id).link_ajuda + timestamp;
+            string link = receitaHandling.getReceita(id).link_ajuda;
+            if (link != null)
+            {
+                ViewBag.link = link + timestamp;
+            }
+            
             if(p[passo - 1].duracao != null) {
                 ViewBag.duracao = p[passo - 1].duracao;
             }
@@ -236,6 +245,7 @@ namespace WebChef.Controllers
         public IActionResult AdicionarIngredientesReceita(int id)
         {
             ViewBag.ingredientes = receitaHandling.getIngredientes();
+            ModelState.Remove("quantidade");
             return View();
         }
 
@@ -249,6 +259,7 @@ namespace WebChef.Controllers
             if (submit.Equals("Adicionar Ingrediente"))
             {
                 ViewBag.ingredientes = receitaHandling.getIngredientes();
+                ModelState.Remove("quantidade");
                 return View();
             }
             else
@@ -264,6 +275,9 @@ namespace WebChef.Controllers
         {
             ViewBag.passo = passo;
             ViewBag.acoes = receitaHandling.getAcoes();
+            ModelState.Remove("descricao");
+            ModelState.Remove("timestamp");
+            ModelState.Remove("duracao");
             return View();
         }
 
@@ -276,6 +290,9 @@ namespace WebChef.Controllers
                 ViewBag.passo = passo + 1;
                 ViewBag.acoes = receitaHandling.getAcoes();
                 int idPasso = receitaHandling.registarPasso(p, id, passo);
+                ModelState.Remove("descricao");
+                ModelState.Remove("timestamp");
+                ModelState.Remove("duracao");
                 return View();
             }
             else if (submit.Equals("Adicionar Ingredientes ao Passo"))
@@ -297,6 +314,7 @@ namespace WebChef.Controllers
         {
             ViewBag.idPasso = idPasso;
             ViewBag.ingredientes = receitaHandling.getIngredientes();
+            ModelState.Remove("quantidade");
             return View();
         }
 
@@ -312,6 +330,7 @@ namespace WebChef.Controllers
                 ViewBag.idPasso = idPasso;
                 ViewBag.passo = passo + 1;   //quando clica em concluir mete a inserir para o proximo passo
                 ViewBag.ingredientes = receitaHandling.getIngredientes();
+                ModelState.Remove("quantidade");
                 return View();
             }
             else

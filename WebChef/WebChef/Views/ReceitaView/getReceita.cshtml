@@ -27,9 +27,10 @@
         
     }
 </div>
-
+@if(Model.link_ajuda != null)
+{
 <iframe width="560" height="315" src=@Model.link_ajuda frameborder="0" allowfullscreen></iframe>
-
+}
 <div>
     <dl class="row">
         <dt class="col-sm-2">
@@ -43,11 +44,6 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.duracao_prevista_display)
-        </dd>
-        <dt class="col-sm-2"></dt>
-        <dd class="col-sm-10">
-            <a href=@Model.link_ajuda>Link do vídeo</a>
-
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.nr_pessoas)

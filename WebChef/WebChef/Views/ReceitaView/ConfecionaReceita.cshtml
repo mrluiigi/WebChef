@@ -72,8 +72,11 @@
     <a href=@ViewBag.link>Link do passo</a>
 
 </dd>
+@if(ViewBag.link != null)
+{
+    <iframe width="560" height="315" src=@ViewBag.link frameborder="0" allowfullscreen></iframe>
+}
 
-<iframe width="560" height="315" src=@ViewBag.link frameborder="0" allowfullscreen></iframe>
 
 @if (@ViewBag.passo > 1)
 {

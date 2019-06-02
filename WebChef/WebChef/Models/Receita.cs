@@ -33,6 +33,7 @@ namespace WebChef.Models
 
         [Display(Name = "Link de Ajuda")]
         [StringLength(100)]
+        [DataType(DataType.Url)]
         public string link_ajuda { set; get; }
 
         [Display(Name = "Imagem")]

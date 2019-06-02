@@ -41,7 +41,12 @@
                 <input name="submit" type="submit" value="Adicionar Passo" class="btn btn-primary" />
             </div>
         </form>
-        <a asp-controller="ReceitaView" asp-action="RegistarReceita" class="btn btn-danger">Concluir</a>
+
+        @if (ViewBag.passo != 1)
+        {
+            <a asp-controller="ReceitaView" asp-action="RegistarReceita" class="btn btn-danger">Concluir</a>
+        }
+
     </div>
 </div>
 
