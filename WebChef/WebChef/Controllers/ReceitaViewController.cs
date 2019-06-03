@@ -34,6 +34,7 @@ namespace WebChef.Controllers
 
         public IActionResult getReceitas()
         {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
             Receita[] receitas = receitaHandling.getReceitas();
             return View(receitas);
         }
@@ -41,6 +42,7 @@ namespace WebChef.Controllers
         [Route("{filtro=string}")]
         public IActionResult getReceitas(string opcao)
         {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
             Receita[] receitas = receitaHandling.getReceitas();
             Receita[] res = new Receita[receitas.Length];
             if (opcao.Equals("1") == true)
@@ -51,8 +53,21 @@ namespace WebChef.Controllers
             {
                 res = receitas.OrderBy(r => float.Parse(r.informacao_nutricional.Split('|')[0].Split(".")[0].Split(",")[0])).ToArray();
             }
+            else if (opcao.Equals("3") == true)
+            {
+                res = receitas.OrderBy(r => r.nr_pessoas).ToArray();
+            }
 
             return View(res);
+        }
+        
+
+        public IActionResult getReceitasComIngrediente(int ing)
+        {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            Receita[] receitas = receitaHandling.getReceitasComIngrediente(ing);
+            
+            return View(receitas);
         }
 
         public IActionResult SugerirReceitas()

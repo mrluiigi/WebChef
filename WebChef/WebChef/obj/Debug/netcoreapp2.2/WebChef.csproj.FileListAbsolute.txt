@@ -196,3 +196,4 @@ C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\R
 C:\Users\Barbosa\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\ListaCompras.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\ListaCompras.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\SugerirReceitas.g.cshtml.cs
+C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getReceitasComIngrediente.g.cshtml.cs
