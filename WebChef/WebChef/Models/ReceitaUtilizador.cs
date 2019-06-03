@@ -32,7 +32,7 @@ namespace WebChef.Models
         public DateTime? data_realizacao { get; set; }
 
         [Display(Name = "Anotações")]
-        [StringLength(50)]
+        [StringLength(200)]
         public string anotacao { get; set; }
 
         public TimeSpan? timeInicio { get; set; }
