@@ -169,7 +169,7 @@ namespace WebChef.shared
                     }
                 }
             }
-            ids.Distinct().ToList();
+            ids = ids.Distinct().ToList();
             Receita[] res = new Receita[ids.Count];
             for(int i = 0; i < ids.Count; i++)
             {

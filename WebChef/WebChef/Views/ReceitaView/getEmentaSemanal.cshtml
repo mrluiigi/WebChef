@@ -15,6 +15,12 @@
             <th>
 
             </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
         </tr>
 
         @foreach (var e in Model)
@@ -40,7 +46,7 @@
                 </th>
             }
 
-            <td class="text-center"><img class="img-fluid" src=@Url.Content(e.receita.imagem) /></td>
+            <td class="text-center"><img class="img-fluid" src=@Url.Content(e.receita.imagem) style="height:150px;height:150px"/></td>
             <td>
                 <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@e.receita.id_receita>
                     @Html.DisplayFor(modelreceita => e.receita.nome)

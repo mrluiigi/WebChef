@@ -18,9 +18,9 @@
         if (receita.receitaUtilizador.timeInicio != null)
         {
         <tr>
-            <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
+            <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) style="height:150px;height:150px"/></td>
             <td>
-                <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
+                <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita class="btn btn-secondary">
                     @Html.DisplayFor(modelreceita => receita.nome)
                 </a>
             </td>
@@ -34,10 +34,10 @@
 <table class="table">
     <tr bgcolor='@("#EEE")'>
         <th>
-
+            Receitas concluídas
         </th>
         <th>
-            Receitas concluídas
+
         </th>
         <th>
             Duração
@@ -58,9 +58,9 @@
         if (receita.receitaUtilizador.timeInicio == null && receita.receitaUtilizador.duracao != null)
         {
 <tr>
-    <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
+    <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) style="height:150px;height:150px"/></td>
     <td>
-        <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
+        <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita class="btn btn-secondary">
             @Html.DisplayFor(modelreceita => receita.nome)
         </a>
     </td>
