@@ -202,3 +202,5 @@ C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\R
 C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\SugerirReceitas.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getEmentaSemanal.g.cshtml.cs
 C:\Users\Utilizador\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getReceitasPorCategoria.g.cshtml.cs
+C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getEmentaSemanal.g.cshtml.cs
+C:\Users\jose9\Desktop\LI4\WebChef\WebChef\obj\Debug\netcoreapp2.2\Razor\Views\ReceitaView\getReceitasPorCategoria.g.cshtml.cs

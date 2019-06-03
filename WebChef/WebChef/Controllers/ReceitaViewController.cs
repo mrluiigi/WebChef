@@ -130,10 +130,11 @@ namespace WebChef.Controllers
         public IActionResult getReceita(int id)
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(userID.ToString()));  //User.Identity.Name é o id do utilizador logged in
-            ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, int.Parse(userID.ToString()));
+            int user_id = int.Parse(userID.ToString());
+            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, user_id);  //User.Identity.Name é o id do utilizador logged in
+            ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, user_id);
             Receita receita = receitaHandling.getReceita(id);
-
+            receita.receitaUtilizador = receitaHandling.getReceitaUtilizador(id, user_id);
             string[] tokens = receita.informacao_nutricional.Split('|');
             receita.energia = tokens[0];
             receita.lipidos = tokens[1];
