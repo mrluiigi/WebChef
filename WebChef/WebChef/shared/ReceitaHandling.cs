@@ -241,6 +241,12 @@ namespace WebChef.shared
         }
 
 
+        public Receita[] getReceitasPorCategoria(string categoria)
+        {
+            return _context.receita.Where(x => x.categoria == categoria).ToArray();
+        }
+
+
         public void rmReceitaEmenta(int idReceita, int idUtilizador, string text)
         {
             EmentaSemanal r = _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_receita == idReceita &&

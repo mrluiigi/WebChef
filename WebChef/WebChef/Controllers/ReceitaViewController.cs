@@ -78,6 +78,14 @@ namespace WebChef.Controllers
             return View(ementa);
         }
 
+        public IActionResult getReceitasPorCategoria(string categoria)
+        {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            Receita[] receitas = receitaHandling.getReceitasPorCategoria(categoria);
+
+            return View(receitas);
+        }
+
         public IActionResult SugerirReceitas()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -177,12 +185,21 @@ namespace WebChef.Controllers
             return View(es);
         }
 
+
         [Route("{id=int}/{text=string}")]    //Quando clica no dia da semana para retirar da ementa
         public IActionResult rmReceitaEmenta(int id, string text)
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             receitaHandling.rmReceitaEmenta(id, int.Parse(userID.ToString()), text);
             return RedirectToAction("getReceita", "ReceitaView");
+        }
+
+        [Route("{id=int}/{dia=string}")]    //Quando clica no dia da semana para retirar da ementa
+        public IActionResult removeReceitaEmenta(int id, string dia)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.rmReceitaEmenta(id, int.Parse(userID.ToString()), dia);
+            return RedirectToAction("getEmentaSemanal", "ReceitaView");
         }
 
 

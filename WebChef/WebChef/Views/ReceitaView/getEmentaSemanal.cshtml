@@ -46,10 +46,15 @@
                     @Html.DisplayFor(modelreceita => e.receita.nome)
                 </a>
             </td>
+            <td>
+                <a asp-controller="ReceitaView" asp-action="removeReceitaEmenta" asp-route-id=@e.receita.id_receita asp-route-dia=@e.dia_da_semana class="btn btn-secondary">
+                    Remover Receita de Ementa Semanal
+                </a>
+            </td>
         </tr>
             }
         }
     }
 </table>
 
-<a asp-controller="ReceitaView" asp-action="ListaCompras" class="btn btn-light">Lista de compras</a>
+<a asp-controller="ReceitaView" asp-action="ListaCompras" class="btn btn-primary">Lista de compras</a>
