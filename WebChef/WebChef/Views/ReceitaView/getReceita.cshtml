@@ -51,7 +51,37 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.categoria)
         </dd>
-    </dl>
+        @if (Model.receitaUtilizador != null && Model.receitaUtilizador.data_realizacao != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.receitaUtilizador.data_realizacao)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.receitaUtilizador.data_realizacao)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.receitaUtilizador.avaliacao_dificuldade)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.receitaUtilizador.avaliacao_dificuldade)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.receitaUtilizador.classificacao)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.receitaUtilizador.classificacao)
+            </dd>
+        }
+        @if (Model.receitaUtilizador != null && Model.receitaUtilizador.anotacao != null)
+        {
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.receitaUtilizador.anotacao)
+            </dt>
+            <dd class="col-sm-2">
+                @Html.DisplayFor(model => model.receitaUtilizador.anotacao)
+            </dd>
+        }
+        </dl>
 </div>
 
 <table class="table">

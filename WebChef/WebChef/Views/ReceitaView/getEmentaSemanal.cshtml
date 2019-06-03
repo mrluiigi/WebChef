@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebChef.Models.EmentaSemanal>
+@{
+    ViewData["Title"] = "EmentaSemanal";
+    ViewBag.diasSemana = new List<string> { "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"};
+}
+
+<h1>Ementa Semanal</h1>
+
+<table class="table">
+    @foreach (var dia in ViewBag.diasSemana) {
+        <tr bgcolor='@("#EEE")'>
+            <th>
+                @dia
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var e in Model)
+        {
+            if (e.dia_da_semana.Substring(0, 3).Equals(dia.Substring(0,3))) {
+        <tr>
+            @if (e.dia_da_semana.Substring(3, 1).Equals("A"))
+            {
+                <th>
+                    Almoço
+                </th>
+            }
+            else if (e.dia_da_semana.Substring(3, 1).Equals("J"))
+            {
+                <th>
+                    Jantar
+                </th>
+            }
+            else if (e.dia_da_semana.Substring(3, 1).Equals("O"))
+            {
+                <th>
+                    Outro
+                </th>
+            }
+
+            <td class="text-center"><img class="img-fluid" src=@Url.Content(e.receita.imagem) /></td>
+            <td>
+                <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@e.receita.id_receita>
+                    @Html.DisplayFor(modelreceita => e.receita.nome)
+                </a>
+            </td>
+            <td>
+                <a asp-controller="ReceitaView" asp-action="removeReceitaEmenta" asp-route-id=@e.receita.id_receita asp-route-dia=@e.dia_da_semana class="btn btn-secondary">
+                    Remover Receita de Ementa Semanal
+                </a>
+            </td>
+        </tr>
+            }
+        }
+    }
+</table>
+
+<a asp-controller="ReceitaView" asp-action="ListaCompras" class="btn btn-primary">Lista de compras</a>

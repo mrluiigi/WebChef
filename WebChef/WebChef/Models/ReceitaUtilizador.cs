@@ -22,13 +22,13 @@ namespace WebChef.Models
         [StringLength(1)]
         public string favorita { get; set; }
 
-        [Display(Name = "Avalização dificuldade")]
+        [Display(Name = "Avaliação dificuldade")]
         [StringLength(10)]
         public string avaliacao_dificuldade { get; set; }
 
         [Display(Name = "Classificação")]
         public int? classificacao { get; set; }
-
+        [Display(Name = "Data de realização")]
         public DateTime? data_realizacao { get; set; }
 
         [Display(Name = "Anotações")]

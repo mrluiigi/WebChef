@@ -17,7 +17,6 @@
                         <li class="nav-item">
                             @if (User.Identity.IsAuthenticated)
                             {
-
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Preferências
@@ -32,7 +31,7 @@
 
                                 <a asp-controller="ReceitaView" asp-action="getHistorico" class="btn btn-light">Histórico</a>
 
-                                <a asp-controller="ReceitaView" asp-action="ListaCompras"class="btn btn-light">Lista de compras</a>
+                                <a asp-controller="ReceitaView" asp-action="getEmentaSemanal" class="btn btn-light">Ementa Semanal</a>
 
                                 <a asp-controller="UtilizadorView" asp-action="Logout">Olá @User.Identity.Name (Sign Out)</a>
                             }

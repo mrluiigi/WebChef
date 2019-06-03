@@ -4,36 +4,41 @@
     ViewData["Title"] = "Catálogo de Receitas";
 }
 
-
-<form id="form1" action="/ReceitaView/getReceitas/filtro">
-
-    <select name="opcao">
-        <option value="1">Duração da Receita</option>
-        <option value="2">Calorias</option>
-        <option value="3">Número de Pessoas</option>
-    </select>
-    <button type="submit">Filtrar</button>
-</form>
-
-
-<a asp-controller="ReceitaView" asp-action="SugerirReceitas" class="btn btn-secondary">
-    Sugestão de Receitas
-</a>
-
-
-<form id="form2" action="/ReceitaView/getReceitasComIngrediente">
-
-    <select name="ing">
-        @foreach (var ing in ViewBag.ingredientes)
-        {
-            <option value=@ing.id_ingrediente>@ing.designacao</option>
-        }
-    </select>
-    <button type="submit">Filtrar</button>
-</form>
-
-
 <h1>Receitas</h1>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="form1" action="/ReceitaView/getReceitas/filtro">
+
+            <select name="opcao">
+                <option value="1">Duração da Receita</option>
+                <option value="2">Calorias</option>
+                <option value="3">Número de Pessoas</option>
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form id="form2" action="/ReceitaView/getReceitasComIngrediente">
+
+            <select name="ing">
+                @foreach (var ing in ViewBag.ingredientes)
+                {
+                    <option value=@ing.id_ingrediente>@ing.designacao</option>
+                }
+            </select>
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <a asp-controller="ReceitaView" asp-action="SugerirReceitas" class="btn btn-secondary">
+            Sugestão de Receitas
+        </a>
+    </div>
+</div>
 <div class="col-xs-12" style="height:50px;"></div>
 <table class="table">
     <tr bgcolor='@("#EEE")'>

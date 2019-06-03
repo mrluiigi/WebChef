@@ -70,6 +70,22 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+        public IActionResult getEmentaSemanal()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            EmentaSemanal[] ementa = receitaHandling.getReceitasEmenta(int.Parse(userID.ToString()));
+            ementa.OrderBy(x => x.dia_da_semana);
+            return View(ementa);
+        }
+
+        public IActionResult getReceitasPorCategoria(string categoria)
+        {
+            ViewBag.ingredientes = receitaHandling.getIngredientes();
+            Receita[] receitas = receitaHandling.getReceitasPorCategoria(categoria);
+
+            return View(receitas);
+        }
+
         public IActionResult SugerirReceitas()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
@@ -114,10 +130,11 @@ namespace WebChef.Controllers
         public IActionResult getReceita(int id)
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, int.Parse(userID.ToString()));  //User.Identity.Name é o id do utilizador logged in
-            ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, int.Parse(userID.ToString()));
+            int user_id = int.Parse(userID.ToString());
+            ViewBag.isFavorita = receitaHandling.TemReceitaFavorita(id, user_id);  //User.Identity.Name é o id do utilizador logged in
+            ViewBag.isSemanal = receitaHandling.TemReceitaNaEmenta(id, user_id);
             Receita receita = receitaHandling.getReceita(id);
-
+            receita.receitaUtilizador = receitaHandling.getReceitaUtilizador(id, user_id);
             string[] tokens = receita.informacao_nutricional.Split('|');
             receita.energia = tokens[0];
             receita.lipidos = tokens[1];
@@ -169,12 +186,21 @@ namespace WebChef.Controllers
             return View(es);
         }
 
+
         [Route("{id=int}/{text=string}")]    //Quando clica no dia da semana para retirar da ementa
         public IActionResult rmReceitaEmenta(int id, string text)
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
             receitaHandling.rmReceitaEmenta(id, int.Parse(userID.ToString()), text);
             return RedirectToAction("getReceita", "ReceitaView");
+        }
+
+        [Route("{id=int}/{dia=string}")]    //Quando clica no dia da semana para retirar da ementa
+        public IActionResult removeReceitaEmenta(int id, string dia)
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            receitaHandling.rmReceitaEmenta(id, int.Parse(userID.ToString()), dia);
+            return RedirectToAction("getEmentaSemanal", "ReceitaView");
         }
 
 
