@@ -74,14 +74,6 @@ Insert into Ingrediente (designacao, imagem)
 -- Delete from Ingrediente;
 
 
-Insert into Localizacao (id_localizacao, nome, coordenadas)
-	VALUES
-		(1, 'Jumbo', 'Ali'),
-		(2, 'Pingo Doce', 'Aqui');
--- SELECT * FROM Localizacao;
--- Delete from Localizacao;
-
-
 Insert into Passo (descricao, timestamp, id_acao, duracao)
 	VALUES
 		('Cortar o tofu em cubos pequenos', '0073', 1, null),
@@ -146,15 +138,6 @@ Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
 		(2, 3);
 -- SELECT * FROM IngredienteLocalizacao;
 -- Delete from IngredienteLocalizacao;
-
-
-Insert into IngredientePreferidoUtilizador(id_ingrediente, id_utilizador, favorito)
-	VALUES
-		(1, 1, 's'),
-		(2, 1, 'n');
--- SELECT * FROM IngredientePreferidoUtilizador;
--- Delete from IngredientePreferidoUtilizador;
-
 
 Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 	VALUES
@@ -314,3 +297,6 @@ Insert into ReceitaPasso (id_passo, id_receita, numero)
 		(33, 2, 15);
 -- SELECT * FROM ReceitaPasso;
 -- Delete from ReceitaPasso;
+
+
+select * from IngredientePreferidoUtilizador;
