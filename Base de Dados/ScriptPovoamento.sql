@@ -76,24 +76,24 @@ Insert into Ingrediente (designacao, imagem)
 
 Insert into Passo (descricao, timestamp, id_acao, duracao)
 	VALUES
-		('Cortar o tofu em cubos pequenos', '0073', 1, null),
-		('Espremer a lima para um recipiente', '0010', 2, null),
-		('Colocar o tofu cortado aos cubos a marinar juntamente com o sumo de lima, molho de soja e pimenta durante 2 horas', '0010', 3, 7200),
-		('Cortar casca da lima', '0010', 4, null),
-		('Descascar o alho', '0010', 5, null),
-		('Descascar a cebola', '0010', 5, null),
-		('Cortar a cebola', '0010', 17, null),
-		('Ferver água ao lume', '0010', 6, null),
-		('Adicionar cebola cortada, folha de louro, os dentes de alho e a casca de lima à água', '0010', 7, null),
-		('Cortar o alho-francês em tiras', '0010', 17, null),
-		('Picar os coentros', '0010', 8, null),
-		('Adicionar o alfo-francês cortado em tiras, os coentros picados, agrião, tofu e respetiva marinada à água', '0010', 7, null),
-		('Partir os ovos', '0010', 9, null),
-		('Escalfar os ovos junto da sopa que está ao lume durante 3 minutos', '0010', 10, 180),
-		('Servir a sopa num recipiente apropriado', '0010', 13, null), --15
-		('Ralar o gengibre', '0010', 11, null),
-		('Polvilhar a sopa com o gengibre ralado', '0010', 12, null),
-		('Polvilhar a sopa com sementes de sésamo', '0017', 12, null), -- 18
+		('Cortar o tofu em cubos pequenos', '0038', 1, null),
+		('Espremer a lima para um recipiente', '0043', 2, null),
+		('Colocar o tofu cortado aos cubos a marinar juntamente com o sumo de lima, molho de soja e pimenta durante 2 horas', '0043', 3, 7200),
+		('Cortar casca da lima', '0050', 4, null),
+		('Descascar o alho', '0050', 5, null),
+		('Descascar a cebola', '0050', 5, null),
+		('Cortar a cebola', '0050', 17, null),
+		('Ferver água ao lume', '0050', 6, null),
+		('Adicionar cebola cortada, folha de louro, os dentes de alho e a casca de lima à água', '0050', 7, null),
+		('Cortar o alho-francês em tiras', '0050', 17, null),
+		('Picar os coentros', '0050', 8, null),
+		('Adicionar o alfo-francês cortado em tiras, os coentros picados, agrião, tofu e respetiva marinada à água', '0050', 7, null),
+		('Partir os ovos', '0076', 9, null),
+		('Escalfar os ovos junto da sopa que está ao lume durante 3 minutos', '0076', 10, 180),
+		('Servir a sopa num recipiente apropriado', '0082', 13, null), --15
+		('Ralar o gengibre', '0086', 11, null),
+		('Polvilhar a sopa com o gengibre ralado', '0086', 12, null),
+		('Polvilhar a sopa com sementes de sésamo', '0086', 12, null), -- 18
 		
 
 
@@ -286,7 +286,7 @@ Insert into ReceitaPasso (id_passo, id_receita, numero)
 		(29, 2, 11),
 		(30, 2, 12),
 		(31, 2, 13),
-		(32, 2, 14),
+		(32, 2, 14), 
 		(33, 2, 15);
 -- SELECT * FROM ReceitaPasso;
 -- Delete from ReceitaPasso;
