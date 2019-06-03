@@ -131,13 +131,6 @@ INSERT INTO Utilizador(nome, email, password)
 -- Delete from Utilizador;
 
 
-Insert into IngredienteLocalizacao (id_localizacao, id_ingrediente)
-	VALUES
-		(1, 1),
-		(2, 2),
-		(2, 3);
--- SELECT * FROM IngredienteLocalizacao;
--- Delete from IngredienteLocalizacao;
 
 Insert into PassoIngrediente (id_passo, id_ingrediente, quantidade)
 	VALUES
@@ -297,6 +290,3 @@ Insert into ReceitaPasso (id_passo, id_receita, numero)
 		(33, 2, 15);
 -- SELECT * FROM ReceitaPasso;
 -- Delete from ReceitaPasso;
-
-
-select * from IngredientePreferidoUtilizador;
