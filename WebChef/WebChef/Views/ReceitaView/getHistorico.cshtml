@@ -34,7 +34,22 @@
 <table class="table">
     <tr bgcolor='@("#EEE")'>
         <th>
+
+        </th>
+        <th>
             Receitas concluídas
+        </th>
+        <th>
+            Duração
+        </th>
+        <th>
+            Data
+        </th>
+        <th>
+            Dificuldade
+        </th>
+        <th>
+            Classificação
         </th>
     </tr>
 
@@ -42,21 +57,35 @@
     {
         if (receita.receitaUtilizador.timeInicio == null && receita.receitaUtilizador.duracao != null)
         {
-    <tr>
-        <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
-        <td>
-            <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
-                @Html.DisplayFor(modelreceita => receita.nome)
-            </a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.duracao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.data_realizacao)
-        </td>
+<tr>
+    <td class="text-center"><img class="img-fluid" src=@Url.Content(receita.imagem) /></td>
+    <td>
+        <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
+            @Html.DisplayFor(modelreceita => receita.nome)
+        </a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelreceita => receita.receitaUtilizador.duracao)
+    </td>
+    <td>
+        @Html.DisplayFor(modelreceita => receita.receitaUtilizador.data_realizacao)
+    </td>
 
-    </tr>
+    @if (receita.receitaUtilizador.avaliacao_dificuldade != null)
+    {
+        <td>
+            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.avaliacao_dificuldade)
+        </td>
+    }
+    @if (receita.receitaUtilizador.classificacao != null)
+    {
+        <td>
+            @Html.DisplayFor(modelreceita => receita.receitaUtilizador.classificacao)
+        </td>
+    }
+
+
+</tr>
         }
     }
 </table>

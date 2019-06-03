@@ -181,9 +181,10 @@ namespace WebChef.Controllers
         public IActionResult ListaCompras()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
-            Ingrediente[] lista = receitaHandling.calculaListaCompras(int.Parse(userID.ToString()));
+            IngredienteListaCompras[] lista = receitaHandling.calculaListaCompras(int.Parse(userID.ToString()));
             return View(lista);
         }
+
 
 
         [Route("{id=int}/{passo=int}")]

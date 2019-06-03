@@ -243,9 +243,9 @@ namespace WebChef.shared
         }
 
 
-        public Ingrediente[] calculaListaCompras(int idUtilizador)
+        public IngredienteListaCompras[] calculaListaCompras(int idUtilizador)
         {
-            List < Ingrediente > listaIngredientes = new List<Ingrediente>();
+            List<IngredienteListaCompras> lista = new List<IngredienteListaCompras>();
             EmentaSemanal[] es = getEmentaSemanal(idUtilizador);
             int indice = 0;
             string quantidade;
@@ -255,21 +255,27 @@ namespace WebChef.shared
                 Receita r = getReceita(es[i].id_receita);
                 for (int j = 0; j < r.ingredientes.Length; j++)
                 {
-                    if(listaIngredientes.Contains(r.ingredientes[j]))
+
+                    IngredienteListaCompras ilc = new IngredienteListaCompras();
+                    ilc.designacao = r.ingredientes[j].designacao;
+                    ilc.imagem = r.ingredientes[j].imagem;
+                    ilc.quantidade = r.ingredientes[j].quantidade;
+
+                    if (lista.Contains(ilc))
                     {
-                        indice = listaIngredientes.IndexOf(r.ingredientes[j]);
-                        quantidade = listaIngredientes[indice].quantidade;
-                        listaIngredientes[indice].quantidade = quantidade + "; " + r.ingredientes[j].quantidade;
+                        indice = lista.IndexOf(ilc);
+                        quantidade = lista[indice].quantidade;
+                        lista[indice].quantidade = quantidade + "; " + ilc.quantidade;
                     }
                     else
                     {
-                        listaIngredientes.Add(r.ingredientes[j]);
+                        lista.Add(ilc);
                     }
-                    
+
                 }
             }
 
-            return listaIngredientes.ToArray();
+            return lista.ToArray();
         }
 
 
