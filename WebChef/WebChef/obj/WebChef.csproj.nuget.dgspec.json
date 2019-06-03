@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jose9\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj": {}
+    "C:\\Users\\Barbosa\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jose9\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj": {
+    "C:\\Users\\Barbosa\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jose9\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj",
+        "projectUniqueName": "C:\\Users\\Barbosa\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj",
         "projectName": "WebChef",
-        "projectPath": "C:\\Users\\jose9\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj",
-        "packagesPath": "C:\\Users\\jose9\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jose9\\Desktop\\LI4\\WebChef\\WebChef\\obj\\",
+        "projectPath": "C:\\Users\\Barbosa\\Desktop\\LI4\\WebChef\\WebChef\\WebChef.csproj",
+        "packagesPath": "C:\\Users\\Barbosa\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Barbosa\\Desktop\\LI4\\WebChef\\WebChef\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jose9\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Barbosa\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

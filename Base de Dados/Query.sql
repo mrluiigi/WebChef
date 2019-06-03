@@ -126,8 +126,8 @@ Insert into Passo (descricao, timestamp, id_acao, duracao)
 
 INSERT INTO Receita (nome, descricao, informacao_nutricional, duracao_prevista, link_ajuda, imagem, nr_pessoas, dificuldade, categoria)
 	VALUES 
-		('Sopa de Agrião', 'Torne o seu dia mais saudável e saboroso com esta receita que junta ingredientes vegetarianos com o melhor da cozinha portuguesa.', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Prato Principal'),
-		('Sopa de Miso', 'Inspire-se nos sabores japoneses e aprecie esta sopa de miso. Um alimento fermentado e com vários benefícios nutricionais, nomeadamente na flora intestinal.', '149|5|1|16|4|3|9|1,16|', 3600, null, '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Prato Principal');
+		('Sopa de Agrião', 'Torne o seu dia mais saudável e saboroso com esta receita que junta ingredientes vegetarianos com o melhor da cozinha portuguesa.', '50|15|2|13|23|4|2|3|', 1800, 'https://www.youtube.com/embed/gS2WtZHvvWk?start=', '~/Images/sopaAgriao.jpg', 4, 'Médio', 'Sopa'),
+		('Sopa de Miso', 'Inspire-se nos sabores japoneses e aprecie esta sopa de miso. Um alimento fermentado e com vários benefícios nutricionais, nomeadamente na flora intestinal.', '149|5|1|16|4|3|9|1,16|', 3600, null, '~/Images/sopaMiso.jpg', 4, 'Fácil', 'Sopa');
 -- SELECT * FROM Receita;
 -- Delete from Receita;
 
