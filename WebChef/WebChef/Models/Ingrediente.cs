@@ -38,7 +38,6 @@ namespace WebChef.Models
         public bool Equals(Ingrediente ing)
         {
             if (ing == null) return false;
-            while(true);
             return (this.designacao.Equals(ing.designacao));
         }
 

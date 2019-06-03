@@ -149,12 +149,12 @@ namespace WebChef.shared
                 //todos os ingredientes de uma receita
                 ReceitaIngrediente[] ri = _contextReceitaIngrediente.receitaIngrediente.Where(ring => ring.id_receita == receitas[i].id_receita).ToArray();
                 //percorre todos os ingredientes da receita
-
-                for (int j = 0; j < ri.Length; j++)
+                bool b = true;
+                for (int j = 0; j < ri.Length && b == true; j++)
                 {
                     //percorre os ingredientes preferidos
-                    bool b = true;
-                    for (int k = 0; k < preferidos.Length && b == true; k++)
+                    
+                    for (int k = 0; k < preferidos.Length; k++)
                     {
                         if (ri[j].id_ingrediente == preferidos[k].id_ingrediente)
                         {
@@ -398,7 +398,7 @@ namespace WebChef.shared
                 r.classificacao = classificacao;
                 r.avaliacao_dificuldade = dificuldade;
                 r.anotacao = anotacao;
-                r.data_realizacao = DateTime.Today;
+                r.data_realizacao = DateTime.Now;
                 _contextRU.SaveChanges();
             }
             else
@@ -408,7 +408,7 @@ namespace WebChef.shared
                 ru.id_utilizador = userID;
                 ru.avaliacao_dificuldade = dificuldade;
                 ru.classificacao = classificacao;
-                ru.data_realizacao = DateTime.Today;
+                ru.data_realizacao = DateTime.Now;
                 ru.anotacao = anotacao;
                 _contextRU.receitaUtilizador.Add(ru);
                 _contextRU.SaveChanges();

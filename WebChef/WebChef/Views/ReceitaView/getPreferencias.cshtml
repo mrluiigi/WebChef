@@ -11,6 +11,10 @@
         <th>
             Ingredientes Preferidos
         </th>
+        <th>
+        </th>
+        <th>
+        </th>
     </tr>
 
     @foreach (var ingrediente in Model)
@@ -18,12 +22,12 @@
         @if (ingrediente.favorito == "S")
         {
             <tr>
-                <td class="text-center"><img class="img-fluid" src=@Url.Content(ingrediente.imagem) /></td>
+                <td class="text-center"><img class="img-fluid" src=@Url.Content(ingrediente.imagem) style="height:100px;height:100px"/></td>
                 <td>
                     @Html.DisplayFor(modelingrediente => ingrediente.designacao)
                 </td>
                 <td>
-                    <a asp-controller="ReceitaView" asp-action="Remover" asp-route-id=@ingrediente.id_ingrediente>
+                    <a asp-controller="ReceitaView" asp-action="Remover" asp-route-id=@ingrediente.id_ingrediente class="btn btn-secondary">
                         Remover
                     </a>
                 </td>

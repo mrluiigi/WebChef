@@ -15,9 +15,6 @@
             @Html.DisplayNameFor(model => model.nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descricao)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.energia)
         </th>
         <th>
@@ -45,9 +42,6 @@
                 <a asp-controller="ReceitaView" asp-action="getReceita" asp-route-id=@receita.id_receita>
                     @Html.DisplayFor(modelreceita => receita.nome)
                 </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelreceita => receita.descricao)
             </td>
             <td>
                 @receita.informacao_nutricional.Split("|")[0]
