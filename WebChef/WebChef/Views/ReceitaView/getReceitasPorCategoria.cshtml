@@ -61,11 +61,14 @@
         </form>
     </div>
 
-    <div class="col-md-3">
-        <a asp-controller="ReceitaView" asp-action="SugerirReceitas" class="btn btn-secondary">
-            Sugestão de Receitas
-        </a>
-    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="col-md-3">
+            <a asp-controller="ReceitaView" asp-action="SugerirReceitas" class="btn btn-secondary">
+                Sugestão de Receitas
+            </a>
+        </div>
+    }
 </div>
 
 <div class="col-xs-12" style="height:50px;"></div>

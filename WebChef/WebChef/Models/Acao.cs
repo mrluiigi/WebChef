@@ -16,7 +16,7 @@ namespace WebChef.Models
         [Display(Name = "Nome")]
         [StringLength(50)]
         public string nome { set; get; }
-        [Display(Name = "Designação")]
+        [Display(Name = "Descrição")]
         [StringLength(150)]
         public string descricao { set; get; }
 
