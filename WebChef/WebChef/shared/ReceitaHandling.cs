@@ -230,6 +230,16 @@ namespace WebChef.shared
             return _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_utilizador == idUtilizador).ToArray();
         }
 
+        public EmentaSemanal[] getReceitasEmenta(int idUtilizador)
+        {
+            EmentaSemanal[] ementa = _contextEmentaSemanal.ementaSemanal.Where(ru => ru.id_utilizador == idUtilizador).ToArray();
+            for(int i = 0; i < ementa.Length; i++)
+            {
+                ementa[i].receita = _context.receita.Where(r => r.id_receita == ementa[i].id_receita).FirstOrDefault();
+            }
+            return ementa;
+        }
+
 
         public void rmReceitaEmenta(int idReceita, int idUtilizador, string text)
         {

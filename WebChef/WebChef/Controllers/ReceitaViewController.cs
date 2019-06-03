@@ -70,6 +70,14 @@ namespace WebChef.Controllers
             return View(receitas);
         }
 
+        public IActionResult getEmentaSemanal()
+        {
+            object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            EmentaSemanal[] ementa = receitaHandling.getReceitasEmenta(int.Parse(userID.ToString()));
+            ementa.OrderBy(x => x.dia_da_semana);
+            return View(ementa);
+        }
+
         public IActionResult SugerirReceitas()
         {
             object userID = HttpContext.User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
