@@ -2,23 +2,23 @@ Use WebChef;
 
 Insert into Acao (nome, descricao)
 	VALUES
-		('Cortar aos cubos', 'Cortar em cubos pequenos um alimento'), -- 1
+		('Cortar aos cubos', 'Cortar aproximadamente o alimento em cubos pequenos'), -- 1
 		('Espremer', ' Extrair, por compressão, o suco ou o líquido de um fruto ou de qualquer outro alimento'),
 		('Marinar', 'Colocar um alimento, numa mistura de um líquido e temperos, durante um intervalo de tempo variado'),
-		('Cortar', 'Cortar um alimento'),
+		('Cortar', 'Cortar um alimento em pedaços conforme seja útil'),
 		('Descascar', 'Tirar a casca de um alimento'), -- 5
-		('Ferver água', 'Colocar uma panela com água ao lume e esperar que esta ferva'),
+		('Ferver água', 'Colocar uma panela com água ao lume e esperar que comece a borbulhar'),
 		('Adicionar à água ao lume', 'Adicionar algum alimento à água que está a ferver'),
 		('Picar', 'Cortar em pedaços muito pequeninos qualquer tipo de alimento'),
-		('Partir os ovos', 'Partir a casca do ovo de modo a aproveitar o conteúdo'),
+		('Partir os ovos', 'Bater com o ovo numa superfície até criar uma fenda. Aplicar pressão na fenda para separar a casca em duas. Colocar o conteúdo no recipiente.'),
 		('Escalfar', 'Deixar estar durante algum tempo em água muito quente (a ferver)'), -- 10
 		('Ralar', 'Raspar com o ralador'),
 		('Polvilhar', 'Cobrir ou salpicar com uma especiaria ou alimento'),
 		('Servir', 'Pôr na mesa num recipiente apropriado'),
 		('Retirar concha e adicionar a uma tijela', 'Retirar com uma concha(colher grande e funda usada para retirar líquidos de um recepiente) conteúdo do caldo e colocar num recipiente à parte'),
 		('Misturar', 'Juntar os vários ingredientes'), -- 15
-		('Cortar às rodelas', 'Cortar o alimento em forma de rodelas'),
-		('Cortar em tiras', 'Cortar o alimento em tiras'),
+		('Cortar às rodelas', 'Cortar o alimento em formas arredondadas'),
+		('Cortar em tiras', 'Cortar o alimento em pedaços longos'),
 		('Deixar cozinhar', 'Deixar a panela ao lume durante um certo intervalo de tempo');-- 18
 -- SELECT * FROM Acao;
 -- Delete from Acao;
