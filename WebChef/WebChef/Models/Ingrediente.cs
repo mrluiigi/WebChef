@@ -25,8 +25,6 @@ namespace WebChef.Models
 
         [NotMapped]
         public string quantidade { set; get; }
-        [NotMapped]
-        public Localizacao[] localizacoes { set; get; }
 
         [NotMapped]
         [Required]
@@ -43,7 +41,7 @@ namespace WebChef.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(id_ingrediente, designacao, imagem, quantidade, localizacoes, imagemFicheiro, favorito);
+            return HashCode.Combine(id_ingrediente, designacao, imagem, quantidade, imagemFicheiro, favorito);
         }
     }
 

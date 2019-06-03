@@ -23,13 +23,12 @@ namespace WebChef.Controllers
 
         public ReceitaViewController(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                     AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                    ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
-                                    IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU,
+                                    ReceitaIngredienteContext contextRI, IngredientePreferidoUtilizadorContext contextIPU,
                                     EmentaSemanalContext contextES)
         {
             //_context = context;
             receitaHandling = new ReceitaHandling(context, contextRU, contextRP, contextPasso, contextAcao, contextIngrediente, 
-                                                    contextPassoIngrediente, contextRI, contextLocalizacao, contextIngredienteLocalizacao, contextIPU, contextES);
+                                                    contextPassoIngrediente, contextRI, contextIPU, contextES);
         }
 
         public IActionResult getReceitas()

@@ -28,8 +28,6 @@ namespace WebChef
             services.AddDbContext<IngredienteContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<PassoIngredienteContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<ReceitaIngredienteContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<LocalizacaoContext>(options => options.UseSqlServer(connection));
-            services.AddDbContext<IngredienteLocalizacaoContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<IngredientePreferidoUtilizadorContext>(options => options.UseSqlServer(connection));
             services.AddDbContext<EmentaSemanalContext>(options => options.UseSqlServer(connection));
 

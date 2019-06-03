@@ -17,16 +17,13 @@ namespace WebChef.shared
         private readonly IngredienteContext _contextIngrediente;
         private readonly PassoIngredienteContext _contextPassoIngrediente;
         private readonly ReceitaIngredienteContext _contextReceitaIngrediente;
-        private readonly LocalizacaoContext _contextLocalizacao;
-        private readonly IngredienteLocalizacaoContext _contextIngredienteLocalizacao;
         private readonly IngredientePreferidoUtilizadorContext _contextIPU;
         private readonly EmentaSemanalContext _contextEmentaSemanal;
 
 
         public ReceitaHandling(ReceitaContext context, ReceitaUtilizadorContext contextRU, ReceitaPassoContext contextRP, PassoContext contextPasso, 
                                 AcaoContext contextAcao, IngredienteContext contextIngrediente, PassoIngredienteContext contextPassoIngrediente, 
-                                ReceitaIngredienteContext contextRI, LocalizacaoContext contextLocalizacao, 
-                                IngredienteLocalizacaoContext contextIngredienteLocalizacao, IngredientePreferidoUtilizadorContext contextIPU, EmentaSemanalContext contextES)
+                                ReceitaIngredienteContext contextRI, IngredientePreferidoUtilizadorContext contextIPU, EmentaSemanalContext contextES)
         {
             _context = context;
             _contextRU = contextRU;
@@ -36,8 +33,6 @@ namespace WebChef.shared
             _contextIngrediente = contextIngrediente;
             _contextPassoIngrediente = contextPassoIngrediente;
             _contextReceitaIngrediente = contextRI;
-            _contextLocalizacao = contextLocalizacao;
-            _contextIngredienteLocalizacao = contextIngredienteLocalizacao;
             _contextIPU = contextIPU;
             _contextEmentaSemanal = contextES;
         }
@@ -140,8 +135,7 @@ namespace WebChef.shared
             //Ingredientes a evitar do utilizador em sessão
             IngredientePreferidoUtilizador[] aEvitar = _contextIPU.ingredientePreferidoUtilizador.Where(i => i.id_utilizador == idUtilizador && i.favorito == "N").ToArray();
 
-            List<Receita> res = new List<Receita>();
-
+            List<int> ids = new List<int>();
 
             //percorre todas as receitas
             for (int i = 0; i < receitas.Count; i++)
@@ -149,17 +143,15 @@ namespace WebChef.shared
                 //todos os ingredientes de uma receita
                 ReceitaIngrediente[] ri = _contextReceitaIngrediente.receitaIngrediente.Where(ring => ring.id_receita == receitas[i].id_receita).ToArray();
                 //percorre todos os ingredientes da receita
-                bool b = true;
-                for (int j = 0; j < ri.Length && b == true; j++)
+                for (int j = 0; j < ri.Length; j++)
                 {
                     //percorre os ingredientes preferidos
-                    
                     for (int k = 0; k < preferidos.Length; k++)
                     {
                         if (ri[j].id_ingrediente == preferidos[k].id_ingrediente)
                         {
-                            b = false;
-                            res.Add(receitas[i]);
+                            //Adiciona se tiver ingrediente preferido
+                            ids.Add(receitas[i].id_receita);
                         }
                     }
                 }
@@ -172,24 +164,23 @@ namespace WebChef.shared
                         if (ri[j].id_ingrediente == aEvitar[k].id_ingrediente)
                         {
                             // retira-o
-                            res.RemoveAll(r => r.id_receita == receitas[i].id_receita);
+                            ids.RemoveAll(r => r == receitas[i].id_receita);
                         }
                     }
                 }
             }
-            return res.ToArray();
+            ids.Distinct().ToList();
+            Receita[] res = new Receita[ids.Count];
+            for(int i = 0; i < ids.Count; i++)
+            {
+                res[i] = _context.receita.Where(x => x.id_receita == ids[i]).FirstOrDefault();
+            }
+            return res;
         }
 
         public Ingrediente GetIngrediente(int idIngrediente)
         {
             Ingrediente i = _contextIngrediente.ingrediente.Where(ing => ing.id_ingrediente == idIngrediente).FirstOrDefault();
-            IngredienteLocalizacao[] ingLocal = _contextIngredienteLocalizacao.ingredienteLocalizacao.Where(il => il.id_ingrediente == i.id_ingrediente).ToArray();
-            Localizacao[] localizacoes = new Localizacao[ingLocal.Length];
-            for (int k = 0; k < ingLocal.Length; k++)
-            {
-                localizacoes[k] = _contextLocalizacao.localizacao.Where(lo => lo.id_localizacao == ingLocal[k].id_localizacao).FirstOrDefault();
-            }
-            i.localizacoes = localizacoes;
             return i;
         }
 
